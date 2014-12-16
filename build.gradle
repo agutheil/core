@@ -15,6 +15,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'spring-boot'
 apply plugin: 'docker'
+apply plugin: 'idea'
 
 jar {
     baseName = 'schubber'
@@ -33,8 +34,9 @@ dependencies {
 }
 
 group = 'schubber'
-sourceCompatibility = 1.7
-mainClassName = 'com.schubber.helloworld.Application'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'com.schubber.Application'
 
 distDocker {
     exposePort 8080

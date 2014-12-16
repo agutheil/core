@@ -1,1 +1,7 @@
 .gradle
+schubber.iws
+schubber.iml
+schubber.ipr
+.idea
+.java-version
+build
