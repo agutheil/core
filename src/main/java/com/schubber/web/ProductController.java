@@ -14,7 +14,7 @@ import java.util.List;
  * Created by agutheil on 16.12.14.
  */
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     @Resource
     private ProductRepository repository;

@@ -1,5 +1,5 @@
 function productController($scope, $http) {
-    $http.get('/products').
+    $http.get('/api/v1/products').
         success(function(data) {
             $scope.products = data;
         });
