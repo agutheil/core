@@ -3,6 +3,9 @@ package com.schubber.model;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +26,7 @@ public class RuntimeProductRepository implements ProductRepository {
     }
 
     private Product createProduct(long i) {
-        return new Product(i, "Title "+1, BigDecimal.valueOf(19.99), Currency.EUR, 100L);
+        return new Product(i, "Title "+i, BigDecimal.valueOf(19.99), Currency.EUR, 100L*(i+1));
     }
 
     @Override
