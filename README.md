@@ -1,4 +1,4 @@
-schubber. andrea geisler, andreas gutheil, markus wagner.
+schubber. andrea geisler, andreas gutheil, markus wagner, till grupp
 
 # Build and Run
 boot2docker up
