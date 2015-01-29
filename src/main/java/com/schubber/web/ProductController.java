@@ -24,8 +24,9 @@ public class ProductController {
         return repository.findAll();
     }
 
+    /*
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public Product product(@PathVariable long id) {
         return repository.findById(id);
-    }
+    }*/
 }

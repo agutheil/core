@@ -1,31 +1,50 @@
 package com.schubber.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ManyToAny;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 /**
  * Created by agutheil on 16.12.14.
  */
+@Entity
 public class Product {
-    public Product(Long id, String title, BigDecimal price, Currency currency, Long stock) {
-        this.id = id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @JsonIgnore
+    @ManyToOne
+    private Account account;
+    private String title;
+    private BigDecimal price;
+    private Currency currency;
+    private Long stock;
+
+    Product() {
+        // JPA Constructor
+    }
+
+    public Product(Account account, String title, BigDecimal price, Currency currency, Long stock) {
+        this.account = account;
         this.title = title;
         this.price = price;
         this.currency = currency;
         this.stock = stock;
     }
 
-    private final Long id;
-    private final String title;
-    private final BigDecimal price;
-    private final Currency currency;
-    private final Long stock;
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public String getTitle() {
@@ -36,8 +55,11 @@ public class Product {
         return price;
     }
 
+    public Currency getCurrency() {
+        return currency;
+    }
+
     public Long getStock() {
         return stock;
     }
-
 }
