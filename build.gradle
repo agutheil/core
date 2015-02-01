@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        mavenLocal()
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -8,13 +8,21 @@ buildscript {
         classpath('com.moowork.gradle:gradle-node-plugin:0.8')
         classpath('com.moowork.gradle:gradle-grunt-plugin:0.6')
         classpath('be.filipblondeel.gradle:gradle-gulp-plugin:0.1')
+        classpath ('se.transmode.gradle:gradle-docker:1.2')
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'maven'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
+apply plugin: 'docker'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'schubber'
+    version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 bootRepackage {
    mainClass = 'com.schubber.schubber.Application'
@@ -25,8 +33,6 @@ springBoot {
 }
 
 apply from: 'yeoman.gradle'
-
-
 
 if (project.hasProperty('prod')) {
     profile = 'prod'
@@ -43,7 +49,8 @@ if (profile == 'prod') {
 }
 
 group = 'com.schubber.schubber'
-version = '0.1-SNAPSHOT'
+mainClassName = 'com.schubber.schubber.Application'
+version = '0.0.1-SNAPSHOT'
 
 description = ''
 
@@ -51,18 +58,8 @@ configurations {
     providedRuntime
 }
 
-war {
-    baseName = 'schubber'
-    version =  '0.1-SNAPSHOT'
-}
-
 repositories {
-    maven { url 'http://repo.spring.io/milestone' }
-    maven { url 'http://repo.spring.io/snapshot' }
-    maven { url 'https://repository.jboss.org/nexus/content/repositories/releases' }
-    maven { url 'https://oss.sonatype.org/content/repositories/releases' }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-    maven { url 'http://repo.maven.apache.org/maven2' }
+    mavenCentral()  
 }
 
 dependencies {
@@ -127,4 +124,8 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2.1'
+}
+
+distDocker {
+    exposePort 8080
 }
