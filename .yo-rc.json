@@ -1,0 +1,18 @@
+{
+  "generator-jhipster": {
+    "baseName": "schubber",
+    "packageName": "com.schubber.schubber",
+    "packageFolder": "com/schubber/schubber",
+    "authenticationType": "oauth2",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "useCompass": false,
+    "buildTool": "gradle",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8"
+  }
+}
