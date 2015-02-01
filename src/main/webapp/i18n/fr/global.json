@@ -6,6 +6,10 @@
             "home": "Accueil",
             "entities": {
                 "main": "Entités",
+                "channel": "Channel",
+                "customer": "Customer",
+                "order": "Order",
+                "product": "Product",
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {

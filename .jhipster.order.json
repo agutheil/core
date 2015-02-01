@@ -1,0 +1,39 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldNameCapitalized": "Date",
+            "fieldNameUnderscored": "date"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "customer",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Customer",
+            "fieldNameUnderscored": "customer"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "paymentStatus",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "PaymentStatus",
+            "fieldNameUnderscored": "payment_status"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "orderStatus",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "OrderStatus",
+            "fieldNameUnderscored": "order_status"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": true,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false
+}

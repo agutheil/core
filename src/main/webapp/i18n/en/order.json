@@ -1,0 +1,21 @@
+{
+    "schubberApp": {
+        "order" : {
+            "home": {
+                "title": "Orders",
+                "createLabel": "Create a new Order",
+                "createOrEditLabel": "Create or edit a Order"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Order {{ id }}?"
+            },
+            "detail": {
+                "title": "Order"
+            },
+            "date": "Date",
+            "customer": "Customer",
+            "paymentStatus": "PaymentStatus",
+            "orderStatus": "OrderStatus"
+        }
+    }
+}

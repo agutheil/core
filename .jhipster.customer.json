@@ -1,0 +1,67 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldNameCapitalized": "FirstName",
+            "fieldNameUnderscored": "first_name"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "lastName",
+            "fieldType": "String",
+            "fieldNameCapitalized": "LastName",
+            "fieldNameUnderscored": "last_name"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "street",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Street",
+            "fieldNameUnderscored": "street"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "streetNo",
+            "fieldType": "String",
+            "fieldNameCapitalized": "StreetNo",
+            "fieldNameUnderscored": "street_no"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "zip",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Zip",
+            "fieldNameUnderscored": "zip"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "city",
+            "fieldType": "String",
+            "fieldNameCapitalized": "City",
+            "fieldNameUnderscored": "city"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "country",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Country",
+            "fieldNameUnderscored": "country"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "eMail",
+            "fieldType": "String",
+            "fieldNameCapitalized": "EMail",
+            "fieldNameUnderscored": "e_mail"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false
+}

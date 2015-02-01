@@ -1,0 +1,46 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Title",
+            "fieldNameUnderscored": "title"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Description",
+            "fieldNameUnderscored": "description"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "price",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "Price",
+            "fieldNameUnderscored": "price"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "currency",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Currency",
+            "fieldNameUnderscored": "currency"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "vatIncluded",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "VatIncluded",
+            "fieldNameUnderscored": "vat_included"
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": true,
+    "fieldsContainDateTime": false
+}
