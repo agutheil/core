@@ -18,12 +18,16 @@ apply plugin: 'docker'
 apply plugin: 'idea'
 
 jar {
-    from ("${projectDir}/src/main/webapp/") {
-        include('**')
-    }
     baseName = 'schubber'
     version = '0.0.1-SNAPSHOT'
 }
+
+task copyPublicDir(type: Copy) {
+    from 'src/main/webapp/'
+    into 'build/resources/main/public'
+}
+
+jar.dependsOn copyPublicDir
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
