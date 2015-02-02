@@ -18,9 +18,13 @@ apply plugin: 'docker'
 apply plugin: 'idea'
 
 jar {
+    from ("${projectDir}/src/main/webapp/") {
+        include('**')
+    }
     baseName = 'schubber'
     version = '0.0.1-SNAPSHOT'
 }
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
