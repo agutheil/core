@@ -1,6 +1,10 @@
 'use strict';
 
+<<<<<<< HEAD
 angular.module('schubberApp')
+=======
+angular.module('mightymerceApp')
+>>>>>>> jhipster
     .factory('Language', function ($q, $http, $translate, LANGUAGES) {
         return {
             getCurrent: function () {

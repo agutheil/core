@@ -1,10 +1,17 @@
 {
   "name": "angular-translate-loader-partial",
   "description": "A plugin for Angular Translate",
+<<<<<<< HEAD
   "version": "2.5.2",
   "main": "./angular-translate-loader-partial.js",
   "dependencies": {
     "angular-translate": "~2.5.2"
+=======
+  "version": "2.6.0",
+  "main": "./angular-translate-loader-partial.js",
+  "dependencies": {
+    "angular-translate": "~2.6.0"
+>>>>>>> jhipster
   },
   "ignore": [],
   "author": "Pascal Precht",
@@ -15,6 +22,7 @@
     }
   ],
   "homepage": "https://github.com/PascalPrecht/bower-angular-translate-loader-partial",
+<<<<<<< HEAD
   "_release": "2.5.2",
   "_resolution": {
     "type": "version",
@@ -23,5 +31,15 @@
   },
   "_source": "git://github.com/PascalPrecht/bower-angular-translate-loader-partial.git",
   "_target": "2.5.2",
+=======
+  "_release": "2.6.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.6.0",
+    "commit": "dd4a631c5f3c06c993ef8a34b0b5b38af5f0966f"
+  },
+  "_source": "git://github.com/PascalPrecht/bower-angular-translate-loader-partial.git",
+  "_target": "2.6.0",
+>>>>>>> jhipster
   "_originalSource": "angular-translate-loader-partial"
 }

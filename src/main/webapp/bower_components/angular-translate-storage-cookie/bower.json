@@ -1,11 +1,19 @@
 {
   "name": "angular-translate-storage-cookie",
   "description": "A plugin for Angular Translate",
+<<<<<<< HEAD
   "version": "2.5.2",
   "main": "./angular-translate-storage-cookie.js",
   "dependencies": {
     "angular-translate": "~2.5.2",
     "angular-cookies": "~1.2.26"
+=======
+  "version": "2.6.0",
+  "main": "./angular-translate-storage-cookie.js",
+  "dependencies": {
+    "angular-translate": "~2.6.0",
+    "angular-cookies": ">=1.2.26 <=1.4"
+>>>>>>> jhipster
   },
   "ignore": [],
   "author": "Pascal Precht",

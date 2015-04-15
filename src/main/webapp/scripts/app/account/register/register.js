@@ -1,13 +1,22 @@
 'use strict';
 
+<<<<<<< HEAD
 angular.module('schubberApp')
+=======
+angular.module('mightymerceApp')
+>>>>>>> jhipster
     .config(function ($stateProvider) {
         $stateProvider
             .state('register', {
                 parent: 'account',
                 url: '/register',
                 data: {
+<<<<<<< HEAD
                     roles: []
+=======
+                    roles: [],
+                    pageTitle: 'register.title'
+>>>>>>> jhipster
                 },
                 views: {
                     'content@': {

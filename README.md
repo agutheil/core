@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 README for schubber
 ==========================
 
@@ -14,3 +15,7 @@ README for schubber
 4. docker run -d -P --name schubber --link mongodb:mongodb com.schubber.schubber/schubber:0.0.1-SNAPSHOT
 5. docker tag schubber/schubber tutum.co/agutheil/schubber
 6. docker push tutum.co/agutheil/schubber
+=======
+README for mightymerce
+==========================
+>>>>>>> jhipster

@@ -2,7 +2,11 @@
 
 describe('Controllers Tests ', function () {
 
+<<<<<<< HEAD
     beforeEach(module('schubberApp'));
+=======
+    beforeEach(module('mightymerceApp'));
+>>>>>>> jhipster
 
     describe('LoginController', function () {
         var $scope;

@@ -1,5 +1,6 @@
 {
   "generator-jhipster": {
+<<<<<<< HEAD
     "baseName": "schubber",
     "packageName": "com.schubber.schubber",
     "packageFolder": "com/schubber/schubber",
@@ -14,5 +15,22 @@
     "buildTool": "gradle",
     "frontendBuilder": "grunt",
     "javaVersion": "8"
+=======
+    "baseName": "mightymerce",
+    "packageName": "com.mightymerce.core",
+    "packageFolder": "com/mightymerce/core",
+    "authenticationType": "oauth2",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "useCompass": false,
+    "buildTool": "gradle",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "rememberMeKey": "6680256fc048dac9fa4a013e3109db4fd1afdfec"
+>>>>>>> jhipster
   }
 }

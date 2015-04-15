@@ -1,15 +1,22 @@
 {
     "global": {
+<<<<<<< HEAD
         "title": "schubber",
+=======
+        "title": "mightymerce",
+>>>>>>> jhipster
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
             "entities": {
                 "main": "Entities",
+<<<<<<< HEAD
                 "channel": "Channel",
                 "customer": "Customer",
                 "order": "Order",
                 "product": "Product",
+=======
+>>>>>>> jhipster
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {
@@ -55,20 +62,35 @@
             "validate": {
                 "newpassword": {
                     "required": "Your password is required.",
+<<<<<<< HEAD
                     "minlength": "Your password is required to be at least 5 characters",
                     "maxlength": "Your password cannot be longer than 50 characters",
+=======
+                    "minlength": "Your password is required to be at least 5 characters.",
+                    "maxlength": "Your password cannot be longer than 50 characters.",
+>>>>>>> jhipster
                     "strength": "Password strength:"
                 },
                 "confirmpassword": {
                     "required": "Your confirmation password is required.",
+<<<<<<< HEAD
                     "minlength": "Your confirmation password is required to be at least 5 characters",
                     "maxlength": "Your confirmation password cannot be longer than 50 characters"
+=======
+                    "minlength": "Your confirmation password is required to be at least 5 characters.",
+                    "maxlength": "Your confirmation password cannot be longer than 50 characters."
+>>>>>>> jhipster
                 },
                 "email": {
                     "required": "Your e-mail is required.",
                     "invalid": "Your e-mail is invalid.",
+<<<<<<< HEAD
                     "minlength": "Your e-mail is required to be at least 5 characters",
                     "maxlength": "Your e-mail cannot be longer than 50 characters"
+=======
+                    "minlength": "Your e-mail is required to be at least 5 characters.",
+                    "maxlength": "Your e-mail cannot be longer than 50 characters."
+>>>>>>> jhipster
                 }
             }
         }
@@ -88,6 +110,19 @@
         },
         "delete": {
             "title": "Confirm delete operation"
+<<<<<<< HEAD
+=======
+        },
+        "validation": {
+            "required": "This field is required.",
+            "minlength": "This field is required to be at least {{min}} characters.",
+            "maxlength": "This field cannot be longer than {{max}} characters.",
+            "min": "This field should be more than {{min}}.",
+            "max": "This field cannot be more than {{max}}.",
+            "pattern": "This field should follow pattern {{pattern}}.",
+            "number": "This field should be a number.",
+            "datetimelocal": "This field should be a date and time."
+>>>>>>> jhipster
         }
     },
     "footer": "This is your footer"

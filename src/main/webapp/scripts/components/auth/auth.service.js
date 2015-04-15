@@ -1,6 +1,10 @@
 'use strict';
 
+<<<<<<< HEAD
 angular.module('schubberApp')
+=======
+angular.module('mightymerceApp')
+>>>>>>> jhipster
     .factory('Auth', function Auth($rootScope, $state, $q, $translate, Principal, AuthServerProvider, Account, Register, Activate, Password) {
         return {
             login: function (credentials, callback) {
@@ -13,9 +17,14 @@ angular.module('schubberApp')
                         // After the login the language will be changed to
                         // the language selected by the user during his registration
                         $translate.use(account.langKey);
+<<<<<<< HEAD
                     });
                     deferred.resolve(data);
 
+=======
+                        deferred.resolve(data);
+                    });
+>>>>>>> jhipster
                     return cb();
                 }).catch(function (err) {
                     this.logout();
@@ -31,8 +40,13 @@ angular.module('schubberApp')
                 Principal.authenticate(null);
             },
 
+<<<<<<< HEAD
             authorize: function() {
                 return Principal.identity()
+=======
+            authorize: function(force) {
+                return Principal.identity(force)
+>>>>>>> jhipster
                     .then(function() {
                         var isAuthenticated = Principal.isAuthenticated();
 

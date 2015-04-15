@@ -2,7 +2,11 @@
 
 describe('Directive Tests ', function () {
 
+<<<<<<< HEAD
     beforeEach(module('schubberApp'));
+=======
+    beforeEach(module('mightymerceApp'));
+>>>>>>> jhipster
 
     var elm, scope, $httpBackend;
 

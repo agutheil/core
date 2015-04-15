@@ -1,7 +1,11 @@
 /* globals $ */
 'use strict';
 
+<<<<<<< HEAD
 angular.module('schubberApp')
+=======
+angular.module('mightymerceApp')
+>>>>>>> jhipster
     .directive('showValidation', function() {
         return {
             restrict: 'A',

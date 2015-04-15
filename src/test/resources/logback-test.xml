@@ -7,7 +7,11 @@
             <Pattern>[%p] %c - %m%n</Pattern>
         </encoder>
     </appender>
+<<<<<<< HEAD
     <logger name="com.schubber.schubber" level="DEBUG"/>
+=======
+    <logger name="com.mightymerce.core" level="DEBUG"/>
+>>>>>>> jhipster
     <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
     <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
 
