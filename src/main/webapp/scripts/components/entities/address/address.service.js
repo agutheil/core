@@ -1,12 +1,8 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> customer und adresse
-    .factory('Customer', function ($resource) {
-        return $resource('api/customers/:id', {}, {
+    .factory('Address', function ($resource) {
+        return $resource('api/addresss/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
@@ -14,11 +10,7 @@ angular.module('mightymerceApp')
                     data = angular.fromJson(data);
                     return data;
                 }
-<<<<<<< HEAD
-            }
-=======
             },
             'update': { method:'PUT' }
->>>>>>> customer und adresse
         });
     });

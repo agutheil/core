@@ -1,56 +1,44 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> customer und adresse
     .config(function ($stateProvider) {
         $stateProvider
-            .state('customer', {
+            .state('address', {
                 parent: 'entity',
-                url: '/customer',
+                url: '/address',
                 data: {
-<<<<<<< HEAD
-                    roles: ['ROLE_USER']
-=======
                     roles: ['ROLE_USER'],
-                    pageTitle: 'mightymerceApp.customer.home.title'
->>>>>>> customer und adresse
+                    pageTitle: 'mightymerceApp.address.home.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/customer/customers.html',
-                        controller: 'CustomerController'
+                        templateUrl: 'scripts/app/entities/address/addresss.html',
+                        controller: 'AddressController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('customer');
+                        $translatePartialLoader.addPart('address');
                         return $translate.refresh();
                     }]
                 }
             })
-            .state('customerDetail', {
+            .state('addressDetail', {
                 parent: 'entity',
-                url: '/customer/:id',
+                url: '/address/:id',
                 data: {
-<<<<<<< HEAD
-                    roles: ['ROLE_USER']
-=======
                     roles: ['ROLE_USER'],
-                    pageTitle: 'mightymerceApp.customer.detail.title'
->>>>>>> customer und adresse
+                    pageTitle: 'mightymerceApp.address.detail.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/customer/customer-detail.html',
-                        controller: 'CustomerDetailController'
+                        templateUrl: 'scripts/app/entities/address/address-detail.html',
+                        controller: 'AddressDetailController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('customer');
+                        $translatePartialLoader.addPart('address');
                         return $translate.refresh();
                     }]
                 }

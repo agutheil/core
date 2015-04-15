@@ -11,12 +11,17 @@
             "entities": {
                 "main": "Entités",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "channel": "Channel",
                 "customer": "Customer",
                 "order": "Order",
                 "product": "Product",
 =======
 >>>>>>> jhipster
+=======
+                "customer": "Customer",
+                "address": "Address",
+>>>>>>> customer und adresse
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {
