@@ -11,22 +11,25 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * A Customer.
+ * A SocialOrder.
  */
 @Entity
-@Table(name = "CUSTOMER")
+@Table(name = "SOCIALORDER")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Customer implements Serializable {
+public class SocialOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "test")
+    private String test;
 
-    @OneToOne
-    private Address address;
+    @Column(name = "test2")
+    private String test2;
+
+    @ManyToOne
+    private User user;
 
     public Long getId() {
         return id;
@@ -36,20 +39,28 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTest() {
+        return test;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTest(String test) {
+        this.test = test;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getTest2() {
+        return test2;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setTest2(String test2) {
+        this.test2 = test2;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -61,9 +72,9 @@ public class Customer implements Serializable {
             return false;
         }
 
-        Customer customer = (Customer) o;
+        SocialOrder socialOrder = (SocialOrder) o;
 
-        if ( ! Objects.equals(id, customer.id)) return false;
+        if ( ! Objects.equals(id, socialOrder.id)) return false;
 
         return true;
     }
@@ -75,9 +86,10 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "SocialOrder{" +
                 "id=" + id +
-                ", name='" + name + "'" +
+                ", test='" + test + "'" +
+                ", test2='" + test2 + "'" +
                 '}';
     }
 }

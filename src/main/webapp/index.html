@@ -1,8 +1,5 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +17,7 @@
         <!-- endbuild -->
     </head>
     <body ng-app="mightymerceApp">
-        <!--[if lt IE 10]>
+        <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
@@ -153,10 +150,10 @@
         <script src="scripts/app/entities/merchant/merchant.controller.js"></script>
         <script src="scripts/app/entities/merchant/merchant-detail.controller.js"></script>
         <script src="scripts/components/entities/merchant/merchant.service.js"></script>
-        <script src="scripts/app/entities/order/order.js"></script>
-        <script src="scripts/app/entities/order/order.controller.js"></script>
-        <script src="scripts/app/entities/order/order-detail.controller.js"></script>
-        <script src="scripts/components/entities/order/order.service.js"></script>
+        <script src="scripts/app/entities/socialOrder/socialOrder.js"></script>
+        <script src="scripts/app/entities/socialOrder/socialOrder.controller.js"></script>
+        <script src="scripts/app/entities/socialOrder/socialOrder-detail.controller.js"></script>
+        <script src="scripts/components/entities/socialOrder/socialOrder.service.js"></script>
         <script src="scripts/app/entities/socialCart/socialCart.js"></script>
         <script src="scripts/app/entities/socialCart/socialCart.controller.js"></script>
         <script src="scripts/app/entities/socialCart/socialCart-detail.controller.js"></script>

@@ -11,7 +11,7 @@
         Added the entity Merchant.
     -->
     <changeSet id="20150416210637" author="jhipster">
-        <createTable tableName="T_MERCHANT">
+        <createTable tableName="MERCHANT">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -22,10 +22,10 @@
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="address_id"
-                                 baseTableName="T_MERCHANT"
+                                 baseTableName="MERCHANT"
                                  constraintName="fk_merchant_address_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_ADDRESS"/>
+                                 referencedTableName="ADDRESS"/>
 
     </changeSet>
 </databaseChangeLog>

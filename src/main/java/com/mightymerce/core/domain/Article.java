@@ -16,7 +16,7 @@ import java.util.Objects;
  * A Article.
  */
 @Entity
-@Table(name = "T_ARTICLE")
+@Table(name = "ARTICLE")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Article implements Serializable {
 

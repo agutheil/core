@@ -11,7 +11,7 @@
         Added the entity Article.
     -->
     <changeSet id="20150416202428" author="jhipster">
-        <createTable tableName="T_ARTICLE">
+        <createTable tableName="ARTICLE">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

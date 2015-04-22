@@ -15,7 +15,7 @@ import java.util.Objects;
  * A CustomerChannel.
  */
 @Entity
-@Table(name = "T_CUSTOMERCHANNEL")
+@Table(name = "CUSTOMERCHANNEL")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class CustomerChannel implements Serializable {
 

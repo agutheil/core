@@ -14,7 +14,7 @@ import java.util.Objects;
  * A SocialCart.
  */
 @Entity
-@Table(name = "T_SOCIALCART")
+@Table(name = "SOCIALCART")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SocialCart implements Serializable {
 

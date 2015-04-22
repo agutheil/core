@@ -11,7 +11,7 @@
         Added the entity LineItem.
     -->
     <changeSet id="20150416205052" author="jhipster">
-        <createTable tableName="T_LINEITEM">
+        <createTable tableName="LINEITEM">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -21,16 +21,16 @@
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="article_id"
-                                 baseTableName="T_LINEITEM"
+                                 baseTableName="LINEITEM"
                                  constraintName="fk_lineitem_article_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_ARTICLE"/>
+                                 referencedTableName="ARTICLE"/>
 
         <addForeignKeyConstraint baseColumnNames="socialcart_id"
-                                 baseTableName="T_LINEITEM"
+                                 baseTableName="LINEITEM"
                                  constraintName="fk_lineitem_socialcart_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_SOCIALCART"/>
+                                 referencedTableName="SOCIALCART"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -11,7 +11,7 @@
         Added the entity ChannelPost.
     -->
     <changeSet id="20150416203121" author="jhipster">
-        <createTable tableName="T_CHANNELPOST">
+        <createTable tableName="CHANNELPOST">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -20,10 +20,10 @@
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="article_id"
-                                 baseTableName="T_CHANNELPOST"
+                                 baseTableName="CHANNELPOST"
                                  constraintName="fk_channelpost_article_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_ARTICLE"/>
+                                 referencedTableName="ARTICLE"/>
 
     </changeSet>
 </databaseChangeLog>

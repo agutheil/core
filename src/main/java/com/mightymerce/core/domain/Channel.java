@@ -12,7 +12,7 @@ import java.util.Objects;
  * A Channel.
  */
 @Entity
-@Table(name = "T_CHANNEL")
+@Table(name = "CHANNEL")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Channel implements Serializable {
 

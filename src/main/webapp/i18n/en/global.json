@@ -14,9 +14,9 @@
                 "customerChannel": "CustomerChannel",
                 "lineItem": "LineItem",
                 "merchant": "Merchant",
-                "order": "Order",
+                "socialOrder": "SocialOrder",
                 "socialCart": "SocialCart",
-                "additionalEntity": "JHipster will add addtional entities"
+                "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "Account",

@@ -15,7 +15,7 @@ import java.util.Objects;
  * A Merchant.
  */
 @Entity
-@Table(name = "T_MERCHANT")
+@Table(name = "MERCHANT")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Merchant implements Serializable {
 

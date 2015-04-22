@@ -11,7 +11,7 @@ import java.util.Objects;
  * A Address.
  */
 @Entity
-@Table(name = "T_ADDRESS")
+@Table(name = "ADDRESS")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Address implements Serializable {
 

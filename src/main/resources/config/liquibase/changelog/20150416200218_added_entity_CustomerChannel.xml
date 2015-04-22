@@ -11,7 +11,7 @@
         Added the entity CustomerChannel.
     -->
     <changeSet id="20150416200218" author="jhipster">
-        <createTable tableName="T_CUSTOMERCHANNEL">
+        <createTable tableName="CUSTOMERCHANNEL">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -21,16 +21,16 @@
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="customer_id"
-                                 baseTableName="T_CUSTOMERCHANNEL"
+                                 baseTableName="CUSTOMERCHANNEL"
                                  constraintName="fk_customerchannel_customer_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_CUSTOMER"/>
+                                 referencedTableName="CUSTOMER"/>
 
         <addForeignKeyConstraint baseColumnNames="channel_id"
-                                 baseTableName="T_CUSTOMERCHANNEL"
+                                 baseTableName="CUSTOMERCHANNEL"
                                  constraintName="fk_customerchannel_channel_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_CHANNEL"/>
+                                 referencedTableName="CHANNEL"/>
 
     </changeSet>
 </databaseChangeLog>

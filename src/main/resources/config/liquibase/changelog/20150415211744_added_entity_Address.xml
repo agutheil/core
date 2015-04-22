@@ -11,7 +11,7 @@
         Added the entity Address.
     -->
     <changeSet id="20150415211744" author="jhipster">
-        <createTable tableName="T_ADDRESS">
+        <createTable tableName="ADDRESS">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

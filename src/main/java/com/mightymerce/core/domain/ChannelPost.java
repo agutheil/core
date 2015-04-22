@@ -15,7 +15,7 @@ import java.util.Objects;
  * A ChannelPost.
  */
 @Entity
-@Table(name = "T_CHANNELPOST")
+@Table(name = "CHANNELPOST")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class ChannelPost implements Serializable {
 

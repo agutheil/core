@@ -11,7 +11,7 @@
         Added the entity SocialCart.
     -->
     <changeSet id="20150416204055" author="jhipster">
-        <createTable tableName="T_SOCIALCART">
+        <createTable tableName="SOCIALCART">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -19,10 +19,10 @@
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="customer_id"
-                                 baseTableName="T_SOCIALCART"
+                                 baseTableName="SOCIALCART"
                                  constraintName="fk_socialcart_customer_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="T_CUSTOMER"/>
+                                 referencedTableName="CUSTOMER"/>
 
     </changeSet>
 </databaseChangeLog>

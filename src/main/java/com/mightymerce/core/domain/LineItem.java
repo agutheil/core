@@ -15,7 +15,7 @@ import java.util.Objects;
  * A LineItem.
  */
 @Entity
-@Table(name = "T_LINEITEM")
+@Table(name = "LINEITEM")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class LineItem implements Serializable {
 

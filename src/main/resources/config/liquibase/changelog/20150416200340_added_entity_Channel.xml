@@ -11,7 +11,7 @@
         Added the entity Channel.
     -->
     <changeSet id="20150416200340" author="jhipster">
-        <createTable tableName="T_CHANNEL">
+        <createTable tableName="CHANNEL">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
