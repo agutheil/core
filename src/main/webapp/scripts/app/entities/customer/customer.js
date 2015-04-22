@@ -1,22 +1,14 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> customer und adresse
     .config(function ($stateProvider) {
         $stateProvider
             .state('customer', {
                 parent: 'entity',
                 url: '/customer',
                 data: {
-<<<<<<< HEAD
-                    roles: ['ROLE_USER']
-=======
                     roles: ['ROLE_USER'],
                     pageTitle: 'mightymerceApp.customer.home.title'
->>>>>>> customer und adresse
                 },
                 views: {
                     'content@': {
@@ -35,12 +27,8 @@ angular.module('mightymerceApp')
                 parent: 'entity',
                 url: '/customer/:id',
                 data: {
-<<<<<<< HEAD
-                    roles: ['ROLE_USER']
-=======
                     roles: ['ROLE_USER'],
                     pageTitle: 'mightymerceApp.customer.detail.title'
->>>>>>> customer und adresse
                 },
                 views: {
                     'content@': {

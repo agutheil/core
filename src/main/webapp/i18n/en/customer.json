@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-    "schubberApp": {
-=======
     "mightymerceApp": {
->>>>>>> customer und adresse
         "customer" : {
             "home": {
                 "title": "Customers",
@@ -16,19 +12,8 @@
             "detail": {
                 "title": "Customer"
             },
-<<<<<<< HEAD
-            "firstName": "FirstName",
-            "lastName": "LastName",
-            "street": "Street",
-            "streetNo": "StreetNo",
-            "zip": "Zip",
-            "city": "City",
-            "country": "Country",
-            "eMail": "EMail"
-=======
             "name": "Name",
             "address": "address"
->>>>>>> customer und adresse
         }
     }
 }

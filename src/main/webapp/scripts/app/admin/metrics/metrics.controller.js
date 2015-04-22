@@ -1,10 +1,6 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .controller('MetricsController', function ($scope, MonitoringService) {
         $scope.metrics = {};
         $scope.updatingMetrics = true;

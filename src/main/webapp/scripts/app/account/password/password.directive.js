@@ -1,11 +1,7 @@
 /* globals $ */
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .directive('passwordStrengthBar', function () {
         return {
             replace: true,

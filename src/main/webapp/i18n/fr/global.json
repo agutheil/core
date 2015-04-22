@@ -1,38 +1,21 @@
 {
     "global": {
-<<<<<<< HEAD
-        "title": "schubber",
-=======
         "title": "mightymerce",
->>>>>>> jhipster
         "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
         "menu": {
             "home": "Accueil",
             "entities": {
                 "main": "Entités",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                "channel": "Channel",
-                "customer": "Customer",
-                "order": "Order",
-                "product": "Product",
-=======
->>>>>>> jhipster
-=======
-                "customer": "Customer",
                 "address": "Address",
-<<<<<<< HEAD
->>>>>>> customer und adresse
-=======
-                "order": "Order",
-                "customerChannel": "CustomerChannel",
-                "channel": "Channel",
                 "article": "Article",
+                "channel": "Channel",
                 "channelPost": "ChannelPost",
-                "socialCart": "SocialCart",
+                "customer": "Customer",
+                "customerChannel": "CustomerChannel",
                 "lineItem": "LineItem",
                 "merchant": "Merchant",
->>>>>>> neues domainmodell
+                "order": "Order",
+                "socialCart": "SocialCart",
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {
@@ -101,26 +84,16 @@
             "back": "Retour",
             "cancel": "Annuler",
             "edit": "Editer",
-<<<<<<< HEAD
-            "delete": "Suppriner",
-=======
             "delete": "Supprimer",
->>>>>>> jhipster
             "save": "Sauvegarder",
             "view": "Voir"
         },
         "detail": {
-<<<<<<< HEAD
-            "field": "Champ",
-=======
             "field": "Champs",
->>>>>>> jhipster
             "value": "Valeur"
         },
         "delete": {
             "title": "Confirmation de suppression"
-<<<<<<< HEAD
-=======
         },
         "validation": {
             "required": "Ce champs est obligatoire.",
@@ -131,7 +104,6 @@
             "pattern": "Ce champs doit suivre l'expression régluière {{pattern}}.",
             "number": "Ce champs doit être un nombre.",
             "datetimelocal": "Ce champs doit être une date et une heure."
->>>>>>> jhipster
         }
     },
     "footer": "Ceci est votre pied de page"

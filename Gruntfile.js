@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-// Generated on 2015-02-01 using generator-jhipster 2.1.1
+// Generated on 2015-04-22 using generator-jhipster 2.7.0
 'use strict';
 var fs = require('fs');
-var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
-=======
-// Generated on 2015-04-15 using generator-jhipster 2.7.0
-'use strict';
-var fs = require('fs');
->>>>>>> jhipster
 
 // Returns the first occurence of the version number
 var parseVersionFromBuildGradle = function() {
@@ -43,21 +36,6 @@ module.exports = function (grunt) {
             },
             styles: {
                 files: ['src/main/webapp/assets/styles/**/*.css']
-<<<<<<< HEAD
-            },
-            livereload: {
-                options: {
-                    livereload: 35729
-                },
-                files: [
-                    'src/main/webapp/**/*.html',
-                    'src/main/webapp/**/*.json',
-                    '{.tmp/,}src/main/webapp/assets/styles/**/*.css',
-                    '{.tmp/,}src/main/webapp/scripts/**/*.js',
-                    'src/main/webapp/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
-=======
->>>>>>> jhipster
             }
         },
         autoprefixer: {
@@ -75,14 +53,10 @@ module.exports = function (grunt) {
         wiredep: {
             app: {
                 src: ['src/main/webapp/index.html'],
-<<<<<<< HEAD
-                exclude: [/angular-i18n/, /swagger-ui/]
-=======
                 exclude: [
                     /angular-i18n/,  // localizations are loaded dynamically
                     /swagger-ui/
                 ]
->>>>>>> jhipster
             },
             test: {
                 src: 'src/test/javascript/karma.conf.js',
@@ -102,98 +76,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-<<<<<<< HEAD
-        connect: {
-            proxies: [
-                {
-                    context: '/api',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/metrics',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/dump',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/health',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/configprops',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/beans',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/api-docs',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/oauth/token',
-                    host: 'localhost',
-                    port: 8080,
-                    https: false,
-                    changeOrigin: false
-                }
-            ],
-            options: {
-                port: 9000,
-                // Change this to 'localhost' to deny access to the server from outside.
-                hostname: '0.0.0.0',
-                livereload: 35729
-            },
-            livereload: {
-                options: {
-                    open: true,
-                    base: [
-                        '.tmp',
-                        'src/main/webapp'
-                    ],
-                    middleware: function (connect) {
-                        return [
-                            proxySnippet,
-                            connect.static('.tmp'),
-                            connect.static('src/main/webapp')
-                        ];
-                    }
-                }
-            },
-            test: {
-                options: {
-                    port: 9001,
-                    base: [
-                        '.tmp',
-                        'test',
-                        'src/main/webapp'
-                    ]
-                }
-=======
         browserSync: {
             dev: {
                 bsFiles: {
@@ -209,7 +91,6 @@ module.exports = function (grunt) {
             options: {
                 watchTask: true,
                 proxy: "localhost:8080"
->>>>>>> jhipster
             }
         },
         clean: {
@@ -348,11 +229,7 @@ module.exports = function (grunt) {
                 src: ['scripts/app/**/*.html', 'scripts/components/**/*.html',],
                 dest: '.tmp/templates/templates.js',
                 options: {
-<<<<<<< HEAD
-                    module: 'schubberApp',
-=======
                     module: 'mightymerceApp',
->>>>>>> jhipster
                     usemin: 'scripts/app.js',
                     htmlmin:  {
                         removeCommentsFromCDATA: true,
@@ -401,11 +278,7 @@ module.exports = function (grunt) {
                     src: [
                         '*.html',
                         'scripts/**/*.html',
-<<<<<<< HEAD
-                        'assets/images/**/*.{png,gif,webp}',
-=======
                         'assets/images/**/*.{png,gif,webp,jpg,jpeg,svg}',
->>>>>>> jhipster
                         'assets/fonts/*'
                     ]
                 }, {
@@ -489,21 +362,13 @@ module.exports = function (grunt) {
         },
         ngconstant: {
             options: {
-<<<<<<< HEAD
-                name: 'schubberApp',
-=======
                 name: 'mightymerceApp',
->>>>>>> jhipster
                 deps: false,
                 wrap: '"use strict";\n// DO NOT EDIT THIS FILE, EDIT THE GRUNT TASK NGCONSTANT SETTINGS INSTEAD WHICH GENERATES THIS FILE\n{%= __ngModule %}'
             },
             dev: {
                 options: {
-<<<<<<< HEAD
-                    dest: 'src/main/webapp/scripts/app/app.constants.js',
-=======
                     dest: 'src/main/webapp/scripts/app/app.constants.js'
->>>>>>> jhipster
                 },
                 constants: {
                     ENV: 'dev',
@@ -512,11 +377,7 @@ module.exports = function (grunt) {
             },
             prod: {
                 options: {
-<<<<<<< HEAD
-                    dest: '.tmp/scripts/app/app.constants.js',
-=======
                     dest: '.tmp/scripts/app/app.constants.js'
->>>>>>> jhipster
                 },
                 constants: {
                     ENV: 'prod',
@@ -531,12 +392,7 @@ module.exports = function (grunt) {
         'wiredep',
         'ngconstant:dev',
         'concurrent:server',
-<<<<<<< HEAD
-        'configureProxies',
-        'connect:livereload',
-=======
         'browserSync',
->>>>>>> jhipster
         'watch'
     ]);
 
@@ -550,10 +406,6 @@ module.exports = function (grunt) {
         'wiredep:test',
         'ngconstant:dev',
         'concurrent:test',
-<<<<<<< HEAD
-        'connect:test',
-=======
->>>>>>> jhipster
         'karma'
     ]);
 

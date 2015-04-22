@@ -3,25 +3,16 @@
         "en": "Anglais",
         "de": "Allemand",
         "ca": "Catalan",
-<<<<<<< HEAD
-=======
         "zh-cn": "Chinois (simplifié)",
->>>>>>> jhipster
         "zh-tw": "Chinois (traditionnel)",
         "da": "Danois",
         "es": "Espagnol",
         "fr": "Français",
         "kr": "Koréen",
-<<<<<<< HEAD
-        "pl": "Polonnais",
-        "pt-br": "Portugais (Brésilien)",
-        "ru": "Russie",
-=======
         "hu": "Hongrois",
         "pl": "Polonnais",
         "pt-br": "Portugais (Brésilien)",
         "ru": "Russe",
->>>>>>> jhipster
         "sv": "Suédois",
         "tr": "Truc"
     }

@@ -1,10 +1,6 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .factory('Principal', function Principal($q, Account) {
         var _identity,
             _authenticated = false;
@@ -17,11 +13,7 @@ angular.module('mightymerceApp')
                 return _authenticated;
             },
             isInRole: function (role) {
-<<<<<<< HEAD
-                if (!_authenticated || !_identity.roles) {
-=======
                 if (!_authenticated || !_identity || !_identity.roles) {
->>>>>>> jhipster
                     return false;
                 }
 

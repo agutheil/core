@@ -1,29 +1,17 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .factory('AuthServerProvider', function loginService($http, localStorageService, Base64) {
         return {
             login: function(credentials) {
                 var data = "username=" + credentials.username + "&password="
                     + credentials.password + "&grant_type=password&scope=read%20write&" +
-<<<<<<< HEAD
-                    "client_secret=mySecretOAuthSecret&client_id=schubberapp";
-=======
                     "client_secret=mySecretOAuthSecret&client_id=mightymerceapp";
->>>>>>> jhipster
                 return $http.post('oauth/token', data, {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                         "Accept": "application/json",
-<<<<<<< HEAD
-                        "Authorization": "Basic " + Base64.encode("schubberapp" + ':' + "mySecretOAuthSecret")
-=======
                         "Authorization": "Basic " + Base64.encode("mightymerceapp" + ':' + "mySecretOAuthSecret")
->>>>>>> jhipster
                     }
                 }).success(function (response) {
                     var expiredAt = new Date();

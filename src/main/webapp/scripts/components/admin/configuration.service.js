@@ -1,10 +1,6 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .factory('ConfigurationService', function ($rootScope, $filter, $http) {
         return {
             get: function() {

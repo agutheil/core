@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-apply plugin: 'spring-boot'
-apply plugin: 'com.moowork.node'
-apply plugin: 'grunt'
-=======
 import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'spring-boot'
 apply plugin: 'com.moowork.node'
@@ -11,7 +6,6 @@ apply plugin: 'com.moowork.node'
 ext {
     logbackLoglevel = "INFO"
 }
->>>>>>> jhipster
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: spring_boot_version
@@ -21,8 +15,6 @@ bootRun {
   args = ["--spring.profiles.active=prod"]
 }
 
-<<<<<<< HEAD
-=======
 processResources {
     filesMatching('**/logback.xml') {
         filter {
@@ -31,20 +23,12 @@ processResources {
     }
 }
 
->>>>>>> jhipster
 task setProdProperties(dependsOn: bootRun) << {
     doFirst {
         System.setProperty('spring.profiles.active', 'prod')
     }
 }
 
-<<<<<<< HEAD
-grunt_build.dependsOn 'npmInstall'
-grunt_build.dependsOn 'bower'
-processResources.dependsOn grunt_build
-test.dependsOn grunt_test
-bootRun.dependsOn grunt_test
-=======
 
 task gruntBuild(type: Exec) {
   if (Os.isFamily(Os.FAMILY_WINDOWS)) {
@@ -68,4 +52,3 @@ processResources.dependsOn gruntBuild
 test.dependsOn gruntTest
 bootRun.dependsOn gruntTest
 
->>>>>>> jhipster

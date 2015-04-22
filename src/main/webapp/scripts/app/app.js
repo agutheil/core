@@ -1,16 +1,9 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp', ['LocalStorageModule', 'tmh.dynamicLocale',
-    'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster'])
-
-    .run(function ($rootScope, $location, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
-=======
 angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
     'ngResource', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ngCacheBuster', 'infinite-scroll'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Auth, Principal, Language, ENV, VERSION) {
->>>>>>> jhipster
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
@@ -28,10 +21,6 @@ angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-<<<<<<< HEAD
-            $rootScope.previousStateName = fromState.name;
-            $rootScope.previousStateParams = fromParams;
-=======
             var titleKey = 'global.title';
 
             $rootScope.previousStateName = fromState.name;
@@ -45,7 +34,6 @@ angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                 // Change window title with translated one
                 $window.document.title = title;
             });
->>>>>>> jhipster
         });
 
         $rootScope.back = function() {
@@ -74,8 +62,6 @@ angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         };
     })
     
-<<<<<<< HEAD
-=======
     .factory('authExpiredInterceptor', function ($rootScope, $q, $injector, localStorageService) {
         return {
             responseError: function (response) {
@@ -92,7 +78,6 @@ angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             }
         };
     })
->>>>>>> jhipster
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
 
         //Cache everything except rest api requests
@@ -120,14 +105,9 @@ angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                 }]
             }
         });
-<<<<<<< HEAD
-        
-        $httpProvider.interceptors.push('authInterceptor');
-=======
 
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
->>>>>>> jhipster
 
         // Initialize angular-translate
         $translateProvider.useLoader('$translatePartialLoader', {

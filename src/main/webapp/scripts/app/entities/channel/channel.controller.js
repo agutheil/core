@@ -1,19 +1,5 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-    .controller('ChannelController', function ($scope, Channel) {
-        $scope.channels = [];
-        $scope.loadAll = function() {
-            Channel.query(function(result) {
-               $scope.channels = result;
-            });
-        };
-        $scope.loadAll();
-
-        $scope.create = function () {
-            Channel.save($scope.channel,
-=======
 angular.module('mightymerceApp')
     .controller('ChannelController', function ($scope, Channel, ParseLinks) {
         $scope.channels = [];
@@ -32,7 +18,6 @@ angular.module('mightymerceApp')
 
         $scope.create = function () {
             Channel.update($scope.channel,
->>>>>>> neues domainmodell
                 function () {
                     $scope.loadAll();
                     $('#saveChannelModal').modal('hide');
@@ -41,15 +26,6 @@ angular.module('mightymerceApp')
         };
 
         $scope.update = function (id) {
-<<<<<<< HEAD
-            $scope.channel = Channel.get({id: id});
-            $('#saveChannelModal').modal('show');
-        };
-
-        $scope.delete = function (id) {
-            $scope.channel = Channel.get({id: id});
-            $('#deleteChannelConfirmation').modal('show');
-=======
             Channel.get({id: id}, function(result) {
                 $scope.channel = result;
                 $('#saveChannelModal').modal('show');
@@ -61,7 +37,6 @@ angular.module('mightymerceApp')
                 $scope.channel = result;
                 $('#deleteChannelConfirmation').modal('show');
             });
->>>>>>> neues domainmodell
         };
 
         $scope.confirmDelete = function (id) {
@@ -74,12 +49,8 @@ angular.module('mightymerceApp')
         };
 
         $scope.clear = function () {
-<<<<<<< HEAD
-            $scope.channel = {type: null, name: null, token: null, id: null};
-=======
             $scope.channel = {name: null, id: null};
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
->>>>>>> neues domainmodell
         };
     });

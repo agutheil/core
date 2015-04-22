@@ -27,11 +27,7 @@
     </appender>
 -->
 
-<<<<<<< HEAD
-    <logger name="com.schubber.schubber" level="DEBUG"/>
-=======
     <logger name="com.mightymerce.core" level="${logback.loglevel}"/>
->>>>>>> jhipster
 
     <logger name="javax.activation" level="WARN"/>
     <logger name="javax.mail" level="WARN"/>
@@ -42,10 +38,7 @@
     <logger name="com.sun.xml.internal.bind" level="WARN"/>
     <logger name="com.zaxxer" level="WARN"/>
     <logger name="io.undertow" level="WARN"/>
-<<<<<<< HEAD
-=======
     <logger name="net.sf.ehcache" level="WARN"/>
->>>>>>> jhipster
     <logger name="org.apache" level="WARN"/>
     <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
     <logger name="org.bson" level="WARN"/>
@@ -59,14 +52,9 @@
     <logger name="org.thymeleaf" level="WARN"/>
     <logger name="org.xnio" level="WARN"/>
     <logger name="com.mangofactory.swagger" level="WARN"/>
-<<<<<<< HEAD
-    <logger name="com.wordnik.swagger" level="warn"/>
-    <logger name="sun.rmi.transport" level="warn"/>
-=======
     <logger name="com.wordnik.swagger" level="WARN"/>
     <logger name="liquibase" level="WARN"/>
     <logger name="sun.rmi.transport" level="WARN"/>
->>>>>>> jhipster
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>

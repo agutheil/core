@@ -1,22 +1,14 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .config(function ($stateProvider) {
         $stateProvider
             .state('password', {
                 parent: 'account',
                 url: '/password',
                 data: {
-<<<<<<< HEAD
-                    roles: ['ROLE_USER']
-=======
                     roles: ['ROLE_USER'],
                     pageTitle: 'global.menu.account.password'
->>>>>>> jhipster
                 },
                 views: {
                     'content@': {

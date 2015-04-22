@@ -104,13 +104,10 @@ only screen and (                min-resolution: 2dppx) {
     margin-left: -50px;
 }
 
-<<<<<<< HEAD
-=======
 .health-details {
     min-width: 400px;
 }
 
->>>>>>> jhipster
 .alert .popover pre {
     font-size: 10px;
 }

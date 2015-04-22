@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-apply plugin: 'com.moowork.node'
-apply plugin: 'grunt'
-
-task bower(dependsOn: 'npmInstall', type: NodeTask){
-    script = file('node_modules/bower/bin/bower')
-    args = ['install']
-=======
 import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'com.moowork.node'
 apply plugin: 'grunt'
@@ -16,7 +8,6 @@ task bower(type: Exec) {
     }else{
         commandLine 'bower', 'install'
     }
->>>>>>> jhipster
 }
 
 

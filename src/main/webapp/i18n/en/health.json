@@ -2,14 +2,6 @@
     "health": {
         "title": "Health checks",
         "refresh.button": "Refresh",
-<<<<<<< HEAD
-        "stacktrace": "Stacktrace",
-        "indicator": {
-            "db": "Database",
-            "diskSpace": "Disk space",
-            "mail": "Email",
-            "mongo": "Mongo DB"
-=======
         "stacktrace": "Stacktrace",        
         "details": {
             "details": "Details",
@@ -22,7 +14,6 @@
             "diskSpace": "Disk space",
             "mail": "Email",
             "db": "Database"
->>>>>>> jhipster
         },
         "table": {
             "service": "Service name",

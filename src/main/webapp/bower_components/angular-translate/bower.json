@@ -1,16 +1,11 @@
 {
   "name": "angular-translate",
   "description": "A translation module for AngularJS",
-<<<<<<< HEAD
-  "version": "2.5.2",
-  "main": "./angular-translate.js",
-=======
   "version": "2.6.0",
   "main": "./angular-translate.js",
   "dependencies": {
     "angular": ">=1.2.26 <=1.4"
   },
->>>>>>> jhipster
   "ignore": [],
   "author": "Pascal Precht",
   "licenses": [

@@ -1,18 +1,5 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-    .controller('HealthController', function ($scope, MonitoringService) {
-        $scope.updatingHealth = true;
-
-        $scope.refresh = function () {
-            $scope.updatingHealth = true;
-            MonitoringService.checkHealth().then(function (reponse) {
-                $scope.healthCheck = reponse;
-                $scope.updatingHealth = false;
-            }, function (reponse) {
-                $scope.healthCheck = reponse.data;
-=======
 angular.module('mightymerceApp')
     .controller('HealthController', function ($scope, MonitoringService) {
         $scope.updatingHealth = true;
@@ -25,7 +12,6 @@ angular.module('mightymerceApp')
                 $scope.updatingHealth = false;
             }, function (response) {
                 $scope.healthData =  $scope.transformHealthData(response.data);
->>>>>>> jhipster
                 $scope.updatingHealth = false;
             });
         };
@@ -39,8 +25,6 @@ angular.module('mightymerceApp')
                 return 'label-danger';
             }
         };
-<<<<<<< HEAD
-=======
 
         $scope.transformHealthData = function (data) {
             var response = [];
@@ -148,5 +132,4 @@ angular.module('mightymerceApp')
               return remainder ? ' - ' + remainder : '';
             }
         };
->>>>>>> jhipster
     });

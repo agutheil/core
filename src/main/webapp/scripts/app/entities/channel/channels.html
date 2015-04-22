@@ -1,37 +1,20 @@
 <div>
 
-<<<<<<< HEAD
-    <h2 translate="schubberApp.channel.home.title">Channel</h2>
-
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChannelModal" ng-click="clear()">
-        <span class="glyphicon glyphicon-flash"></span> <span translate="schubberApp.channel.home.createLabel">Create a new Channel</span>
-=======
     <h2 translate="mightymerceApp.channel.home.title">Channel</h2>
 
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveChannelModal" ng-click="clear()">
         <span class="glyphicon glyphicon-flash"></span> <span translate="mightymerceApp.channel.home.createLabel">Create a new Channel</span>
->>>>>>> neues domainmodell
     </button>
     <div class="modal fade" id="saveChannelModal" tabindex="-1" role="dialog" aria-labelledby="myChannelLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-<<<<<<< HEAD
-                <form name="form" role="form" novalidate
-                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
-                      ng-submit="create()">
-=======
                 <form name="editForm" role="form" novalidate ng-submit="create()" show-validation>
->>>>>>> neues domainmodell
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
-<<<<<<< HEAD
-                        <h4 class="modal-title" id="myChannelLabel" translate="schubberApp.channel.home.createOrEditLabel">Create or edit a Channel</h4>
-=======
                         <h4 class="modal-title" id="myChannelLabel" translate="mightymerceApp.channel.home.createOrEditLabel">Create or edit a Channel</h4>
->>>>>>> neues domainmodell
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -41,23 +24,6 @@
                         </div>
 
                         <div class="form-group">
-<<<<<<< HEAD
-                            <label translate="schubberApp.channel.type">Type</label>
-                            <input type="text" class="form-control"
-                                   ng-model="channel.type">
-                        </div>
-                        <div class="form-group">
-                            <label translate="schubberApp.channel.name">Name</label>
-                            <input type="text" class="form-control"
-                                   ng-model="channel.name">
-                        </div>
-                        <div class="form-group">
-                            <label translate="schubberApp.channel.token">Token</label>
-                            <input type="text" class="form-control"
-                                   ng-model="channel.token">
-                        </div>
-
-=======
                             <label translate="mightymerceApp.channel.name">Name</label>
                             <input type="text" class="form-control" name="name"
                                    ng-model="channel.name">
@@ -65,18 +31,13 @@
                             <div ng-show="editForm.name.$invalid">
                             </div>
                         </div>
->>>>>>> neues domainmodell
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
                         </button>
-<<<<<<< HEAD
-                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
-=======
                         <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
->>>>>>> neues domainmodell
                             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
                         </button>
                     </div>
@@ -88,32 +49,20 @@
     <div class="modal fade" id="deleteChannelConfirmation">
         <div class="modal-dialog">
             <div class="modal-content">
-<<<<<<< HEAD
-                <form name="form" ng-submit="confirmDelete(channel.id)">
-=======
                 <form name="deleteForm" ng-submit="confirmDelete(channel.id)">
->>>>>>> neues domainmodell
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
-<<<<<<< HEAD
-                        <p translate="schubberApp.channel.delete.question" translate-values="{id: '{{channel.id}}'}">Are you sure you want to delete Channel {{channel.id}}?</p>
-=======
                         <p translate="mightymerceApp.channel.delete.question" translate-values="{id: '{{channel.id}}'}">Are you sure you want to delete this Channel?</p>
->>>>>>> neues domainmodell
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
                         </button>
-<<<<<<< HEAD
-                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-danger">
-=======
                         <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
->>>>>>> neues domainmodell
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
                         </button>
                     </div>
@@ -127,26 +76,14 @@
             <thead>
                 <tr>
                     <th>ID</th>
-<<<<<<< HEAD
-                    <th translate="schubberApp.channel.type">Type</th>
-                    <th translate="schubberApp.channel.name">Name</th>
-                    <th translate="schubberApp.channel.token">Token</th>
-=======
                     <th translate="mightymerceApp.channel.name">Name</th>
->>>>>>> neues domainmodell
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="channel in channels">
                     <td><a ui-sref="channelDetail({id:channel.id})">{{channel.id}}</a></td>
-<<<<<<< HEAD
-                    <td>{{channel.type}}</td>
                     <td>{{channel.name}}</td>
-                    <td>{{channel.token}}</td>
-=======
-                    <td>{{channel.name}}</td>
->>>>>>> neues domainmodell
                     <td>
                         <button type="submit"
                                 ui-sref="channelDetail({id:channel.id})"
@@ -167,8 +104,6 @@
                 </tr>
             </tbody>
         </table>
-<<<<<<< HEAD
-=======
         <nav>
             <ul class="pager">
                 <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a href="#">&lt;&lt;</a></li>
@@ -177,6 +112,5 @@
                 <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a href="#">&gt;&gt;</a></li>
             </ul>
         </nav>
->>>>>>> neues domainmodell
     </div>
 </div>

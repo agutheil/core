@@ -4,11 +4,7 @@ server:
 
 
 # security configuration (this key should be unique for your application, and kept secret)
-<<<<<<< HEAD
-jhipster.security.rememberme.key: schubber
-=======
 jhipster.security.rememberme.key: 6680256fc048dac9fa4a013e3109db4fd1afdfec
->>>>>>> jhipster
 
 async:
     corePoolSize: 2
@@ -16,15 +12,6 @@ async:
     queueCapacity: 10000
 
 spring:
-<<<<<<< HEAD
-    
-    data:
-        mongodb:
-             host: localhost
-             port: 27017
-             database: schubber
-    
-=======
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:mightymerce;DB_CLOSE_DELAY=-1
@@ -47,7 +34,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
->>>>>>> jhipster
 
     mail:
         host: localhost

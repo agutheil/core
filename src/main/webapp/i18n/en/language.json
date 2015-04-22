@@ -1,22 +1,15 @@
 {
     "language": {
         "ca": "Catalan",
-<<<<<<< HEAD
-=======
         "zh-cn": "Chinese (simplified)",
->>>>>>> jhipster
         "zh-tw": "Chinese (traditional)",
         "da": "Danish",
         "en": "English",
         "fr": "French",
         "de": "German",
-<<<<<<< HEAD
-        "kr": "Korean",
-=======
         "ja": "Japanese",
         "kr": "Korean",
         "hu": "Hungarian",
->>>>>>> jhipster
         "pl": "Polish",
         "pt-br": "Portuguese (brazilian)",
         "ru": "Russian",

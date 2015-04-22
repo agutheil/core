@@ -2,11 +2,7 @@
 
 describe('Controllers Tests ', function () {
 
-<<<<<<< HEAD
-    beforeEach(module('schubberApp'));
-=======
     beforeEach(module('mightymerceApp'));
->>>>>>> jhipster
 
     var $scope, q, Principal, Auth;
 

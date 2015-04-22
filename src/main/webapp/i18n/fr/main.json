@@ -1,12 +1,5 @@
 {
     "main": {
-<<<<<<< HEAD
-        "title": "Bienvenue, Schubber User !",
-        "subtitle": "Ceci est notre page d'accueil",
-        "logged": {
-            "message": "Vous êtes connecté en tant que \"{{username}}\"."
-        }}
-=======
         "title": "Bienvenue, Java Hipster !",
         "subtitle": "Ceci est votre page d'accueil",
         "logged": {
@@ -22,5 +15,4 @@
         "like": "Si vous aimez JHipster, donnez nous une étoile sur",
         "github": "Github"
     }
->>>>>>> jhipster
 }

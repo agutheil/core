@@ -4,14 +4,6 @@ server:
 spring:
     profiles:
         active: dev
-<<<<<<< HEAD
-    data:
-        mongodb:
-            host: localhost
-            port: 27017
-            database: schubber
-    
-=======
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
@@ -34,7 +26,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
->>>>>>> jhipster
 
     mail:
         baseUrl: http://localhost:8080
@@ -53,15 +44,9 @@ metrics:
         enabled: false
         host: localhost
         port: 2003
-<<<<<<< HEAD
-        prefix: schubber
-
-
-=======
         prefix: mightymerce
 
 cache:
     timeToLiveSeconds: 3600
     ehcache:
         maxBytesLocalHeap: 16M
->>>>>>> jhipster

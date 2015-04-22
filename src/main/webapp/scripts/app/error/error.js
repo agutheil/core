@@ -1,22 +1,14 @@
 'use strict';
 
-<<<<<<< HEAD
-angular.module('schubberApp')
-=======
 angular.module('mightymerceApp')
->>>>>>> jhipster
     .config(function ($stateProvider) {
         $stateProvider
             .state('error', {
                 parent: 'site',
                 url: '/error',
                 data: {
-<<<<<<< HEAD
-                    roles: []
-=======
                     roles: [],
                     pageTitle: 'errors.title'
->>>>>>> jhipster
                 },
                 views: {
                     'content@': {
