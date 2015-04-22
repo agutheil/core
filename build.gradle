@@ -8,7 +8,8 @@ buildscript {
         classpath('com.moowork.gradle:gradle-node-plugin:0.8')
         
         classpath('com.moowork.gradle:gradle-grunt-plugin:0.6')
-        
+
+        classpath ('se.transmode.gradle:gradle-docker:1.2')
     }
 }
 
@@ -18,6 +19,9 @@ targetCompatibility=1.8
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
+apply plugin: 'docker'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 
 bootRepackage {
    mainClass = 'com.mightymerce.core.Application'
@@ -145,6 +149,10 @@ dependencies {
     testCompile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: gatling_version
     
 
+}
+
+distDocker {
+     exposePort 8080
 }
 
 task wrapper(type: Wrapper) {
