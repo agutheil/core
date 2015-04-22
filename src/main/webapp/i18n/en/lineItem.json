@@ -1,0 +1,20 @@
+{
+    "mightymerceApp": {
+        "lineItem" : {
+            "home": {
+                "title": "LineItems",
+                "createLabel": "Create a new LineItem",
+                "createOrEditLabel": "Create or edit a LineItem"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete LineItem {{ id }}?"
+            },
+            "detail": {
+                "title": "LineItem"
+            },
+            "amount": "Amount",
+            "article": "article",
+            "socialCart": "socialCart"
+        }
+    }
+}

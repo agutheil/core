@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('mightymerceApp')
-    .controller('AddressController', function ($scope, Address, Customer, ParseLinks) {
+    .controller('AddressController', function ($scope, Address, ParseLinks) {
         $scope.addresss = [];
-        $scope.customers = Customer.query();
         $scope.page = 1;
         $scope.loadAll = function() {
             Address.query({page: $scope.page, per_page: 20}, function(result, headers) {

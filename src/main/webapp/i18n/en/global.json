@@ -21,7 +21,18 @@
 =======
                 "customer": "Customer",
                 "address": "Address",
+<<<<<<< HEAD
 >>>>>>> customer und adresse
+=======
+                "order": "Order",
+                "customerChannel": "CustomerChannel",
+                "channel": "Channel",
+                "article": "Article",
+                "channelPost": "ChannelPost",
+                "socialCart": "SocialCart",
+                "lineItem": "LineItem",
+                "merchant": "Merchant",
+>>>>>>> neues domainmodell
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {

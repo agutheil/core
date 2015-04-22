@@ -1,0 +1,18 @@
+{
+    "mightymerceApp": {
+        "socialCart" : {
+            "home": {
+                "title": "SocialCarts",
+                "createLabel": "Create a new SocialCart",
+                "createOrEditLabel": "Create or edit a SocialCart"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete SocialCart {{ id }}?"
+            },
+            "detail": {
+                "title": "SocialCart"
+            },
+            "customer": "customer"
+        }
+    }
+}

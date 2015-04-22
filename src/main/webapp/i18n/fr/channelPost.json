@@ -1,0 +1,20 @@
+{
+    "mightymerceApp": {
+        "channelPost" : {
+            "home": {
+                "title": "ChannelPosts",
+                "createLabel": "Créer un nouveau ChannelPost",
+                "createOrEditLabel": "Créer ou éditer un ChannelPost"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le ChannelPost {{ id }} ?"
+            },
+            "detail": {
+                "title": "ChannelPost"
+            },
+            "status": "Status",
+            "article": "article"
+        }
+    }
+}
+

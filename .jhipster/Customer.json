@@ -1,13 +1,14 @@
 {
     "relationships": [
-        {
+    {
             "relationshipId": 1,
             "relationshipName": "address",
             "relationshipNameCapitalized": "Address",
             "relationshipFieldName": "address",
             "otherEntityName": "address",
-            "relationshipType": "one-to-many",
-            "otherEntityNameCapitalized": "Address"
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "Address",
+            "ownerSide": true
         }
     ],
     "fields": [

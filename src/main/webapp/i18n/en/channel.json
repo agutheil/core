@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "schubberApp": {
+=======
+    "mightymerceApp": {
+>>>>>>> neues domainmodell
         "channel" : {
             "home": {
                 "title": "Channels",
@@ -12,9 +16,13 @@
             "detail": {
                 "title": "Channel"
             },
+<<<<<<< HEAD
             "type": "Type",
             "name": "Name",
             "token": "Token"
+=======
+            "name": "Name"
+>>>>>>> neues domainmodell
         }
     }
 }

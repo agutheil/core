@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "schubberApp": {
+=======
+    "mightymerceApp": {
+>>>>>>> neues domainmodell
         "order" : {
             "home": {
                 "title": "Orders",
@@ -12,10 +16,16 @@
             "detail": {
                 "title": "Order"
             },
+<<<<<<< HEAD
             "date": "Date",
             "customer": "Customer",
             "paymentStatus": "PaymentStatus",
             "orderStatus": "OrderStatus"
+=======
+            "test": "Test",
+            "test2": "Test2",
+            "user": "user"
+>>>>>>> neues domainmodell
         }
     }
 }

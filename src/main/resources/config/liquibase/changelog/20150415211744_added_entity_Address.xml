@@ -19,14 +19,7 @@
             <column name="no" type="varchar(255)"/>
             <column name="zip" type="varchar(255)"/>
             <column name="city" type="varchar(255)"/>
-            <column name="customer_id" type="bigint"/>
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="customer_id"
-                                 baseTableName="T_ADDRESS"
-                                 constraintName="fk_address_customer_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="T_CUSTOMER"/>
-
     </changeSet>
 </databaseChangeLog>

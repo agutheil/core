@@ -1,16 +1,5 @@
 {
-    "relationships": [
-        {
-            "relationshipId": 1,
-            "relationshipName": "customer",
-            "relationshipNameCapitalized": "Customer",
-            "relationshipFieldName": "customer",
-            "otherEntityName": "customer",
-            "relationshipType": "many-to-one",
-            "otherEntityNameCapitalized": "Customer",
-            "otherEntityField": "name"
-        }
-    ],
+    "relationships": [],
     "fields": [
         {
             "fieldId": 1,

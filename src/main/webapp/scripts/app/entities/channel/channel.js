@@ -1,13 +1,22 @@
 'use strict';
 
+<<<<<<< HEAD
 angular.module('schubberApp')
+=======
+angular.module('mightymerceApp')
+>>>>>>> neues domainmodell
     .config(function ($stateProvider) {
         $stateProvider
             .state('channel', {
                 parent: 'entity',
                 url: '/channel',
                 data: {
+<<<<<<< HEAD
                     roles: ['ROLE_USER']
+=======
+                    roles: ['ROLE_USER'],
+                    pageTitle: 'mightymerceApp.channel.home.title'
+>>>>>>> neues domainmodell
                 },
                 views: {
                     'content@': {
@@ -26,7 +35,12 @@ angular.module('schubberApp')
                 parent: 'entity',
                 url: '/channel/:id',
                 data: {
+<<<<<<< HEAD
                     roles: ['ROLE_USER']
+=======
+                    roles: ['ROLE_USER'],
+                    pageTitle: 'mightymerceApp.channel.detail.title'
+>>>>>>> neues domainmodell
                 },
                 views: {
                     'content@': {

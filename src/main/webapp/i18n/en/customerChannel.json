@@ -1,0 +1,20 @@
+{
+    "mightymerceApp": {
+        "customerChannel" : {
+            "home": {
+                "title": "CustomerChannels",
+                "createLabel": "Create a new CustomerChannel",
+                "createOrEditLabel": "Create or edit a CustomerChannel"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete CustomerChannel {{ id }}?"
+            },
+            "detail": {
+                "title": "CustomerChannel"
+            },
+            "key": "Key",
+            "customer": "customer",
+            "channel": "channel"
+        }
+    }
+}

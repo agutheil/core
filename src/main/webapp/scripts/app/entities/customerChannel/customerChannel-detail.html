@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span translate="mightymerceApp.customerChannel.detail.title">CustomerChannel</span> {{customerChannel.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mightymerceApp.customerChannel.key">Key</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{customerChannel.key}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mightymerceApp.customerChannel.customer">customer</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{customerChannel.customer.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mightymerceApp.customerChannel.channel">channel</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{customerChannel.channel.name}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="customerChannel"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

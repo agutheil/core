@@ -1,13 +1,10 @@
 package com.mightymerce.core.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -33,9 +30,6 @@ public class Address implements Serializable {
 
     @Column(name = "city")
     private String city;
-
-    @ManyToOne
-    private Customer customer;
 
     public Long getId() {
         return id;
@@ -75,14 +69,6 @@ public class Address implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     @Override

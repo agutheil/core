@@ -16,7 +16,14 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>
+            <column name="address_id" type="bigint"/>
         </createTable>
         
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="T_CUSTOMER"
+                                 constraintName="fk_customer_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="T_ADDRESS"/>
+
     </changeSet>
 </databaseChangeLog>

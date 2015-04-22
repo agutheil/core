@@ -1,0 +1,46 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "customer",
+            "relationshipNameCapitalized": "Customer",
+            "relationshipFieldName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Customer",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "channel",
+            "relationshipNameCapitalized": "Channel",
+            "relationshipFieldName": "channel",
+            "otherEntityName": "channel",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Channel",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "key",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Key",
+            "fieldNameUnderscored": "key",
+            "fieldInJavaBeanMethod": "Key",
+            "fieldValidate": true,
+            "fieldValidateRules": []
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "changelogDate": "20150416200218",
+    "pagination": "pager",
+    "validation": true
+}

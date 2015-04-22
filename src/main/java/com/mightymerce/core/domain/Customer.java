@@ -25,10 +25,8 @@ public class Customer implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "customer")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Address> addresss = new HashSet<>();
+    @OneToOne
+    private Address address;
 
     public Long getId() {
         return id;
@@ -46,12 +44,12 @@ public class Customer implements Serializable {
         this.name = name;
     }
 
-    public Set<Address> getAddresss() {
-        return addresss;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddresss(Set<Address> addresss) {
-        this.addresss = addresss;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

@@ -1,22 +1,37 @@
 <div>
 
+<<<<<<< HEAD
     <h2 translate="schubberApp.order.home.title">Order</h2>
 
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveOrderModal" ng-click="clear()">
         <span class="glyphicon glyphicon-flash"></span> <span translate="schubberApp.order.home.createLabel">Create a new Order</span>
+=======
+    <h2 translate="mightymerceApp.order.home.title">Order</h2>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveOrderModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span> <span translate="mightymerceApp.order.home.createLabel">Create a new Order</span>
+>>>>>>> neues domainmodell
     </button>
     <div class="modal fade" id="saveOrderModal" tabindex="-1" role="dialog" aria-labelledby="myOrderLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+<<<<<<< HEAD
                 <form name="form" role="form" novalidate
                       class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
                       ng-submit="create()">
+=======
+                <form name="editForm" role="form" novalidate ng-submit="create()">
+>>>>>>> neues domainmodell
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
+<<<<<<< HEAD
                         <h4 class="modal-title" id="myOrderLabel" translate="schubberApp.order.home.createOrEditLabel">Create or edit a Order</h4>
+=======
+                        <h4 class="modal-title" id="myOrderLabel" translate="mightymerceApp.order.home.createOrEditLabel">Create or edit a Order</h4>
+>>>>>>> neues domainmodell
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
@@ -26,6 +41,7 @@
                         </div>
 
                         <div class="form-group">
+<<<<<<< HEAD
                             <label translate="schubberApp.order.date">Date</label>
                             <input type="date" class="form-control"
                                    ng-model="order.date">
@@ -47,12 +63,35 @@
                         </div>
 
 
+=======
+                            <label translate="mightymerceApp.order.test">Test</label>
+                            <input type="text" class="form-control" name="test"
+                                   ng-model="order.test">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="mightymerceApp.order.test2">Test2</label>
+                            <input type="text" class="form-control" name="test2"
+                                   ng-model="order.test2">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="mightymerceApp.order.user">user</label>
+                            <select class="form-control" name="user" ng-model="order.user.id" ng-options="user.id as user.name for user in users">
+                            </select>
+                        </div>
+>>>>>>> neues domainmodell
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
                         </button>
+<<<<<<< HEAD
                         <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+=======
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+>>>>>>> neues domainmodell
                             <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
                         </button>
                     </div>
@@ -64,20 +103,32 @@
     <div class="modal fade" id="deleteOrderConfirmation">
         <div class="modal-dialog">
             <div class="modal-content">
+<<<<<<< HEAD
                 <form name="form" ng-submit="confirmDelete(order.id)">
+=======
+                <form name="deleteForm" ng-submit="confirmDelete(order.id)">
+>>>>>>> neues domainmodell
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                                 ng-click="clear()">&times;</button>
                         <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
                     </div>
                     <div class="modal-body">
+<<<<<<< HEAD
                         <p translate="schubberApp.order.delete.question" translate-values="{id: '{{order.id}}'}">Are you sure you want to delete Order {{order.id}}?</p>
+=======
+                        <p translate="mightymerceApp.order.delete.question" translate-values="{id: '{{order.id}}'}">Are you sure you want to delete this Order?</p>
+>>>>>>> neues domainmodell
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
                         </button>
+<<<<<<< HEAD
                         <button type="submit" ng-disabled="form.$invalid" class="btn btn-danger">
+=======
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+>>>>>>> neues domainmodell
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
                         </button>
                     </div>
@@ -91,20 +142,32 @@
             <thead>
                 <tr>
                     <th>ID</th>
+<<<<<<< HEAD
                     <th translate="schubberApp.order.date">Date</th>
                     <th translate="schubberApp.order.customer">Customer</th>
                     <th translate="schubberApp.order.paymentStatus">PaymentStatus</th>
                     <th translate="schubberApp.order.orderStatus">OrderStatus</th>
+=======
+                    <th translate="mightymerceApp.order.test">Test</th>
+                    <th translate="mightymerceApp.order.test2">Test2</th>
+                    <th translate="mightymerceApp.order.user">user</th>
+>>>>>>> neues domainmodell
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="order in orders">
                     <td><a ui-sref="orderDetail({id:order.id})">{{order.id}}</a></td>
+<<<<<<< HEAD
                     <td>{{order.date}}</td>
                     <td>{{order.customer}}</td>
                     <td>{{order.paymentStatus}}</td>
                     <td>{{order.orderStatus}}</td>
+=======
+                    <td>{{order.test}}</td>
+                    <td>{{order.test2}}</td>
+                    <td>{{order.user.name}}</td>
+>>>>>>> neues domainmodell
                     <td>
                         <button type="submit"
                                 ui-sref="orderDetail({id:order.id})"

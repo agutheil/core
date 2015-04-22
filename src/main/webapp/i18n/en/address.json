@@ -15,8 +15,7 @@
             "street": "Street",
             "no": "No",
             "zip": "Zip",
-            "city": "City",
-            "customer": "customer"
+            "city": "City"
         }
     }
 }
