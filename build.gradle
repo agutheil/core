@@ -27,6 +27,13 @@ bootRepackage {
    mainClass = 'com.mightymerce.core.Application'
 }
 
+task copyPublicDir(type: Copy) {
+    from 'src/main/webapp/'
+    into 'build/resources/main/public'
+}
+ 
+jar.dependsOn copyPublicDir
+
 springBoot {
     mainClass = 'com.mightymerce.core.Application'
 }

@@ -10,7 +10,6 @@ README for mightymerce
 # Build and Run
 1. boot2docker up
 2. ./gradlew distDocker
-3. docker run -d --name mongodb -p 27017:27017 dockerfile/mongodb 
-4. docker run -d -P --name schubber --link mongodb:mongodb com.schubber.schubber/schubber:0.0.1-SNAPSHOT
-5. docker tag schubber/schubber tutum.co/agutheil/schubber
-6. docker push tutum.co/agutheil/schubber
+3. docker run -d -P --name mightymerce com.mightymerce.core/mightymerce:0.1-SNAPSHOT 
+4. docker tag <IMAGE ID> tutum.co/agutheil/mightymerce:0.1-SNAPSHOT
+5. docker push tutum.co/agutheil/mightymerce
