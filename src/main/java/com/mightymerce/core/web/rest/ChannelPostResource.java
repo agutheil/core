@@ -57,8 +57,7 @@ public class ChannelPostResource {
     }
 
     private void updateStatus(ChannelPost channelPost) {
-        Article article = channelPost.getArticle();
-        channelServiceService.updateStatus(article.toString());
+        channelServiceService.updateStatus(channelPost);
     }
 
     /**
