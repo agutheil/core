@@ -6,9 +6,9 @@
             "relationshipNameCapitalized": "Article",
             "relationshipFieldName": "article",
             "otherEntityName": "article",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityNameCapitalized": "Article",
-            "ownerSide": true
+            "otherEntityField": "articleId"
         }
     ],
     "fields": [

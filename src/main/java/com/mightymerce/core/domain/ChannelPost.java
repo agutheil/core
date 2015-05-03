@@ -26,7 +26,7 @@ public class ChannelPost implements Serializable {
     @Column(name = "status")
     private String status;
 
-    @OneToOne
+    @ManyToOne
     private Article article;
 
     public Long getId() {
