@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         classpath('org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE')
         classpath('com.moowork.gradle:gradle-node-plugin:0.8')
-        
+
         classpath('com.moowork.gradle:gradle-grunt-plugin:0.6')
 
         classpath ('se.transmode.gradle:gradle-docker:1.2')
@@ -31,7 +31,7 @@ task copyPublicDir(type: Copy) {
     from 'src/main/webapp/'
     into 'build/resources/main/public'
 }
- 
+
 jar.dependsOn copyPublicDir
 
 springBoot {
@@ -93,7 +93,7 @@ dependencies {
     compile (group: 'com.ryantenney.metrics', name: 'metrics-spring', version: metrics_spring_version) {
         exclude(module: 'metrics-core')
         exclude(module: 'metrics-healthchecks')
-    } 
+    }
     compile(group: 'com.zaxxer', name: 'HikariCP') {
         exclude(module: 'tools')
     }
@@ -144,6 +144,18 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java'
     compile group: 'com.h2database', name: 'h2'
     compile group: 'fr.ippon.spark.metrics', name: 'metrics-spark-reporter', version: metrics_spark_reporter_version
+
+    // Start project specific dependencies
+    compile("org.springframework.boot:spring-boot-starter-social-facebook")
+
+    // Override Spring Boot's choice of Spring Social Facebook version
+    //compile("org.springframework.social:spring-social-facebook:2.0.1.RELEASE")
+    //compile("org.springframework.social:spring-social-facebook-web:2.0.1.RELEASE")
+
+    compile("org.springframework.boot:spring-boot-starter-social-twitter")
+    compile("org.springframework.boot:spring-boot-starter-social-linkedin")
+    //end
+
     testCompile group: 'com.jayway.awaitility', name: 'awaitility', version: awaility_version
     testCompile group: 'com.jayway.jsonpath', name: 'json-path'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
@@ -154,7 +166,7 @@ dependencies {
     testCompile group: 'com.mattbertolini', name: 'liquibase-slf4j', version: liquibase_slf4j_version
     testCompile group: 'org.hamcrest', name: 'hamcrest-library'
     testCompile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: gatling_version
-    
+
 
 }
 

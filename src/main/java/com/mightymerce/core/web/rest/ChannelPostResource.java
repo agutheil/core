@@ -3,6 +3,7 @@ package com.mightymerce.core.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.ChannelPost;
 import com.mightymerce.core.repository.ChannelPostRepository;
+import com.mightymerce.core.service.ChannelServiceService;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,9 @@ public class ChannelPostResource {
     @Inject
     private ChannelPostRepository channelPostRepository;
 
+    @Inject
+    private ChannelServiceService channelServiceService;
+
     /**
      * POST  /channelPosts -> Create a new channelPost.
      */
@@ -45,7 +49,15 @@ public class ChannelPostResource {
             return ResponseEntity.badRequest().header("Failure", "A new channelPost cannot already have an ID").build();
         }
         channelPostRepository.save(channelPost);
+        updateStatus(channelPost);
+        channelPost.setStatus("posted");
+        channelPostRepository.save(channelPost);
         return ResponseEntity.created(new URI("/api/channelPosts/" + channelPost.getId())).build();
+    }
+
+    private void updateStatus(ChannelPost channelPost) {
+        String statusMessage = channelPost.getStatus();
+        channelServiceService.updateStatus(statusMessage);
     }
 
     /**

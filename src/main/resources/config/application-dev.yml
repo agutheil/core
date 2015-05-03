@@ -7,10 +7,10 @@ spring:
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-        databaseName: 
-        serverName: 
-        username: 
-        password: 
+        databaseName:
+        serverName:
+        username:
+        password:
 
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
@@ -31,6 +31,12 @@ spring:
     thymeleaf:
         mode: XHTML
         cache: false
+    social:
+        facebook:
+            app-id: 404823203038294
+            app-secret: 43b8157da55486a94ec99514d23304f5
+
+facebook.appNamespace: mightymercetest1
 
 metrics:
     jmx.enabled: true
