@@ -50,15 +50,12 @@ public class ChannelPostResource {
             return ResponseEntity.badRequest().header("Failure", "A new channelPost cannot already have an ID").build();
         }
         channelPostRepository.save(channelPost);
-        updateStatus(channelPost);
-        channelPost.setStatus("posted");
+        String status = channelServiceService.updateStatus(channelPost);
+        channelPost.setStatus(status);
         channelPostRepository.save(channelPost);
         return ResponseEntity.created(new URI("/api/channelPosts/" + channelPost.getId())).build();
     }
 
-    private void updateStatus(ChannelPost channelPost) {
-        channelServiceService.updateStatus(channelPost);
-    }
 
     /**
      * PUT  /channelPosts -> Updates an existing channelPost.
