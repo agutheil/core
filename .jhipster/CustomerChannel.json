@@ -31,6 +31,16 @@
             "fieldInJavaBeanMethod": "Key",
             "fieldValidate": true,
             "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": []
         }
     ],
     "fieldsContainOwnerManyToMany": false,

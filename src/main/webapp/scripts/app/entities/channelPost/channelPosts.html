@@ -37,6 +37,11 @@
                             <select class="form-control" name="article" ng-model="channelPost.article.id" ng-options="article.id as article.articleId for article in articles">
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label translate="mightymerceApp.channelPost.customerChannel">customerChannel</label>
+                            <select class="form-control" name="customerChannel" ng-model="channelPost.customerChannel.id" ng-options="customerChannel.id as customerChannel.name for customerChannel in customerchannels">
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
@@ -83,6 +88,7 @@
                     <th>ID</th>
                     <th translate="mightymerceApp.channelPost.status">Status</th>
                     <th translate="mightymerceApp.channelPost.article">article</th>
+                    <th translate="mightymerceApp.channelPost.customerChannel">customerChannel</th>
                     <th></th>
                 </tr>
             </thead>
@@ -91,6 +97,7 @@
                     <td><a ui-sref="channelPostDetail({id:channelPost.id})">{{channelPost.id}}</a></td>
                     <td>{{channelPost.status}}</td>
                     <td>{{channelPost.article.articleId}}</td>
+                    <td>{{channelPost.customerChannel.name}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="channelPostDetail({id:channelPost.id})"

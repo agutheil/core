@@ -26,6 +26,9 @@ public class CustomerChannel implements Serializable {
     @Column(name = "key")
     private String key;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne
     private Customer customer;
 
@@ -46,6 +49,14 @@ public class CustomerChannel implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Customer getCustomer() {
@@ -90,6 +101,7 @@ public class CustomerChannel implements Serializable {
         return "CustomerChannel{" +
                 "id=" + id +
                 ", key='" + key + "'" +
+                ", name='" + name + "'" +
                 '}';
     }
 }

@@ -31,6 +31,14 @@
                             <div ng-show="editForm.key.$invalid">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label translate="mightymerceApp.customerChannel.name">Name</label>
+                            <input type="text" class="form-control" name="name"
+                                   ng-model="customerChannel.name">
+
+                            <div ng-show="editForm.name.$invalid">
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label translate="mightymerceApp.customerChannel.customer">customer</label>
@@ -87,6 +95,7 @@
                 <tr>
                     <th>ID</th>
                     <th translate="mightymerceApp.customerChannel.key">Key</th>
+                    <th translate="mightymerceApp.customerChannel.name">Name</th>
                     <th translate="mightymerceApp.customerChannel.customer">customer</th>
                     <th translate="mightymerceApp.customerChannel.channel">channel</th>
                     <th></th>
@@ -96,6 +105,7 @@
                 <tr ng-repeat="customerChannel in customerChannels">
                     <td><a ui-sref="customerChannelDetail({id:customerChannel.id})">{{customerChannel.id}}</a></td>
                     <td>{{customerChannel.key}}</td>
+                    <td>{{customerChannel.name}}</td>
                     <td>{{customerChannel.customer.name}}</td>
                     <td>{{customerChannel.channel.name}}</td>
                     <td>

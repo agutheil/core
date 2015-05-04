@@ -80,7 +80,7 @@ class CustomerChannelGatlingTest extends Simulation {
             .exec(http("Create new customerChannel")
             .put("/api/customerChannels")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "key":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "key":"SAMPLE_TEXT", "name":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_customerChannel_url")))
             .pause(10)

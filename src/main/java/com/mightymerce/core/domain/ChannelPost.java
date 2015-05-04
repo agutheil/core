@@ -29,6 +29,9 @@ public class ChannelPost implements Serializable {
     @ManyToOne
     private Article article;
 
+    @ManyToOne
+    private CustomerChannel customerChannel;
+
     public Long getId() {
         return id;
     }
@@ -51,6 +54,14 @@ public class ChannelPost implements Serializable {
 
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    public CustomerChannel getCustomerChannel() {
+        return customerChannel;
+    }
+
+    public void setCustomerChannel(CustomerChannel customerChannel) {
+        this.customerChannel = customerChannel;
     }
 
     @Override

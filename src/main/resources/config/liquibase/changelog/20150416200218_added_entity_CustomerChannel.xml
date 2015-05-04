@@ -16,6 +16,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="key" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
             <column name="customer_id" type="bigint"/>
             <column name="channel_id" type="bigint"/>
         </createTable>

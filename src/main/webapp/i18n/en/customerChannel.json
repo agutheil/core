@@ -13,6 +13,7 @@
                 "title": "CustomerChannel"
             },
             "key": "Key",
+            "name": "Name",
             "customer": "customer",
             "channel": "channel"
         }

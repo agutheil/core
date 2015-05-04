@@ -40,6 +40,8 @@ public class CustomerChannelResourceTest {
 
     private static final String DEFAULT_KEY = "SAMPLE_TEXT";
     private static final String UPDATED_KEY = "UPDATED_TEXT";
+    private static final String DEFAULT_NAME = "SAMPLE_TEXT";
+    private static final String UPDATED_NAME = "UPDATED_TEXT";
 
     @Inject
     private CustomerChannelRepository customerChannelRepository;
@@ -60,6 +62,7 @@ public class CustomerChannelResourceTest {
     public void initTest() {
         customerChannel = new CustomerChannel();
         customerChannel.setKey(DEFAULT_KEY);
+        customerChannel.setName(DEFAULT_NAME);
     }
 
     @Test
@@ -78,6 +81,7 @@ public class CustomerChannelResourceTest {
         assertThat(customerChannels).hasSize(databaseSizeBeforeCreate + 1);
         CustomerChannel testCustomerChannel = customerChannels.get(customerChannels.size() - 1);
         assertThat(testCustomerChannel.getKey()).isEqualTo(DEFAULT_KEY);
+        assertThat(testCustomerChannel.getName()).isEqualTo(DEFAULT_NAME);
     }
 
     @Test
@@ -91,7 +95,8 @@ public class CustomerChannelResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(customerChannel.getId().intValue())))
-                .andExpect(jsonPath("$.[*].key").value(hasItem(DEFAULT_KEY.toString())));
+                .andExpect(jsonPath("$.[*].key").value(hasItem(DEFAULT_KEY.toString())))
+                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
     }
 
     @Test
@@ -105,7 +110,8 @@ public class CustomerChannelResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(customerChannel.getId().intValue()))
-            .andExpect(jsonPath("$.key").value(DEFAULT_KEY.toString()));
+            .andExpect(jsonPath("$.key").value(DEFAULT_KEY.toString()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
     }
 
     @Test
@@ -126,6 +132,7 @@ public class CustomerChannelResourceTest {
 
         // Update the customerChannel
         customerChannel.setKey(UPDATED_KEY);
+        customerChannel.setName(UPDATED_NAME);
         restCustomerChannelMockMvc.perform(put("/api/customerChannels")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(customerChannel)))
@@ -136,6 +143,7 @@ public class CustomerChannelResourceTest {
         assertThat(customerChannels).hasSize(databaseSizeBeforeUpdate);
         CustomerChannel testCustomerChannel = customerChannels.get(customerChannels.size() - 1);
         assertThat(testCustomerChannel.getKey()).isEqualTo(UPDATED_KEY);
+        assertThat(testCustomerChannel.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test

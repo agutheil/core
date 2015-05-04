@@ -9,6 +9,16 @@
             "relationshipType": "many-to-one",
             "otherEntityNameCapitalized": "Article",
             "otherEntityField": "articleId"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "customerChannel",
+            "relationshipNameCapitalized": "CustomerChannel",
+            "relationshipFieldName": "customerChannel",
+            "otherEntityName": "customerChannel",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "CustomerChannel",
+            "otherEntityField": "name"
         }
     ],
     "fields": [

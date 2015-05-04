@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('mightymerceApp')
-    .controller('ChannelPostController', function ($scope, ChannelPost, Article, ParseLinks) {
+    .controller('ChannelPostController', function ($scope, ChannelPost, Article, CustomerChannel, ParseLinks) {
         $scope.channelPosts = [];
         $scope.articles = Article.query();
+        $scope.customerchannels = CustomerChannel.query();
         $scope.page = 1;
         $scope.loadAll = function() {
             ChannelPost.query({page: $scope.page, per_page: 20}, function(result, headers) {

@@ -51,7 +51,7 @@ angular.module('mightymerceApp')
         };
 
         $scope.clear = function () {
-            $scope.customerChannel = {key: null, id: null};
+            $scope.customerChannel = {key: null, name: null, id: null};
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
