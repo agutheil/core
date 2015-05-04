@@ -22,7 +22,7 @@ public class ProductsFacebookPost implements FacebookPost {
     }
 
     @Override
-    public String post(Article article) {
+    public String post(Article article, String accessToken) {
         LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
         log.info("---- Map created-----> ");
         map.set("fb:app_id", "404823203038294"); // The offer's ID.

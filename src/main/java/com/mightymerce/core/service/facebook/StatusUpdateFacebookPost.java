@@ -4,6 +4,7 @@ import com.mightymerce.core.domain.Article;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,17 +18,18 @@ import javax.inject.Inject;
 public class StatusUpdateFacebookPost implements FacebookPost{
     private final Logger log = LoggerFactory.getLogger(StatusUpdateFacebookPost.class);
 
-    private final Facebook facebook;
+    private final String applicationNamespace;
 
     @Inject
-    public StatusUpdateFacebookPost(Facebook facebook) {
-        this.facebook = facebook;
+    public StatusUpdateFacebookPost(String applicationNamespace) {
+        this.applicationNamespace = applicationNamespace;
     }
 
     @Override
-    public String post(Article article) {
+    public String post(Article article, String accessToken) {
         String statusMessage = article.toString();
         log.info(statusMessage);
+        Facebook facebook = new FacebookTemplate(accessToken, applicationNamespace);
         return facebook.feedOperations().updateStatus(statusMessage);
     }
 }
