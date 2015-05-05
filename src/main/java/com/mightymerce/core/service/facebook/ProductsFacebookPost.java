@@ -4,6 +4,8 @@ import com.mightymerce.core.domain.Article;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 
 import javax.inject.Inject;
@@ -11,6 +13,8 @@ import javax.inject.Inject;
 /**
  * Created by agutheil on 04.05.15.
  */
+@Component
+@Transactional
 public class ProductsFacebookPost implements FacebookPost {
     private final Logger log = LoggerFactory.getLogger(ProductsFacebookPost.class);
 
