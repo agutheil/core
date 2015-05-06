@@ -9,7 +9,8 @@ import org.springframework.social.facebook.api.impl.FacebookTemplate;
  * Created by agutheil on 03.05.15.
  */
 @Configuration
-public class FacebookConfiguration {
+public class SocialConfiguration {
+
     @Bean
     Facebook facebook() {
         // id 404823203038294

@@ -1,6 +1,7 @@
-package com.mightymerce.core.service.facebook;
+package com.mightymerce.core.integration.facebook;
 
 import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.integration.SocialPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.facebook.api.Facebook;
@@ -15,7 +16,7 @@ import javax.inject.Inject;
  */
 @Component
 @Transactional
-public class ProductsFacebookPost implements FacebookPost {
+public class ProductsFacebookPost implements SocialPost {
     private final Logger log = LoggerFactory.getLogger(ProductsFacebookPost.class);
 
     private final Facebook facebook;
