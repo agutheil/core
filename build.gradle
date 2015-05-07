@@ -58,7 +58,7 @@ if (project.hasProperty('prod')) {
 }
 
 group = 'com.mightymerce.core'
-version = '0.1-SNAPSHOT'
+version = '0.1.0'
 
 description = ''
 

@@ -37,3 +37,11 @@ swagger:
     contact:
     license: Apache 2.0
     licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+
+spring:
+    social:
+        facebook:
+            app-id: 404823203038294
+            app-secret: 43b8157da55486a94ec99514d23304f5
+
+facebook.appNamespace: mightymercetest1
