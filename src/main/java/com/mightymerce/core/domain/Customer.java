@@ -25,6 +25,9 @@ public class Customer implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "prename")
+    private String prename;
+
     @ManyToOne
     private Address address;
 
@@ -42,6 +45,14 @@ public class Customer implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPrename() {
+        return prename;
+    }
+
+    public void setPrename(String prename) {
+        this.prename = prename;
     }
 
     public Address getAddress() {
@@ -78,6 +89,7 @@ public class Customer implements Serializable {
         return "Customer{" +
                 "id=" + id +
                 ", name='" + name + "'" +
+                ", prename='" + prename + "'" +
                 '}';
     }
 }

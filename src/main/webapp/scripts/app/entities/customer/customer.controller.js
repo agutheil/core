@@ -50,7 +50,7 @@ angular.module('mightymerceApp')
         };
 
         $scope.clear = function () {
-            $scope.customer = {name: null, id: null};
+            $scope.customer = {name: null, prename: null, id: null};
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };

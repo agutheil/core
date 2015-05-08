@@ -13,6 +13,7 @@
                 "title": "Customer"
             },
             "name": "Name",
+            "prename": "Prename",
             "address": "address"
         }
     }

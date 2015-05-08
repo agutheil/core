@@ -19,6 +19,16 @@
             "fieldNameCapitalized": "Name",
             "fieldNameUnderscored": "name",
             "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": []
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "prename",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Prename",
+            "fieldNameUnderscored": "prename",
+            "fieldInJavaBeanMethod": "Prename",
             "fieldValidate": false
         }
     ],

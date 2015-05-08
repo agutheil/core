@@ -16,6 +16,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>
+            <column name="prename" type="varchar(255)"/>
             <column name="address_id" type="bigint"/>
         </createTable>
         

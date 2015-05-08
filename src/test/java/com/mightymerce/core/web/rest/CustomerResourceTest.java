@@ -40,6 +40,8 @@ public class CustomerResourceTest {
 
     private static final String DEFAULT_NAME = "SAMPLE_TEXT";
     private static final String UPDATED_NAME = "UPDATED_TEXT";
+    private static final String DEFAULT_PRENAME = "SAMPLE_TEXT";
+    private static final String UPDATED_PRENAME = "UPDATED_TEXT";
 
     @Inject
     private CustomerRepository customerRepository;
@@ -60,6 +62,7 @@ public class CustomerResourceTest {
     public void initTest() {
         customer = new Customer();
         customer.setName(DEFAULT_NAME);
+        customer.setPrename(DEFAULT_PRENAME);
     }
 
     @Test
@@ -78,6 +81,7 @@ public class CustomerResourceTest {
         assertThat(customers).hasSize(databaseSizeBeforeCreate + 1);
         Customer testCustomer = customers.get(customers.size() - 1);
         assertThat(testCustomer.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testCustomer.getPrename()).isEqualTo(DEFAULT_PRENAME);
     }
 
     @Test
@@ -91,7 +95,8 @@ public class CustomerResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
-                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+                .andExpect(jsonPath("$.[*].prename").value(hasItem(DEFAULT_PRENAME.toString())));
     }
 
     @Test
@@ -105,7 +110,8 @@ public class CustomerResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.prename").value(DEFAULT_PRENAME.toString()));
     }
 
     @Test
@@ -126,6 +132,7 @@ public class CustomerResourceTest {
 
         // Update the customer
         customer.setName(UPDATED_NAME);
+        customer.setPrename(UPDATED_PRENAME);
         restCustomerMockMvc.perform(put("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(customer)))
@@ -136,6 +143,7 @@ public class CustomerResourceTest {
         assertThat(customers).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customers.get(customers.size() - 1);
         assertThat(testCustomer.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testCustomer.getPrename()).isEqualTo(UPDATED_PRENAME);
     }
 
     @Test
