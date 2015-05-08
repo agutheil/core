@@ -25,7 +25,7 @@ public class Customer implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private Address address;
 
     public Long getId() {

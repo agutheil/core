@@ -30,6 +30,11 @@
 
                         </div>
 
+                        <div class="form-group">
+                            <label translate="mightymerceApp.customer.address">address</label>
+                            <select class="form-control" name="address" ng-model="customer.address.id" ng-options="address.id as address.street for address in addresss">
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
@@ -75,6 +80,7 @@
                 <tr>
                     <th>ID</th>
                     <th translate="mightymerceApp.customer.name">Name</th>
+                    <th translate="mightymerceApp.customer.address">address</th>
                     <th></th>
                 </tr>
             </thead>
@@ -82,6 +88,7 @@
                 <tr ng-repeat="customer in customers">
                     <td><a ui-sref="customerDetail({id:customer.id})">{{customer.id}}</a></td>
                     <td>{{customer.name}}</td>
+                    <td>{{customer.address.street}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="customerDetail({id:customer.id})"

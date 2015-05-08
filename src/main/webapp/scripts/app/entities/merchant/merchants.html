@@ -44,6 +44,11 @@
 
                         </div>
 
+                        <div class="form-group">
+                            <label translate="mightymerceApp.merchant.address">address</label>
+                            <select class="form-control" name="address" ng-model="merchant.address.id" ng-options="address.id as address.street for address in addresss">
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
@@ -91,6 +96,7 @@
                     <th translate="mightymerceApp.merchant.name">Name</th>
                     <th translate="mightymerceApp.merchant.prename">Prename</th>
                     <th translate="mightymerceApp.merchant.firma">Firma</th>
+                    <th translate="mightymerceApp.merchant.address">address</th>
                     <th></th>
                 </tr>
             </thead>
@@ -100,6 +106,7 @@
                     <td>{{merchant.name}}</td>
                     <td>{{merchant.prename}}</td>
                     <td>{{merchant.firma}}</td>
+                    <td>{{merchant.address.street}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="merchantDetail({id:merchant.id})"

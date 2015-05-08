@@ -6,9 +6,9 @@
             "relationshipNameCapitalized": "Address",
             "relationshipFieldName": "address",
             "otherEntityName": "address",
-            "relationshipType": "one-to-one",
+            "relationshipType": "many-to-one",
             "otherEntityNameCapitalized": "Address",
-            "ownerSide": true
+            "otherEntityField": "street"
         }
     ],
     "fields": [

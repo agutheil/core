@@ -32,7 +32,7 @@ public class Merchant implements Serializable {
     @Column(name = "firma")
     private String firma;
 
-    @OneToOne
+    @ManyToOne
     private Address address;
 
     public Long getId() {
