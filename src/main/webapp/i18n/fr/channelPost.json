@@ -14,7 +14,7 @@
             },
             "status": "Status",
             "article": "article",
-            "customerChannel": "customerChannel"
+            "merchantChannel": "merchantChannel"
         }
     }
 }

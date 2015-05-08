@@ -12,12 +12,12 @@
         },
         {
             "relationshipId": 2,
-            "relationshipName": "customerChannel",
-            "relationshipNameCapitalized": "CustomerChannel",
-            "relationshipFieldName": "customerChannel",
-            "otherEntityName": "customerChannel",
+            "relationshipName": "merchantChannel",
+            "relationshipNameCapitalized": "MerchantChannel",
+            "relationshipFieldName": "merchantChannel",
+            "otherEntityName": "merchantChannel",
             "relationshipType": "many-to-one",
-            "otherEntityNameCapitalized": "CustomerChannel",
+            "otherEntityNameCapitalized": "MerchantChannel",
             "otherEntityField": "name"
         }
     ],

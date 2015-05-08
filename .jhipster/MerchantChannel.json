@@ -2,12 +2,12 @@
     "relationships": [
         {
             "relationshipId": 1,
-            "relationshipName": "customer",
-            "relationshipNameCapitalized": "Customer",
-            "relationshipFieldName": "customer",
-            "otherEntityName": "customer",
+            "relationshipName": "merchant",
+            "relationshipNameCapitalized": "Merchant",
+            "relationshipFieldName": "merchant",
+            "otherEntityName": "merchant",
             "relationshipType": "many-to-one",
-            "otherEntityNameCapitalized": "Customer",
+            "otherEntityNameCapitalized": "Merchant",
             "otherEntityField": "name"
         },
         {

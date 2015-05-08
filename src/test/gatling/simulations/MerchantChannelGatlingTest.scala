@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the CustomerChannel entity.
+ * Performance test for the MerchantChannel entity.
  */
-class CustomerChannelGatlingTest extends Simulation {
+class MerchantChannelGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -48,7 +48,7 @@ class CustomerChannelGatlingTest extends Simulation {
         "Authorization" -> "Bearer ${access_token}"
     )
 
-    val scn = scenario("Test the CustomerChannel entity")
+    val scn = scenario("Test the MerchantChannel entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -72,26 +72,26 @@ class CustomerChannelGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all customerChannels")
-            .get("/api/customerChannels")
+            exec(http("Get all merchantChannels")
+            .get("/api/merchantChannels")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new customerChannel")
-            .put("/api/customerChannels")
+            .exec(http("Create new merchantChannel")
+            .put("/api/merchantChannels")
             .headers(headers_http_authenticated)
             .body(StringBody("""{"id":null, "accessToken":"SAMPLE_TEXT", "name":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_customerChannel_url")))
+            .check(headerRegex("Location", "(.*)").saveAs("new_merchantChannel_url")))
             .pause(10)
             .repeat(5) {
-                exec(http("Get created customerChannel")
-                .get("${new_customerChannel_url}")
+                exec(http("Get created merchantChannel")
+                .get("${new_merchantChannel_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created customerChannel")
-            .delete("${new_customerChannel_url}")
+            .exec(http("Delete created merchantChannel")
+            .delete("${new_merchantChannel_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

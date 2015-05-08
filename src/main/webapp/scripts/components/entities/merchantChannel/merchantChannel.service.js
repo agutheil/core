@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mightymerceApp')
-    .factory('CustomerChannel', function ($resource) {
-        return $resource('api/customerChannels/:id', {}, {
+    .factory('MerchantChannel', function ($resource) {
+        return $resource('api/merchantChannels/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

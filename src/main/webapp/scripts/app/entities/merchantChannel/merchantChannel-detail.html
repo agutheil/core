@@ -1,6 +1,6 @@
 
 <div>
-    <h2><span translate="mightymerceApp.customerChannel.detail.title">CustomerChannel</span> {{customerChannel.id}}</h2>
+    <h2><span translate="mightymerceApp.merchantChannel.detail.title">MerchantChannel</span> {{merchantChannel.id}}</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -12,34 +12,34 @@
             <tbody>
                 <tr>
                     <td>
-                        <span translate="mightymerceApp.customerChannel.accessToken">AccessToken</span>
+                        <span translate="mightymerceApp.merchantChannel.accessToken">AccessToken</span>
                     </td>
                     <td>
-                        <input type="text" class="input-sm form-control" value="{{customerChannel.accessToken}}" readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="mightymerceApp.customerChannel.name">Name</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{customerChannel.name}}" readonly>
+                        <input type="text" class="input-sm form-control" value="{{merchantChannel.accessToken}}" readonly>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span translate="mightymerceApp.customerChannel.customer">customer</span>
+                        <span translate="mightymerceApp.merchantChannel.name">Name</span>
                     </td>
                     <td>
-                        <input type="text" class="input-sm form-control" value="{{customerChannel.customer.name}}" readonly>
+                        <input type="text" class="input-sm form-control" value="{{merchantChannel.name}}" readonly>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <span translate="mightymerceApp.customerChannel.channel">channel</span>
+                        <span translate="mightymerceApp.merchantChannel.merchant">merchant</span>
                     </td>
                     <td>
-                        <input type="text" class="input-sm form-control" value="{{customerChannel.channel.name}}" readonly>
+                        <input type="text" class="input-sm form-control" value="{{merchantChannel.merchant.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mightymerceApp.merchantChannel.channel">channel</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{merchantChannel.channel.name}}" readonly>
                     </td>
                 </tr>
             </tbody>
@@ -47,7 +47,7 @@
     </div>
 
     <button type="submit"
-            ui-sref="customerChannel"
+            ui-sref="merchantChannel"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
     </button>

@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('mightymerceApp')
-    .controller('CustomerChannelController', function ($scope, CustomerChannel, Customer, Channel, ParseLinks) {
-        $scope.customerChannels = [];
-        $scope.customers = Customer.query();
+    .controller('MerchantChannelController', function ($scope, MerchantChannel, Merchant, Channel, ParseLinks) {
+        $scope.merchantChannels = [];
+        $scope.merchants = Merchant.query();
         $scope.channels = Channel.query();
         $scope.page = 1;
         $scope.loadAll = function() {
-            CustomerChannel.query({page: $scope.page, per_page: 20}, function(result, headers) {
+            MerchantChannel.query({page: $scope.page, per_page: 20}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
-                $scope.customerChannels = result;
+                $scope.merchantChannels = result;
             });
         };
         $scope.loadPage = function(page) {
@@ -19,39 +19,39 @@ angular.module('mightymerceApp')
         $scope.loadAll();
 
         $scope.create = function () {
-            CustomerChannel.update($scope.customerChannel,
+            MerchantChannel.update($scope.merchantChannel,
                 function () {
                     $scope.loadAll();
-                    $('#saveCustomerChannelModal').modal('hide');
+                    $('#saveMerchantChannelModal').modal('hide');
                     $scope.clear();
                 });
         };
 
         $scope.update = function (id) {
-            CustomerChannel.get({id: id}, function(result) {
-                $scope.customerChannel = result;
-                $('#saveCustomerChannelModal').modal('show');
+            MerchantChannel.get({id: id}, function(result) {
+                $scope.merchantChannel = result;
+                $('#saveMerchantChannelModal').modal('show');
             });
         };
 
         $scope.delete = function (id) {
-            CustomerChannel.get({id: id}, function(result) {
-                $scope.customerChannel = result;
-                $('#deleteCustomerChannelConfirmation').modal('show');
+            MerchantChannel.get({id: id}, function(result) {
+                $scope.merchantChannel = result;
+                $('#deleteMerchantChannelConfirmation').modal('show');
             });
         };
 
         $scope.confirmDelete = function (id) {
-            CustomerChannel.delete({id: id},
+            MerchantChannel.delete({id: id},
                 function () {
                     $scope.loadAll();
-                    $('#deleteCustomerChannelConfirmation').modal('hide');
+                    $('#deleteMerchantChannelConfirmation').modal('hide');
                     $scope.clear();
                 });
         };
 
         $scope.clear = function () {
-            $scope.customerChannel = {accessToken: null, name: null, id: null};
+            $scope.merchantChannel = {accessToken: null, name: null, id: null};
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };

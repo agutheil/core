@@ -3,12 +3,12 @@ package com.mightymerce.core.service.impl;
 import com.mightymerce.core.domain.Article;
 import com.mightymerce.core.domain.Channel;
 import com.mightymerce.core.domain.ChannelPost;
-import com.mightymerce.core.domain.CustomerChannel;
+import com.mightymerce.core.domain.MerchantChannel;
 import com.mightymerce.core.integration.ChannelType;
 import com.mightymerce.core.integration.SocialPoster;
 import com.mightymerce.core.repository.ArticleRepository;
 import com.mightymerce.core.repository.ChannelRepository;
-import com.mightymerce.core.repository.CustomerChannelRepository;
+import com.mightymerce.core.repository.MerchantChannelRepository;
 import com.mightymerce.core.service.ChannelServiceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +25,15 @@ public class ChannelServiceServiceImpl implements ChannelServiceService {
 
     private final ArticleRepository articleRepository;
 
-    private final CustomerChannelRepository customerChannelRepository;
+    private final MerchantChannelRepository merchantChannelRepository;
 
     private final ChannelRepository channelRepository;
     private final SocialPoster socialPoster;
 
     @Inject
-    public ChannelServiceServiceImpl(ArticleRepository articleRepository, CustomerChannelRepository customerChannelRepository, ChannelRepository channelRepository, SocialPoster socialPoster) {
+    public ChannelServiceServiceImpl(ArticleRepository articleRepository, MerchantChannelRepository merchantChannelRepository, ChannelRepository channelRepository, SocialPoster socialPoster) {
         this.articleRepository = articleRepository;
-        this.customerChannelRepository = customerChannelRepository;
+        this.merchantChannelRepository = merchantChannelRepository;
         this.channelRepository = channelRepository;
         this.socialPoster = socialPoster;
     }
@@ -41,9 +41,9 @@ public class ChannelServiceServiceImpl implements ChannelServiceService {
     @Override
     public String updateStatus(ChannelPost channelPost) {
         Article article = articleRepository.getOne(channelPost.getArticle().getId());
-        CustomerChannel customerChannel = customerChannelRepository.getOne(channelPost.getCustomerChannel().getId());
-        String accessToken = customerChannel.getAccessToken();
-        Channel channel = channelRepository.getOne(customerChannel.getChannel().getId());
+        MerchantChannel merchantChannel = merchantChannelRepository.getOne(channelPost.getMerchantChannel().getId());
+        String accessToken = merchantChannel.getAccessToken();
+        Channel channel = channelRepository.getOne(merchantChannel.getChannel().getId());
         ChannelType channelType = ChannelType.valueOf(channel.getName().toUpperCase());
         String result = socialPoster.post(article, accessToken, channelType);
         return result;

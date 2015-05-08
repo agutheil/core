@@ -3,42 +3,42 @@
 angular.module('mightymerceApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('customerChannel', {
+            .state('merchantChannel', {
                 parent: 'entity',
-                url: '/customerChannel',
+                url: '/merchantChannel',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'mightymerceApp.customerChannel.home.title'
+                    pageTitle: 'mightymerceApp.merchantChannel.home.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/customerChannel/customerChannels.html',
-                        controller: 'CustomerChannelController'
+                        templateUrl: 'scripts/app/entities/merchantChannel/merchantChannels.html',
+                        controller: 'MerchantChannelController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('customerChannel');
+                        $translatePartialLoader.addPart('merchantChannel');
                         return $translate.refresh();
                     }]
                 }
             })
-            .state('customerChannelDetail', {
+            .state('merchantChannelDetail', {
                 parent: 'entity',
-                url: '/customerChannel/:id',
+                url: '/merchantChannel/:id',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'mightymerceApp.customerChannel.detail.title'
+                    pageTitle: 'mightymerceApp.merchantChannel.detail.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/customerChannel/customerChannel-detail.html',
-                        controller: 'CustomerChannelDetailController'
+                        templateUrl: 'scripts/app/entities/merchantChannel/merchantChannel-detail.html',
+                        controller: 'MerchantChannelDetailController'
                     }
                 },
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('customerChannel');
+                        $translatePartialLoader.addPart('merchantChannel');
                         return $translate.refresh();
                     }]
                 }

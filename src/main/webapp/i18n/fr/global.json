@@ -16,6 +16,7 @@
                 "merchant": "Merchant",
                 "socialOrder": "SocialOrder",
                 "socialCart": "SocialCart",
+                "merchantChannel": "MerchantChannel",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

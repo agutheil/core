@@ -38,8 +38,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label translate="mightymerceApp.channelPost.customerChannel">customerChannel</label>
-                            <select class="form-control" name="customerChannel" ng-model="channelPost.customerChannel.id" ng-options="customerChannel.id as customerChannel.name for customerChannel in customerchannels">
+                            <label translate="mightymerceApp.channelPost.merchantChannel">merchantChannel</label>
+                            <select class="form-control" name="merchantChannel" ng-model="channelPost.merchantChannel.id" ng-options="merchantChannel.id as merchantChannel.name for merchantChannel in merchantchannels">
                             </select>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <th>ID</th>
                     <th translate="mightymerceApp.channelPost.status">Status</th>
                     <th translate="mightymerceApp.channelPost.article">article</th>
-                    <th translate="mightymerceApp.channelPost.customerChannel">customerChannel</th>
+                    <th translate="mightymerceApp.channelPost.merchantChannel">merchantChannel</th>
                     <th></th>
                 </tr>
             </thead>
@@ -97,7 +97,7 @@
                     <td><a ui-sref="channelPostDetail({id:channelPost.id})">{{channelPost.id}}</a></td>
                     <td>{{channelPost.status}}</td>
                     <td>{{channelPost.article.articleId}}</td>
-                    <td>{{channelPost.customerChannel.name}}</td>
+                    <td>{{channelPost.merchantChannel.name}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="channelPostDetail({id:channelPost.id})"

@@ -8,28 +8,28 @@
     <property name="now" value="current_timestamp" dbms="postgresql"/>
 
     <!--
-        Added the entity CustomerChannel.
+        Added the entity MerchantChannel.
     -->
     <changeSet id="20150416200218" author="jhipster">
-        <createTable tableName="CUSTOMERCHANNEL">
+        <createTable tableName="MERCHANTCHANNEL">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="accessToken" type="varchar(255)"/>
             <column name="name" type="varchar(255)"/>
-            <column name="customer_id" type="bigint"/>
+            <column name="merchant_id" type="bigint"/>
             <column name="channel_id" type="bigint"/>
         </createTable>
         
-        <addForeignKeyConstraint baseColumnNames="customer_id"
-                                 baseTableName="CUSTOMERCHANNEL"
-                                 constraintName="fk_customerchannel_customer_id"
+        <addForeignKeyConstraint baseColumnNames="merchant_id"
+                                 baseTableName="MERCHANTCHANNEL"
+                                 constraintName="fk_merchantchannel_merchant_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="CUSTOMER"/>
+                                 referencedTableName="MERCHANT"/>
 
         <addForeignKeyConstraint baseColumnNames="channel_id"
-                                 baseTableName="CUSTOMERCHANNEL"
-                                 constraintName="fk_customerchannel_channel_id"
+                                 baseTableName="MERCHANTCHANNEL"
+                                 constraintName="fk_merchantchannel_channel_id"
                                  referencedColumnNames="id"
                                  referencedTableName="CHANNEL"/>
 

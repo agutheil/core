@@ -17,7 +17,7 @@
             </column>
             <column name="status" type="varchar(255)"/>
             <column name="article_id" type="bigint"/>
-            <column name="customerchannel_id" type="bigint"/>
+            <column name="merchantchannel_id" type="bigint"/>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="article_id"
@@ -26,11 +26,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="ARTICLE"/>
 
-        <addForeignKeyConstraint baseColumnNames="customerchannel_id"
+        <addForeignKeyConstraint baseColumnNames="merchantchannel_id"
                                  baseTableName="CHANNELPOST"
-                                 constraintName="fk_channelpost_customerchannel_id"
+                                 constraintName="fk_channelpost_merchantchannel_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="CUSTOMERCHANNEL"/>
+                                 referencedTableName="MERCHANTCHANNEL"/>
 
     </changeSet>
 </databaseChangeLog>

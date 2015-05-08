@@ -30,7 +30,7 @@ public class ChannelPost implements Serializable {
     private Article article;
 
     @ManyToOne
-    private CustomerChannel customerChannel;
+    private MerchantChannel merchantChannel;
 
     public Long getId() {
         return id;
@@ -56,12 +56,12 @@ public class ChannelPost implements Serializable {
         this.article = article;
     }
 
-    public CustomerChannel getCustomerChannel() {
-        return customerChannel;
+    public MerchantChannel getMerchantChannel() {
+        return merchantChannel;
     }
 
-    public void setCustomerChannel(CustomerChannel customerChannel) {
-        this.customerChannel = customerChannel;
+    public void setMerchantChannel(MerchantChannel merchantChannel) {
+        this.merchantChannel = merchantChannel;
     }
 
     @Override

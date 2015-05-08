@@ -12,12 +12,12 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * A CustomerChannel.
+ * A MerchantChannel.
  */
 @Entity
-@Table(name = "CUSTOMERCHANNEL")
+@Table(name = "MERCHANTCHANNEL")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class CustomerChannel implements Serializable {
+public class MerchantChannel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +30,7 @@ public class CustomerChannel implements Serializable {
     private String name;
 
     @ManyToOne
-    private Customer customer;
+    private Merchant merchant;
 
     @ManyToOne
     private Channel channel;
@@ -59,12 +59,12 @@ public class CustomerChannel implements Serializable {
         this.name = name;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Merchant getMerchant() {
+        return merchant;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 
     public Channel getChannel() {
@@ -84,9 +84,9 @@ public class CustomerChannel implements Serializable {
             return false;
         }
 
-        CustomerChannel customerChannel = (CustomerChannel) o;
+        MerchantChannel merchantChannel = (MerchantChannel) o;
 
-        if ( ! Objects.equals(id, customerChannel.id)) return false;
+        if ( ! Objects.equals(id, merchantChannel.id)) return false;
 
         return true;
     }
@@ -98,7 +98,7 @@ public class CustomerChannel implements Serializable {
 
     @Override
     public String toString() {
-        return "CustomerChannel{" +
+        return "MerchantChannel{" +
                 "id=" + id +
                 ", accessToken='" + accessToken + "'" +
                 ", name='" + name + "'" +
