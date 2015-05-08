@@ -38,8 +38,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class CustomerChannelResourceTest {
 
-    private static final String DEFAULT_KEY = "SAMPLE_TEXT";
-    private static final String UPDATED_KEY = "UPDATED_TEXT";
+    private static final String DEFAULT_ACCESSTOKEN = "SAMPLE_TEXT";
+    private static final String UPDATED_ACCESSTOKEN = "UPDATED_TEXT";
     private static final String DEFAULT_NAME = "SAMPLE_TEXT";
     private static final String UPDATED_NAME = "UPDATED_TEXT";
 
@@ -61,7 +61,7 @@ public class CustomerChannelResourceTest {
     @Before
     public void initTest() {
         customerChannel = new CustomerChannel();
-        customerChannel.setKey(DEFAULT_KEY);
+        customerChannel.setAccessToken(DEFAULT_ACCESSTOKEN);
         customerChannel.setName(DEFAULT_NAME);
     }
 
@@ -80,7 +80,7 @@ public class CustomerChannelResourceTest {
         List<CustomerChannel> customerChannels = customerChannelRepository.findAll();
         assertThat(customerChannels).hasSize(databaseSizeBeforeCreate + 1);
         CustomerChannel testCustomerChannel = customerChannels.get(customerChannels.size() - 1);
-        assertThat(testCustomerChannel.getKey()).isEqualTo(DEFAULT_KEY);
+        assertThat(testCustomerChannel.getAccessToken()).isEqualTo(DEFAULT_ACCESSTOKEN);
         assertThat(testCustomerChannel.getName()).isEqualTo(DEFAULT_NAME);
     }
 
@@ -95,7 +95,7 @@ public class CustomerChannelResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(customerChannel.getId().intValue())))
-                .andExpect(jsonPath("$.[*].key").value(hasItem(DEFAULT_KEY.toString())))
+                .andExpect(jsonPath("$.[*].accessToken").value(hasItem(DEFAULT_ACCESSTOKEN.toString())))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
     }
 
@@ -110,7 +110,7 @@ public class CustomerChannelResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(customerChannel.getId().intValue()))
-            .andExpect(jsonPath("$.key").value(DEFAULT_KEY.toString()))
+            .andExpect(jsonPath("$.accessToken").value(DEFAULT_ACCESSTOKEN.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
     }
 
@@ -131,7 +131,7 @@ public class CustomerChannelResourceTest {
 		int databaseSizeBeforeUpdate = customerChannelRepository.findAll().size();
 
         // Update the customerChannel
-        customerChannel.setKey(UPDATED_KEY);
+        customerChannel.setAccessToken(UPDATED_ACCESSTOKEN);
         customerChannel.setName(UPDATED_NAME);
         restCustomerChannelMockMvc.perform(put("/api/customerChannels")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -142,7 +142,7 @@ public class CustomerChannelResourceTest {
         List<CustomerChannel> customerChannels = customerChannelRepository.findAll();
         assertThat(customerChannels).hasSize(databaseSizeBeforeUpdate);
         CustomerChannel testCustomerChannel = customerChannels.get(customerChannels.size() - 1);
-        assertThat(testCustomerChannel.getKey()).isEqualTo(UPDATED_KEY);
+        assertThat(testCustomerChannel.getAccessToken()).isEqualTo(UPDATED_ACCESSTOKEN);
         assertThat(testCustomerChannel.getName()).isEqualTo(UPDATED_NAME);
     }
 

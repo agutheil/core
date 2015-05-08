@@ -42,7 +42,7 @@ public class ChannelServiceServiceImpl implements ChannelServiceService {
     public String updateStatus(ChannelPost channelPost) {
         Article article = articleRepository.getOne(channelPost.getArticle().getId());
         CustomerChannel customerChannel = customerChannelRepository.getOne(channelPost.getCustomerChannel().getId());
-        String accessToken = customerChannel.getKey();
+        String accessToken = customerChannel.getAccessToken();
         Channel channel = channelRepository.getOne(customerChannel.getChannel().getId());
         ChannelType channelType = ChannelType.valueOf(channel.getName().toUpperCase());
         String result = socialPoster.post(article, accessToken, channelType);

@@ -23,8 +23,8 @@ public class CustomerChannel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "key")
-    private String key;
+    @Column(name = "accessToken")
+    private String accessToken;
 
     @Column(name = "name")
     private String name;
@@ -43,12 +43,12 @@ public class CustomerChannel implements Serializable {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public String getName() {
@@ -100,7 +100,7 @@ public class CustomerChannel implements Serializable {
     public String toString() {
         return "CustomerChannel{" +
                 "id=" + id +
-                ", key='" + key + "'" +
+                ", accessToken='" + accessToken + "'" +
                 ", name='" + name + "'" +
                 '}';
     }
