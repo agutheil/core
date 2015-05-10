@@ -5,8 +5,8 @@ spring:
     profiles:
         active: dev
     datasource:
-        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/schubber
+        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
         databaseName:
         serverName:
         username: root
