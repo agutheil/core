@@ -31,6 +31,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-social-facebook")
     compile group: 'org.springframework.security', name: 'spring-security-crypto', version: spring_security_version
     compile group:'org.apache.httpcomponents', name:'httpclient', version: '4.4'
+    compile("com.fasterxml.jackson.core:jackson-databind")
 }
 
 task wrapper(type: Wrapper) {

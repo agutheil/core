@@ -2,6 +2,7 @@ package hello;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.social.oauth2.OAuth2Template;
 
 /**
  * Created by agutheil on 11.05.15.
@@ -9,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyConfig {
     @Bean
-    public MightyCore restTemplate(){
-        MightyCore mightyCore = new MightyCore("mightymerceapp","mySecretOAuthSecret","http://localhost:8080/oauth/authorize", "http://localhost:8080/oauth/authenticate", "http://localhost:8080/oauth/token");
-        mightyCore.setUseParametersForClientAuthentication(false);
-        return mightyCore;
+    public OAuth2Template oAuth2Template(){
+        OAuth2Template oAuth2Template = new OAuth2Template("mightymerceapp","mySecretOAuthSecret","http://localhost:8080/oauth/authorize", "http://localhost:8080/oauth/authenticate", "http://localhost:8080/oauth/token");
+        oAuth2Template.setUseParametersForClientAuthentication(false);
+        return oAuth2Template;
     }
 }
