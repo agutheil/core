@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.PagedList;
 import org.springframework.social.facebook.api.Post;
 import org.springframework.social.oauth2.AccessGrant;
@@ -40,7 +41,7 @@ public class CheckoutController {
         this.facebook = facebook;
         this.oAuth2Template = oAuth2Template;
       //  this.mightyCore = mightyCore;
-        params.set("scope", "read");
+        params.set("scope", "read write");
 
     }
 
@@ -59,11 +60,13 @@ public class CheckoutController {
         if (!facebook.isAuthorized()) {
             return "redirect:/connect/facebook";
         }
-        model.addAttribute(facebook.userOperations().getUserProfile());
+        FacebookProfile facebookProfile = facebook.userOperations().getUserProfile();
+        model.addAttribute(facebookProfile);
         AccessGrant ag = oAuth2Template.exchangeCredentialsForAccess("admin", "admin",params);
         String articleId = (String) model.asMap().get("articleId");
         MightyCore mightyCore = new MightyCore(ag.getAccessToken(), TokenStrategy.AUTHORIZATION_HEADER);
         Article article = mightyCore.getArticle(articleId);
+        mightyCore.createOrder(article, facebookProfile.getId());
         model.addAttribute("articleName",article.getName());
         return "checkout";
     }
