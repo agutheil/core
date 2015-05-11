@@ -22,14 +22,15 @@ repositories {
     maven { url "https://repo.spring.io/libs-milestone" }
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     // Start project specific dependencies
     compile("org.springframework.boot:spring-boot-starter-social-facebook")
-
+    compile group: 'org.springframework.security', name: 'spring-security-crypto', version: spring_security_version
+    compile group:'org.apache.httpcomponents', name:'httpclient', version: '4.4'
 }
 
 task wrapper(type: Wrapper) {
