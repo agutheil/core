@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes("articleId")
 public class CheckoutController {
 
     private Facebook facebook;
 
     private OAuth2Template oAuth2Template;
 
-    //private MightyCore mightyCore;
 
     private MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 
@@ -33,7 +31,6 @@ public class CheckoutController {
     public CheckoutController(Facebook facebook, OAuth2Template oAuth2Template) {
         this.facebook = facebook;
         this.oAuth2Template = oAuth2Template;
-      //  this.mightyCore = mightyCore;
         params.set("scope", "read write");
 
     }
