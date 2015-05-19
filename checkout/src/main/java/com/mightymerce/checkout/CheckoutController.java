@@ -1,16 +1,9 @@
-package hello;
+package com.mightymerce.checkout;
 
 import javax.inject.Inject;
-import javax.websocket.server.PathParam;
 
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
-import org.springframework.social.facebook.api.PagedList;
-import org.springframework.social.facebook.api.Post;
 import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Template;
 import org.springframework.social.oauth2.TokenStrategy;
@@ -46,7 +39,7 @@ public class CheckoutController {
     }
 
     @RequestMapping(value = "checkout/{articleId}", method=RequestMethod.GET)
-    public String checkout(@PathVariable String articleId ,Model model) {
+    public String checkout(@PathVariable String articleId, Model model) {
         model.addAttribute("articleId", articleId);
         return process(model);
     }

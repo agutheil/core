@@ -1,7 +1,6 @@
-package hello;
+package com.mightymerce.checkout;
 
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
-import org.springframework.social.oauth2.OAuth2Template;
 import org.springframework.social.oauth2.TokenStrategy;
 
 /**
