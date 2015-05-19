@@ -35,10 +35,30 @@ public class PagesController {
     @RequestMapping(value = "facebook/{articleId}", method=RequestMethod.GET)
     public String renderFacebook(@PathVariable String articleId, Model model) {
         model.addAttribute("articleId", articleId);
-        AccessGrant ag = oAuth2Template.exchangeCredentialsForAccess("admin", "admin",params);
-        MightyCore mightyCore = new MightyCore(ag.getAccessToken(), TokenStrategy.AUTHORIZATION_HEADER);
-        Article article = mightyCore.getArticle(articleId);
+        Article article = getArticle(articleId);
         model.addAttribute("articleName",article.getName());
         return "facebook";
+    }
+
+    @RequestMapping(value = "pinterest/{articleId}", method=RequestMethod.GET)
+    public String renderPinterest(@PathVariable String articleId, Model model) {
+        model.addAttribute("articleId", articleId);
+        Article article = getArticle(articleId);
+        model.addAttribute("articleName",article.getName());
+        return "pinterest";
+    }
+
+    @RequestMapping(value = "twitter/{articleId}", method=RequestMethod.GET)
+    public String renderTwitter(@PathVariable String articleId, Model model) {
+        model.addAttribute("articleId", articleId);
+        Article article = getArticle(articleId);
+        model.addAttribute("articleName",article.getName());
+        return "twitter";
+    }
+
+    private Article getArticle(String articleId) {
+        AccessGrant ag = oAuth2Template.exchangeCredentialsForAccess("admin", "admin",params);
+        MightyCore mightyCore = new MightyCore(ag.getAccessToken(), TokenStrategy.AUTHORIZATION_HEADER);
+        return mightyCore.getArticle(articleId);
     }
 }
