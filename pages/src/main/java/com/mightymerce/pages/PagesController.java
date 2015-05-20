@@ -34,25 +34,22 @@ public class PagesController {
 
     @RequestMapping(value = "facebook/{articleId}", method=RequestMethod.GET)
     public String renderFacebook(@PathVariable String articleId, Model model) {
-        model.addAttribute("articleId", articleId);
         Article article = getArticle(articleId);
-        model.addAttribute("articleName",article.getName());
+        model.addAttribute("article",article);
         return "facebook";
     }
 
     @RequestMapping(value = "pinterest/{articleId}", method=RequestMethod.GET)
     public String renderPinterest(@PathVariable String articleId, Model model) {
-        model.addAttribute("articleId", articleId);
         Article article = getArticle(articleId);
-        model.addAttribute("articleName",article.getName());
+        model.addAttribute("article",article);
         return "pinterest";
     }
 
     @RequestMapping(value = "twitter/{articleId}", method=RequestMethod.GET)
     public String renderTwitter(@PathVariable String articleId, Model model) {
-        model.addAttribute("articleId", articleId);
         Article article = getArticle(articleId);
-        model.addAttribute("articleName",article.getName());
+        model.addAttribute("article",article);
         return "twitter";
     }
 
