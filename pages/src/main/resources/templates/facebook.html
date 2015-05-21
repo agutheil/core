@@ -7,10 +7,11 @@
 	<meta property="fb:app_id"                       content="302184056577324" /> 
 	<meta property="og:type"                         content="product" /> 
 	<meta property="og:url"                          content="Put your own URL to the object here" /> 
-	<meta property="og:title"                        content="'${article.name}'" /> 
+	<meta property="og:title"                        th:content="${article.name}" /> 
 	<meta property="og:image"                        content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" /> 
-	<meta property="product:original_price:amount"   content="Sample Original Price: " /> 
-	<meta property="product:original_price:currency" content="Sample Original Price: " /> 
+	<meta property="og:description"                  th:content="${article.description}" /> 
+	<meta property="product:original_price:amount"   th:content="${article.price}" /> 
+	<meta property="product:original_price:currency" th:content="${article.currency}" /> 
 	<meta property="product:pretax_price:amount"     content="Sample Pre-tax Price: " /> 
 	<meta property="product:pretax_price:currency"   content="Sample Pre-tax Price: " /> 
 	<meta property="product:price:amount"            content="Sample Price: " /> 
