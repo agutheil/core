@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/")
 public class CheckoutController {
 
-    private Facebook facebook;
 
     private OAuth2Template oAuth2Template;
 
@@ -28,8 +27,7 @@ public class CheckoutController {
     private MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 
     @Inject
-    public CheckoutController(Facebook facebook, OAuth2Template oAuth2Template) {
-        this.facebook = facebook;
+    public CheckoutController(OAuth2Template oAuth2Template) {
         this.oAuth2Template = oAuth2Template;
         params.set("scope", "read write");
 
@@ -38,27 +36,24 @@ public class CheckoutController {
     @RequestMapping(value = "checkout/{articleId}", method=RequestMethod.GET)
     public String checkout(@PathVariable String articleId, Model model) {
         model.addAttribute("articleId", articleId);
-        return process(model);
-    }
-
-    @RequestMapping(method=RequestMethod.GET)
-    public String show(Model model) {
-        return process(model);
-    }
-
-    private String process(Model model) {
-        if (!facebook.isAuthorized()) {
-            return "redirect:/connect/facebook";
-        }
-        FacebookProfile facebookProfile = facebook.userOperations().getUserProfile();
-        model.addAttribute(facebookProfile);
         AccessGrant ag = oAuth2Template.exchangeCredentialsForAccess("admin", "admin",params);
-        String articleId = (String) model.asMap().get("articleId");
         MightyCore mightyCore = new MightyCore(ag.getAccessToken(), TokenStrategy.AUTHORIZATION_HEADER);
         Article article = mightyCore.getArticle(articleId);
-        mightyCore.createOrder(article, facebookProfile.getId());
+        mightyCore.createOrder(article);
         model.addAttribute("articleName",article.getName());
         return "checkout";
     }
+
+    @RequestMapping(value = "success", method=RequestMethod.GET)
+    public String success() {
+        return "success";
+    }
+
+    @RequestMapping(value = "cancel", method=RequestMethod.GET)
+    public String cancel() {
+        return "cancel";
+    }
+
+
 
 }
