@@ -16,7 +16,7 @@ public class DefaultSocialPoster implements SocialPoster{
     private final SocialPost pinterestPost;
 
     @Inject
-    public DefaultSocialPoster(@Qualifier("statusUpdateFacebookPost")  SocialPost facebookPost, SocialPost twitterPost, SocialPost pinterestPost) {
+    public DefaultSocialPoster(@Qualifier("linkFacebookPost")  SocialPost facebookPost, SocialPost twitterPost, SocialPost pinterestPost) {
         this.facebookPost = facebookPost;
         this.twitterPost = twitterPost;
         this.pinterestPost = pinterestPost;
