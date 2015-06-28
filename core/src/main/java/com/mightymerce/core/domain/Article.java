@@ -39,6 +39,9 @@ public class Article implements Serializable {
     @Column(name = "currency")
     private String currency;
 
+    @Column(name = "paypal")
+    private String paypal;
+
     @OneToMany(mappedBy = "article")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -100,6 +103,14 @@ public class Article implements Serializable {
         this.channelPosts = channelPosts;
     }
 
+    public String getPaypal() {
+        return paypal;
+    }
+
+    public void setPaypal(String paypal) {
+        this.paypal = paypal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -130,6 +141,7 @@ public class Article implements Serializable {
                 ", description='" + description + "'" +
                 ", price='" + price + "'" +
                 ", currency='" + currency + "'" +
+                ", paypal='" + paypal + "'" +
                 '}';
     }
 }

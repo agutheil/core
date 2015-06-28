@@ -50,6 +50,8 @@ public class ArticleResourceTest {
     private static final BigDecimal UPDATED_PRICE = BigDecimal.ONE;
     private static final String DEFAULT_CURRENCY = "SAMPLE_TEXT";
     private static final String UPDATED_CURRENCY = "UPDATED_TEXT";
+    private static final String DEFAULT_PAYPAL = "SAMPLE_TEXT";
+    private static final String UPDATED_PAYPAL = "UPDATED_TEXT";
 
     @Inject
     private ArticleRepository articleRepository;
@@ -74,6 +76,7 @@ public class ArticleResourceTest {
         article.setDescription(DEFAULT_DESCRIPTION);
         article.setPrice(DEFAULT_PRICE);
         article.setCurrency(DEFAULT_CURRENCY);
+        article.setPaypal(DEFAULT_PAYPAL);
     }
 
     @Test
@@ -96,6 +99,7 @@ public class ArticleResourceTest {
         assertThat(testArticle.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testArticle.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testArticle.getCurrency()).isEqualTo(DEFAULT_CURRENCY);
+        assertThat(testArticle.getPaypal()).isEqualTo(DEFAULT_PAYPAL);
     }
 
     @Test
@@ -113,7 +117,8 @@ public class ArticleResourceTest {
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
                 .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
-                .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY.toString())));
+                .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY.intValue())))
+                .andExpect(jsonPath("$.[*].paypal").value(hasItem(DEFAULT_PAYPAL.toString())));
     }
 
     @Test
@@ -131,7 +136,8 @@ public class ArticleResourceTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
-            .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY.toString()));
+            .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY.toString()))
+            .andExpect(jsonPath("$.paypal").value(DEFAULT_PAYPAL.toString()));
     }
 
     @Test
@@ -156,6 +162,7 @@ public class ArticleResourceTest {
         article.setDescription(UPDATED_DESCRIPTION);
         article.setPrice(UPDATED_PRICE);
         article.setCurrency(UPDATED_CURRENCY);
+        article.setPaypal(UPDATED_PAYPAL);
         restArticleMockMvc.perform(put("/api/articles")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(article)))
@@ -170,6 +177,7 @@ public class ArticleResourceTest {
         assertThat(testArticle.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testArticle.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testArticle.getCurrency()).isEqualTo(UPDATED_CURRENCY);
+        assertThat(testArticle.getPaypal()).isEqualTo(UPDATED_PAYPAL);
     }
 
     @Test

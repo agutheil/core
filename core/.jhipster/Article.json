@@ -59,6 +59,16 @@
             "fieldInJavaBeanMethod": "Currency",
             "fieldValidate": true,
             "fieldValidateRules": []
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "paypal",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Paypal",
+            "fieldNameUnderscored": "paypal",
+            "fieldInJavaBeanMethod": "Paypal",
+            "fieldValidate": false,
+            "fieldValidateRules": []
         }
     ],
     "fieldsContainOwnerManyToMany": false,
