@@ -19,6 +19,8 @@ public class Article {
 
     private String currency;
 
+    private String paypal;
+
     public String getArticleId() {
         return articleId;
     }
@@ -37,5 +39,9 @@ public class Article {
 
     public String getCurrency() {
         return currency;
+    }
+
+    public String getPaypal() {
+        return paypal;
     }
 }

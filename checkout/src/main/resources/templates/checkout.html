@@ -76,12 +76,7 @@
 	<h1>Hello, <span>Some User</span>!</h1>
 	<h2>Your checkout request will be processed </h2>
 	<p th:text="'You are about to buy ' + ${articleName} + ' with ' + ${articleId} + '!' ">Hello, will just buy something</p>
-	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" >
-	<input type="hidden" name="cmd" value="_s-xclick" />
-	<input type="hidden" name="hosted_button_id" value="AXPGX35DS8A4C" />
-	<input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
-	<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
-	</form>
+	<a th:href="${paypal}"><img src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." /></a>
 </div>
 </body>
 </html>
