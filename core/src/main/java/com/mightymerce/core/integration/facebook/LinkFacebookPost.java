@@ -39,7 +39,6 @@ public class LinkFacebookPost implements SocialPost {
         String description = article.toString();
         String picture = "https://upload.wikimedia.org/wikipedia/commons/d/d6/Schuh.jpg";
         FacebookLink facebookLink = new FacebookLink(link,name,caption,description, picture);
-        facebook.feedOperations().postLink(description, facebookLink);
-        return facebook.feedOperations().updateStatus(statusMessage);
+        return facebook.feedOperations().postLink(description, facebookLink);
     }
 }
