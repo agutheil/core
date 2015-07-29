@@ -15,4 +15,4 @@ README for mightymerce
 5. docker push tutum.co/agutheil/mightymerce
 
 
-Touch
+Touch2
