@@ -8,11 +8,11 @@ README for mightymerce
 * till grupp
 
 # Build and Run
-1. boot2docker up
-2. ./gradlew distDocker
-3. docker run -d -P --name mightymerce com.mightymerce.core/mightymerce:0.1-SNAPSHOT 
-4. docker tag <IMAGE ID> tutum.co/agutheil/mightymerce:0.1-SNAPSHOT
-5. docker push tutum.co/agutheil/mightymerce
+1. ./gradlew run
 
+# Deploy
+1. ./gradlew distDocker
+2. docker run --rm -it --privileged -v $HOME/.dockercfg:/.dockercfg:ro -e GIT_REPO=https://github.com/agutheil/core-artifacts.git -e USERNAME=agutheil -e PASSWORD=rouponahybranvi84 -e EMAIL=andreas.gutheil@gmail.com -e DOCKERFILE_PATH=/build/docker tutum/builder tutum.co/agutheil/core:latest
 
-Touch2
+# Umgebungsvariablen
+* mightymerce.checkoutLink Verweist auf den CheckoutController.
