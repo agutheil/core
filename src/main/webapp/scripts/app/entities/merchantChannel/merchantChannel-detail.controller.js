@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coreApp')
-    .controller('MerchantChannelDetailController', function ($scope, $rootScope, $stateParams, entity, MerchantChannel, User) {
+    .controller('MerchantChannelDetailController', function ($scope, $rootScope, $stateParams, entity, MerchantChannel, User, Facebook) {
         $scope.merchantChannel = entity;
         $scope.load = function (id) {
             MerchantChannel.get({id: id}, function(result) {
