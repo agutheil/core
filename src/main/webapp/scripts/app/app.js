@@ -186,4 +186,14 @@ angular.module('mightymerceApp', ['LocalStorageModule', 'tmh.dynamicLocale',
 
         tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
         tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
+    })
+    .directive("fbLoginButton", function() {
+    return {
+        restrict: 'E',
+        link: function (scope, iElement, iAttrs) {
+            if (FB) {
+                FB.XFBML.parse(iElement[0].parent);
+            }
+        }
+      }
     });
