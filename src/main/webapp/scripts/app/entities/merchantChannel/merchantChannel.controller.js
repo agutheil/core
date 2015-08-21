@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mightymerceApp')
-    .controller('MerchantChannelController', function ($scope, MerchantChannel, Merchant, Channel, ParseLinks) {
+    .controller('MerchantChannelController', function ($scope, MerchantChannel, Merchant, Channel, ParseLinks, Facebook) {
         $scope.merchantChannels = [];
         $scope.merchants = Merchant.query();
         $scope.channels = Channel.query();
@@ -55,4 +55,11 @@ angular.module('mightymerceApp')
             $scope.editForm.$setPristine();
             $scope.editForm.$setUntouched();
         };
+
+        $scope.$watch(function () { return Facebook.facebookToken; },
+            function (value) {
+                console.log("In $watch - facebookToken:" + value);
+                $scope.merchantChannel.accessToken = value;
+            }
+        );
     });
