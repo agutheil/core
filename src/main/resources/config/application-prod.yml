@@ -6,7 +6,7 @@ spring:
         active: prod
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://schubber.cgsyqlgeghca.eu-central-1.rds.amazonaws.com:3306/schubber
+        url: jdbc:mysql://mightymerce.cjcv2mfgbn54.eu-west-1.rds.amazonaws.com:3306/mightymerce
         databaseName: 
         serverName: 
         username: schubber
