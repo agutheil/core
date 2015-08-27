@@ -15,6 +15,12 @@ bootRun {
   args = ["--spring.profiles.active=prod"]
 }
 
+distDocker {
+     exposePort 80
+     dryRun true
+}
+
+
 processResources {
     filesMatching('**/logback.xml') {
         filter {

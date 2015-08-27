@@ -12,6 +12,11 @@ bootRun {
   args = ["--spring.profiles.active=dev"]
 }
 
+distDocker {
+     exposePort 8080
+     dryRun true
+}
+
 task setProdProperties(dependsOn: bootRun) << {
     doFirst {
         System.setProperty('spring.profiles.active', 'dev')

@@ -58,7 +58,7 @@ if (project.hasProperty('prod')) {
 }
 
 group = 'com.mightymerce.core'
-version = '0.2.0'
+version = '0.2.1'
 
 description = ''
 
@@ -168,11 +168,6 @@ dependencies {
     testCompile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: gatling_version
 
 
-}
-
-distDocker {
-     exposePort 80
-     dryRun true
 }
 
 task wrapper(type: Wrapper) {

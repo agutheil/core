@@ -4,6 +4,6 @@ angular.module('mightymerceApp')
 
 .constant('ENV', 'dev')
 
-.constant('VERSION', '0.1.1')
+.constant('VERSION', '0.2.1')
 
 ;
