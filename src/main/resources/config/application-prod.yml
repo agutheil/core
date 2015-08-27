@@ -6,10 +6,10 @@ spring:
         active: prod
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://mightymerce.cjcv2mfgbn54.eu-west-1.rds.amazonaws.com:3306/mightymerce
+        url: jdbc:mysql://db/mightymerce
         databaseName: 
         serverName: 
-        username: mightymerce
+        username: admin
         password: ananmati
         cachePrepStmts: true
         prepStmtCacheSize: 250
