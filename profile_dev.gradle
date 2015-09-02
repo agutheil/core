@@ -13,7 +13,7 @@ bootRun {
 }
 
 distDocker {
-     exposePort 8080
+     exposePort 8082
      dryRun true
 }
 
