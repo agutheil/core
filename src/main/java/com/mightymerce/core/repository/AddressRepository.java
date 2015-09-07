@@ -10,4 +10,7 @@ import java.util.List;
  */
 public interface AddressRepository extends JpaRepository<Address,Long> {
 
+    @Query("select address from Address address where address.user.login = ?#{principal.username}")
+    List<Address> findByUserIsCurrentUser();
+
 }

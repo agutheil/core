@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('coreApp').controller('AddressDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Address',
-        function($scope, $stateParams, $modalInstance, entity, Address) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Address', 'User',
+        function($scope, $stateParams, $modalInstance, entity, Address, User) {
 
         $scope.address = entity;
+        $scope.users = User.query();
         $scope.load = function(id) {
             Address.get({id : id}, function(result) {
                 $scope.address = result;

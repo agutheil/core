@@ -18,7 +18,8 @@
             "housenumber": "Housenumber",
             "postalCode": "PostalCode",
             "town": "Town",
-            "country": "Country"
+            "country": "Country",
+            "user": "User"
         }
     }
 }

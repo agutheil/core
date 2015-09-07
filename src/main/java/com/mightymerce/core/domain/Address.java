@@ -6,6 +6,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.mightymerce.core.domain.enumeration.Country;
@@ -49,6 +51,9 @@ public class Address implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "country")
     private Country country;
+
+    @ManyToOne
+    private User user;
 
     public Long getId() {
         return id;
@@ -112,6 +117,14 @@ public class Address implements Serializable {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

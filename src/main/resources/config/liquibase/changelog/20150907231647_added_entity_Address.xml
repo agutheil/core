@@ -39,7 +39,14 @@
                 <constraints nullable="false" />
             </column>
             <column name="country" type="varchar(255)"/>
+            <column name="user_id" type="bigint"/>
         </createTable>
         
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="ADDRESS"
+                                 constraintName="fk_address_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="JHI_USER"/>
+
     </changeSet>
 </databaseChangeLog>
