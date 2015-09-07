@@ -8,6 +8,7 @@
                 "main": "Entités",
                 "article": "Article",
                 "merchantChannel": "MerchantChannel",
+                "channelPost": "ChannelPost",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

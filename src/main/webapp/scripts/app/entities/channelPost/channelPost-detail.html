@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span translate="coreApp.channelPost.detail.title">ChannelPost</span> {{channelPost.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.channelPost.status">Status</span>
+                </td>
+                <td>
+                    <span class="input-sm form-control readonly" translate="coreApp.PublicationStatus.SELECT"
+                          translate-interpolation="messageformat" translate-values="{ VALUE: channelPost.status }"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.channelPost.publicationDate">PublicationDate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{channelPost.publicationDate}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.channelPost.externalPostKey">ExternalPostKey</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{channelPost.externalPostKey}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.channelPost.article">article</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="article.detail({id:channelPost.article.id})">{{channelPost.article.code}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.channelPost.merchantChannel">merchantChannel</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="merchantChannel.detail({id:channelPost.merchantChannel.id})">{{channelPost.merchantChannel.channel}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.channelPost.user">user</span>
+                </td>
+                <td>
+                    {{channelPost.user.login}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
