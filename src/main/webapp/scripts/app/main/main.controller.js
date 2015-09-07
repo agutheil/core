@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .controller('MainController', function ($scope, Principal) {
         Principal.identity().then(function(account) {
             $scope.account = account;

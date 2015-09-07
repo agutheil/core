@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .controller('LogsController', function ($scope, LogsService) {
         $scope.loggers = LogsService.findAll();
 

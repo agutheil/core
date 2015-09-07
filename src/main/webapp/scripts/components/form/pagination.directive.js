@@ -1,8 +1,8 @@
 /* globals $ */
 'use strict';
 
-angular.module('mightymerceApp')
-    .directive('mightymerceAppPagination', function() {
+angular.module('coreApp')
+    .directive('coreAppPagination', function() {
         return {
             templateUrl: 'scripts/components/form/pagination.html'
         };

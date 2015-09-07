@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('error', {
@@ -8,7 +8,7 @@ angular.module('mightymerceApp')
                 url: '/error',
                 data: {
                     roles: [],
-                    pageTitle: 'errors.title'
+                    pageTitle: 'error.title'
                 },
                 views: {
                     'content@': {

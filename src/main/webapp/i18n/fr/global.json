@@ -1,22 +1,11 @@
 {
     "global": {
-        "title": "mightymerce",
+        "title": "core",
         "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
         "menu": {
             "home": "Accueil",
             "entities": {
                 "main": "Entités",
-                "address": "Address",
-                "article": "Article",
-                "channel": "Channel",
-                "channelPost": "ChannelPost",
-                "customer": "Customer",
-                "customerChannel": "CustomerChannel",
-                "lineItem": "LineItem",
-                "merchant": "Merchant",
-                "socialOrder": "SocialOrder",
-                "socialCart": "SocialCart",
-                "merchantChannel": "MerchantChannel",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -78,10 +67,15 @@
                     "invalid": "Votre email n'est pas valide."
                 }
             }
+        },
+        "field": {
+            "id" : "ID"
         }
     },
     "entity": {
         "action": {
+            "addblob": "Ajouter blob",
+            "addimage": "ajouter image",
             "back": "Retour",
             "cancel": "Annuler",
             "edit": "Editer",
@@ -102,7 +96,9 @@
             "maxlength": "Ce champs doit faire moins de {{max}} caractères.",
             "min": "Ce champs doit être inférieur à {{min}}.",
             "max": "Ce champs doit être supérieur à {{max}}.",
-            "pattern": "Ce champs doit suivre l'expression régluière {{pattern}}.",
+            "minbytes": "Ce champs doit être inférieur à {{min}} bytes.",
+            "maxbytes": "Ce champs doit être supérieur à {{max}} bytes.",
+            "pattern": "Ce champs doit suivre l'expression régulière {{pattern}}.",
             "number": "Ce champs doit être un nombre.",
             "datetimelocal": "Ce champs doit être une date et une heure."
         }

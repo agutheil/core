@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .factory('ConfigurationService', function ($rootScope, $filter, $http) {
         return {
             get: function() {

@@ -1,6 +1,6 @@
 {
   "generator-jhipster": {
-    "baseName": "mightymerce",
+    "baseName": "core",
     "packageName": "com.mightymerce.core",
     "packageFolder": "com/mightymerce/core",
     "authenticationType": "oauth2",
@@ -10,10 +10,12 @@
     "databaseType": "sql",
     "devDatabaseType": "h2Memory",
     "prodDatabaseType": "mysql",
-    "useCompass": false,
+    "searchEngine": "no",
+    "useSass": false,
     "buildTool": "gradle",
     "frontendBuilder": "grunt",
     "javaVersion": "8",
-    "rememberMeKey": "6680256fc048dac9fa4a013e3109db4fd1afdfec"
+    "enableTranslation": true,
+    "rememberMeKey": "66bf4164fab5bcb39cd3269d14db7ca9841e33e4"
   }
 }

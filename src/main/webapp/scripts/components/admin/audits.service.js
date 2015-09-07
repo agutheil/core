@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .factory('AuditsService', function ($http) {
         return {
             findAll: function () {

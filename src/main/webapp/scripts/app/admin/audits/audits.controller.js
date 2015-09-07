@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mightymerceApp')
-    .controller('AuditsController', function ($scope, $translate, $filter, AuditsService) {
+angular.module('coreApp')
+    .controller('AuditsController', function ($scope, $filter, AuditsService) {
         $scope.onChangeDate = function () {
             var dateFormat = 'yyyy-MM-dd';
             var fromDate = $filter('date')($scope.fromDate, dateFormat);

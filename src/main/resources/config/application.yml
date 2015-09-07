@@ -6,7 +6,7 @@ security.basic.enabled: false
 endpoints.jolokia.enabled: false
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: 6680256fc048dac9fa4a013e3109db4fd1afdfec
+jhipster.security.rememberme.key: 66bf4164fab5bcb39cd3269d14db7ca9841e33e4
 
 async:
     corePoolSize: 2
@@ -21,29 +21,20 @@ mail:
     protocol: smtp
     tls: false
     auth: false
-    from: mightymerce@localhost
+    from: core@localhost
 
 authentication:
     oauth:
-        clientid: mightymerceapp
+        clientid: coreapp
         secret: mySecretOAuthSecret
         # Token is valid 30 minutes
         tokenValidityInSeconds: 1800
 
 swagger:
-    title: mightymerce API
-    description: mightymerce applications and beyond!
+    title: core API
+    description: core applications and beyond!
+    version: 0.0.1
     termsOfServiceUrl: http://jhipster.github.io/
     contact:
     license: Apache 2.0
     licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
-
-spring:
-    social:
-        facebook:
-            app-id: 404823203038294
-            app-secret: 43b8157da55486a94ec99514d23304f5
-
-facebook.appNamespace: mightymercetest1
-
-mightymerce.checkoutLink: http://schubber.local:8081/checkout/

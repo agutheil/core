@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .service('ParseLinks', function () {
         this.parse = function (header) {
             if (header.length == 0) {

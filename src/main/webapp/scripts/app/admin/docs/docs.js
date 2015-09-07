@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('docs', {

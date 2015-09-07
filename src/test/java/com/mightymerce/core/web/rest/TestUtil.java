@@ -1,11 +1,17 @@
 package com.mightymerce.core.web.rest;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.MediaType;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.springframework.http.MediaType;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.mightymerce.core.domain.util.CustomDateTimeSerializer;
+import com.mightymerce.core.domain.util.CustomLocalDateSerializer;
 
 /**
  * Utility class for testing REST controllers.
@@ -29,6 +35,25 @@ public class TestUtil {
             throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        JodaModule module = new JodaModule();
+        module.addSerializer(DateTime.class, new CustomDateTimeSerializer());
+        module.addSerializer(LocalDate.class, new CustomLocalDateSerializer());
+        mapper.registerModule(module);
         return mapper.writeValueAsBytes(object);
+    }
+
+    /**
+     * Create a byte array with a specific size filled with specified data
+     *
+     * @param size
+     * @param data
+     * @return
+     */
+    public static byte[] createByteArray(int size, String data) {
+        byte[] byteArray = new byte[size];
+        for (int i = 0; i < size; i++) {
+            byteArray[i] = Byte.parseByte(data, 2);
+        }
+        return byteArray;
     }
 }

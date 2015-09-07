@@ -4,24 +4,27 @@ server:
 
 
 # security configuration (this key should be unique for your application, and kept secret)
-jhipster.security.rememberme.key: 6680256fc048dac9fa4a013e3109db4fd1afdfec
+jhipster.security.rememberme.key: 66bf4164fab5bcb39cd3269d14db7ca9841e33e4
 
 async:
     corePoolSize: 2
     maxPoolSize: 50
     queueCapacity: 10000
 
+liquibase:
+    context: test
+
 spring:
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:mem:mightymerce;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:core;DB_CLOSE_DELAY=-1
         databaseName:
         serverName:
         username:
         password:
 
     jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
+        database-platform: com.mightymerce.core.domain.util.FixedH2Dialect
         database: H2
         openInView: false
         show_sql: true
@@ -50,6 +53,7 @@ metrics:
 swagger:
     apiDocsLocation: http://localhost:8080
     title: jhipster API
+    version: 0.0.1
     description: jhipster applications and beyond!
     termsOfServiceUrl: http://jhipster.github.io/
     contact:

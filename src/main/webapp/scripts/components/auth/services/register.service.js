@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .factory('Register', function ($resource) {
         return $resource('api/register', {}, {
         });

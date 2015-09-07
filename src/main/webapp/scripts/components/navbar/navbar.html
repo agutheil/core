@@ -28,26 +28,6 @@
                                 </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ><a ui-sref="article"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.article">article</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="channelPost"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.channelPost">channelPost</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="channel"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.channel">channel</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="merchantChannel"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.merchantChannel">merchantChannel</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="merchant"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.merchant">merchant</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="customer"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.customer">customer</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="address"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.address">address</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="lineItem"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.lineItem">lineItem</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="socialOrder"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.socialOrder">socialOrder</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="socialCart"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span translate="global.menu.entities.socialCart">socialCart</span></a></li>
                         <!-- JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -79,7 +59,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-tower"></span>
-                                    <span class="hidden-tablet" translate="global.menu.admin.main">Admin</span>
+                                    <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>
                                     <b class="caret"></b>
                                 </span>
                     </a>
@@ -94,9 +74,9 @@
                             &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>
                         <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks"></span>
                             &#xA0;<span translate="global.menu.admin.logs">Logs</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>
-                            &#xA0;<span translate="global.menu.admin.apidocs">API Docs</span></a></li>
-                        <li ng-show="{{ENV === 'dev'}}"><a href='/console' target="_tab"><span class="glyphicon glyphicon-hdd"></span>
+                        <li ng-hide="inProduction" ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>
+                            &#xA0;<span translate="global.menu.admin.apidocs">API</span></a></li>
+                        <li ng-hide="inProduction"><a href='/console' target="_tab"><span class="glyphicon glyphicon-hdd"></span>
                             &#xA0;<span translate="global.menu.admin.database">Database</span></a></li>
                     </ul>
                 </li>
@@ -110,7 +90,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li active-menu="{{language}}" ng-repeat="language in languages">
-                            <a href="" ng-click="changeLanguage(language)">{{'language.' + language| translate}}</a>
+                            <a href="" ng-click="changeLanguage(language)">{{language | findLanguageFromKey}}</a>
                         </li>
                     </ul>
                 </li>

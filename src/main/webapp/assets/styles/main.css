@@ -71,10 +71,13 @@ Browser Upgrade Prompt
     display: inline-block;
     width: 347px;
     height: 497px;
-    background: url("../images/mm.png") no-repeat center top;
+    background: url("../images/hipster.png") no-repeat center top;
     background-size: contain;
 }
 
+.pad {
+    padding: 10px;
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -84,7 +87,7 @@ only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
     .hipster {
-        background: url("../images/mmx2.png") no-repeat center top;
+        background: url("../images/hipster2x.png") no-repeat center top;
         background-size: contain;
     }
 }
@@ -111,6 +114,19 @@ only screen and (                min-resolution: 2dppx) {
 .alert .popover pre {
     font-size: 10px;
 }
+/*Custom alerts for notification*/
+.alerts .alert{
+    text-overflow: ellipsis;
+}
+
+.alert pre{
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+}
 
 .voffset  { margin-top: 2px; }
 .voffset1 { margin-top: 5px; }
@@ -124,7 +140,7 @@ only screen and (                min-resolution: 2dppx) {
 .voffset9 { margin-top: 150px; }
 
 /* start Password strength bar style */
-ul#strength {
+ul#strengthBar {
     display:inline;
     list-style:none;
     margin:0;
@@ -145,3 +161,8 @@ ul#strength {
     width:20px;
 }
 /* end Password strength bar style */
+
+.readonly {
+    background-color: #eee;
+    opacity: 1;
+}

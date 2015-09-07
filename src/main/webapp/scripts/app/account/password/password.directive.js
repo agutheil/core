@@ -1,7 +1,7 @@
 /* globals $ */
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .directive('passwordStrengthBar', function () {
         return {
             replace: true,

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .factory('Principal', function Principal($q, Account) {
         var _identity,
             _authenticated = false;
@@ -13,14 +13,18 @@ angular.module('mightymerceApp')
                 return _authenticated;
             },
             isInRole: function (role) {
-                if (!_authenticated || !_identity || !_identity.roles) {
-                    return false;
-                }
+                if (!_authenticated) {
+                   return false;
+               }
 
-                return _identity.roles.indexOf(role) !== -1;
+               return this.identity().then(function(_id) {
+                   return _id.roles && _id.roles.indexOf(role) !== -1;
+               }, function(err){
+                   return false;
+               });
             },
             isInAnyRole: function (roles) {
-                if (!_authenticated || !_identity.roles) {
+                if (!_authenticated || !_identity || !_identity.roles) {
                     return false;
                 }
 

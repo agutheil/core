@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .directive('hasAnyRole', ['Principal', function (Principal) {
         return {
             restrict: 'A',
@@ -43,17 +43,19 @@ angular.module('mightymerceApp')
                         element.addClass('hidden');
                     },
                     defineVisibility = function (reset) {
-                        var result;
+
                         if (reset) {
                             setVisible();
                         }
 
-                        result = Principal.isInRole(role);
-                        if (result) {
-                            setVisible();
-                        } else {
-                            setHidden();
-                        }
+                        Principal.isInRole(role)
+                            .then(function(result) {
+                                if (result) {
+                                    setVisible();
+                                } else {
+                                    setHidden();
+                                }
+                            });
                     },
                     role = attrs.hasRole.replace(/\s+/g, '');
 

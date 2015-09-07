@@ -2,7 +2,6 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'spring-boot'
 apply plugin: 'com.moowork.node'
 
-
 ext {
     logbackLoglevel = "INFO"
 }
@@ -14,12 +13,6 @@ dependencies {
 bootRun {
   args = ["--spring.profiles.active=prod"]
 }
-
-distDocker {
-     exposePort 80
-     dryRun true
-}
-
 
 processResources {
     filesMatching('**/logback.xml') {

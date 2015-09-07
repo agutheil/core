@@ -1,5 +1,8 @@
 server:
-    port: 8082
+    port: 8080
+
+liquibase:
+    context: dev
 
 spring:
     profiles:
@@ -7,13 +10,13 @@ spring:
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-        databaseName:
-        serverName:
-        username: root
-        password:
+        databaseName: 
+        serverName: 
+        username: 
+        password: 
 
     jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
+        database-platform: com.mightymerce.core.domain.util.FixedH2Dialect
         database: H2
         openInView: false
         show_sql: true
@@ -42,7 +45,7 @@ metrics:
         enabled: false
         host: localhost
         port: 2003
-        prefix: mightymerce
+        prefix: core
 
 cache:
     timeToLiveSeconds: 3600

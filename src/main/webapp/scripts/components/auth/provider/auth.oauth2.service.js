@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .factory('AuthServerProvider', function loginService($http, localStorageService, Base64) {
         return {
             login: function(credentials) {
-                var data = "username=" + credentials.username + "&password="
-                    + credentials.password + "&grant_type=password&scope=read%20write&" +
-                    "client_secret=mySecretOAuthSecret&client_id=mightymerceapp";
+                var data = "username=" +  encodeURIComponent(credentials.username) + "&password="
+                    + encodeURIComponent(credentials.password) + "&grant_type=password&scope=read%20write&" +
+                    "client_secret=mySecretOAuthSecret&client_id=coreapp";
                 return $http.post('oauth/token', data, {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                         "Accept": "application/json",
-                        "Authorization": "Basic " + Base64.encode("mightymerceapp" + ':' + "mySecretOAuthSecret")
+                        "Authorization": "Basic " + Base64.encode("coreapp" + ':' + "mySecretOAuthSecret")
                     }
                 }).success(function (response) {
                     var expiredAt = new Date();

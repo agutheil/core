@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .controller('LogoutController', function (Auth) {
         Auth.logout();
     });

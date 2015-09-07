@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .factory('MonitoringService', function ($rootScope, $http) {
         return {
             getMetrics: function () {
