@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myMerchantChannelLabel" translate="coreApp.merchantChannel.home.createOrEditLabel">Create or edit a MerchantChannel</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="merchantChannel.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.merchantChannel.accessToken" for="field_accessToken">AccessToken</label>
+            <input type="text" class="form-control" name="accessToken" id="field_accessToken"
+                    ng-model="merchantChannel.accessToken"
+                    required>
+
+            <div ng-show="editForm.accessToken.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.accessToken.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.merchantChannel.channel" for="field_channel">Channel</label>
+            <select class="form-control" name="channel" ng-model="merchantChannel.channel" id="field_channel" required>
+                <option value="facebook" translate="coreApp.Channel.facebook">facebook</option>
+                <option value="twitter" translate="coreApp.Channel.twitter">twitter</option>
+                <option value="pinterest" translate="coreApp.Channel.pinterest">pinterest</option>
+            </select>
+
+            <div ng-show="editForm.channel.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.channel.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.merchantChannel.user" for="field_user">user</label>
+            
+            <select class="form-control" id="field_user" name="user" ng-model="merchantChannel.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

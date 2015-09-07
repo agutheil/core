@@ -7,6 +7,7 @@
             "entities": {
                 "main": "Entités",
                 "article": "Article",
+                "merchantChannel": "MerchantChannel",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

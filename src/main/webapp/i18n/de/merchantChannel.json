@@ -1,0 +1,20 @@
+{
+    "coreApp": {
+        "merchantChannel" : {
+            "home": {
+                "title": "MerchantChannels",
+                "createLabel": "Create a new MerchantChannel",
+                "createOrEditLabel": "Create or edit a MerchantChannel"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete MerchantChannel {{ id }}?"
+            },
+            "detail": {
+                "title": "MerchantChannel"
+            },
+            "accessToken": "AccessToken",
+            "channel": "Channel",
+            "user": "User"
+        }
+    }
+}

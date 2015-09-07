@@ -1,0 +1,10 @@
+{
+    "coreApp": {
+        "Channel" : {
+            "SELECT": "{VALUE, select, facebook{facebook} twitter{twitter} pinterest{pinterest} other{}}",
+            "facebook": "facebook",
+            "twitter": "twitter",
+            "pinterest": "pinterest"
+        }
+    }
+}
