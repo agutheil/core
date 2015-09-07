@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span translate="coreApp.customer.detail.title">Customer</span> {{customer.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.salutation">Salutation</span>
+                </td>
+                <td>
+                    <span class="input-sm form-control readonly" translate="coreApp.Salutation.SELECT"
+                          translate-interpolation="messageformat" translate-values="{ VALUE: customer.salutation }"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.name">Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{customer.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.middleName">MiddleName</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{customer.middleName}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.lastName">LastName</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{customer.lastName}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.payerId">PayerId</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{customer.payerId}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.user">user</span>
+                </td>
+                <td>
+                    {{customer.user.login}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

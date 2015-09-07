@@ -10,6 +10,7 @@
                 "merchantChannel": "MerchantChannel",
                 "channelPost": "ChannelPost",
                 "address": "Address",
+                "customer": "Customer",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
