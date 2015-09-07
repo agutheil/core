@@ -1,0 +1,12 @@
+{
+    "coreApp": {
+        "Country" : {
+            "SELECT": "{VALUE, select, de{de} us{us} fr{fr} en{en} ch{ch} other{}}",
+            "de": "de",
+            "us": "us",
+            "fr": "fr",
+            "en": "en",
+            "ch": "ch"
+        }
+    }
+}

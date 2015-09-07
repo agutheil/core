@@ -1,0 +1,109 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myAddressLabel" translate="coreApp.address.home.createOrEditLabel">Create or edit a Address</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="address.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.address.addressee" for="field_addressee">Addressee</label>
+            <input type="text" class="form-control" name="addressee" id="field_addressee"
+                    ng-model="address.addressee"
+                    required>
+
+            <div ng-show="editForm.addressee.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.addressee.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.address.detailedDescription" for="field_detailedDescription">DetailedDescription</label>
+            <input type="text" class="form-control" name="detailedDescription" id="field_detailedDescription"
+                    ng-model="address.detailedDescription"
+                    >
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.address.streetname" for="field_streetname">Streetname</label>
+            <input type="text" class="form-control" name="streetname" id="field_streetname"
+                    ng-model="address.streetname"
+                    required>
+
+            <div ng-show="editForm.streetname.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.streetname.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.address.housenumber" for="field_housenumber">Housenumber</label>
+            <input type="text" class="form-control" name="housenumber" id="field_housenumber"
+                    ng-model="address.housenumber"
+                    required>
+
+            <div ng-show="editForm.housenumber.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.housenumber.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.address.postalCode" for="field_postalCode">PostalCode</label>
+            <input type="text" class="form-control" name="postalCode" id="field_postalCode"
+                    ng-model="address.postalCode"
+                    required>
+
+            <div ng-show="editForm.postalCode.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.postalCode.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.address.town" for="field_town">Town</label>
+            <input type="text" class="form-control" name="town" id="field_town"
+                    ng-model="address.town"
+                    required>
+
+            <div ng-show="editForm.town.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.town.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.address.country" for="field_country">Country</label>
+            <select class="form-control" name="country" ng-model="address.country" id="field_country">
+                <option value="de" translate="coreApp.Country.de">de</option>
+                <option value="us" translate="coreApp.Country.us">us</option>
+                <option value="fr" translate="coreApp.Country.fr">fr</option>
+                <option value="en" translate="coreApp.Country.en">en</option>
+                <option value="ch" translate="coreApp.Country.ch">ch</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

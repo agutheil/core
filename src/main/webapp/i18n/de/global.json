@@ -9,6 +9,7 @@
                 "article": "Article",
                 "merchantChannel": "MerchantChannel",
                 "channelPost": "ChannelPost",
+                "address": "Address",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
