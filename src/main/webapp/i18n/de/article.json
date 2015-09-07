@@ -1,0 +1,23 @@
+{
+    "coreApp": {
+        "article" : {
+            "home": {
+                "title": "Articles",
+                "createLabel": "Create a new Article",
+                "createOrEditLabel": "Create or edit a Article"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Article {{ id }}?"
+            },
+            "detail": {
+                "title": "Article"
+            },
+            "code": "Code",
+            "name": "Name",
+            "description": "Description",
+            "price": "Price",
+            "currency": "Currency",
+            "user": "User"
+        }
+    }
+}

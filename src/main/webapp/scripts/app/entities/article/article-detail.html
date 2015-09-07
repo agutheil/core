@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span translate="coreApp.article.detail.title">Article</span> {{article.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.code">Code</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{article.code}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.name">Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{article.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{article.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.price">Price</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{article.price}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.currency">Currency</span>
+                </td>
+                <td>
+                    <span class="input-sm form-control readonly" translate="coreApp.Currency.SELECT"
+                          translate-interpolation="messageformat" translate-values="{ VALUE: article.currency }"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.user">user</span>
+                </td>
+                <td>
+                    {{article.user.login}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

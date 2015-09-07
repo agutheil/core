@@ -6,6 +6,7 @@
             "home": "Startseite",
             "entities": {
                 "main": "Entitäten",
+                "article": "Article",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

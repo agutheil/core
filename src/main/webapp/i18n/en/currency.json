@@ -1,0 +1,11 @@
+{
+    "coreApp": {
+        "Currency" : {
+            "SELECT": "{VALUE, select, EUR{EUR} GBP{GBP} USD{USD} CHF{CHF} other{}}",
+            "EUR": "EUR",
+            "GBP": "GBP",
+            "USD": "USD",
+            "CHF": "CHF"
+        }
+    }
+}
