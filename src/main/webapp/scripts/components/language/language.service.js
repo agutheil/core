@@ -28,6 +28,7 @@ angular.module('coreApp')
  */
     .constant('LANGUAGES', [
         'en', 'fr'
+        ,'de'
         //JHipster will add new languages here
     ]
 );
