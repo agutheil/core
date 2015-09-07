@@ -1,0 +1,70 @@
+{
+     "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "article",
+            "otherEntityName": "article",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "code"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "delivery",
+            "otherEntityName": "address",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "billing",
+            "otherEntityName": "address",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "payerId",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "transactionId",
+            "fieldType": "String"
+        },
+        {
+	    "fieldId": 3,
+            "fieldName": "totalAmount",
+            "fieldType": "BigDecimal"
+	},
+	{
+            "fieldId": 4,
+            "fieldName": "paymentStatus",
+            "fieldType": "PaymentStatus",
+            "fieldValues": "pending,paid,error"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "deliveryStatus",
+            "fieldType": "DeliveryStatus",
+            "fieldValues": "sent,delivered"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "orderStatus",
+            "fieldType": "OrderStatus",
+            "fieldValues": "created,inProgress,finished,error"
+        }
+    ],
+    "changelogDate": "20150907234034",
+    "dto": "no",
+    "pagination": "pagination"
+}

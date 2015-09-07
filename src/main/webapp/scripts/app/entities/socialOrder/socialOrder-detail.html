@@ -1,0 +1,105 @@
+
+<div>
+    <h2><span translate="coreApp.socialOrder.detail.title">SocialOrder</span> {{socialOrder.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.payerId">PayerId</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{socialOrder.payerId}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.transactionId">TransactionId</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{socialOrder.transactionId}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.totalAmount">TotalAmount</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{socialOrder.totalAmount}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.paymentStatus">PaymentStatus</span>
+                </td>
+                <td>
+                    <span class="input-sm form-control readonly" translate="coreApp.PaymentStatus.SELECT"
+                          translate-interpolation="messageformat" translate-values="{ VALUE: socialOrder.paymentStatus }"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.deliveryStatus">DeliveryStatus</span>
+                </td>
+                <td>
+                    <span class="input-sm form-control readonly" translate="coreApp.DeliveryStatus.SELECT"
+                          translate-interpolation="messageformat" translate-values="{ VALUE: socialOrder.deliveryStatus }"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.orderStatus">OrderStatus</span>
+                </td>
+                <td>
+                    <span class="input-sm form-control readonly" translate="coreApp.OrderStatus.SELECT"
+                          translate-interpolation="messageformat" translate-values="{ VALUE: socialOrder.orderStatus }"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.article">article</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="article.detail({id:socialOrder.article.id})">{{socialOrder.article.code}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.delivery">delivery</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="address.detail({id:socialOrder.delivery.id})">{{socialOrder.delivery.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.billing">billing</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="address.detail({id:socialOrder.billing.id})">{{socialOrder.billing.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.user">user</span>
+                </td>
+                <td>
+                    {{socialOrder.user.login}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

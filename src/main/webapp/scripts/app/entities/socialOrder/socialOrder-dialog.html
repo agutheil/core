@@ -1,0 +1,106 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="mySocialOrderLabel" translate="coreApp.socialOrder.home.createOrEditLabel">Create or edit a SocialOrder</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="socialOrder.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.payerId" for="field_payerId">PayerId</label>
+            <input type="text" class="form-control" name="payerId" id="field_payerId"
+                    ng-model="socialOrder.payerId"
+                    >
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.transactionId" for="field_transactionId">TransactionId</label>
+            <input type="text" class="form-control" name="transactionId" id="field_transactionId"
+                    ng-model="socialOrder.transactionId"
+                    >
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.totalAmount" for="field_totalAmount">TotalAmount</label>
+            <input type="number" class="form-control" name="totalAmount" id="field_totalAmount"
+                    ng-model="socialOrder.totalAmount"
+                    >
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.paymentStatus" for="field_paymentStatus">PaymentStatus</label>
+            <select class="form-control" name="paymentStatus" ng-model="socialOrder.paymentStatus" id="field_paymentStatus">
+                <option value="pending" translate="coreApp.PaymentStatus.pending">pending</option>
+                <option value="paid" translate="coreApp.PaymentStatus.paid">paid</option>
+                <option value="error" translate="coreApp.PaymentStatus.error">error</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.deliveryStatus" for="field_deliveryStatus">DeliveryStatus</label>
+            <select class="form-control" name="deliveryStatus" ng-model="socialOrder.deliveryStatus" id="field_deliveryStatus">
+                <option value="sent" translate="coreApp.DeliveryStatus.sent">sent</option>
+                <option value="delivered" translate="coreApp.DeliveryStatus.delivered">delivered</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.orderStatus" for="field_orderStatus">OrderStatus</label>
+            <select class="form-control" name="orderStatus" ng-model="socialOrder.orderStatus" id="field_orderStatus">
+                <option value="created" translate="coreApp.OrderStatus.created">created</option>
+                <option value="inProgress" translate="coreApp.OrderStatus.inProgress">inProgress</option>
+                <option value="finished" translate="coreApp.OrderStatus.finished">finished</option>
+                <option value="error" translate="coreApp.OrderStatus.error">error</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.article" for="field_article">article</label>
+            
+            <select class="form-control" id="field_article" name="article" ng-model="socialOrder.article" ng-options="article as article.code for article in articles track by article.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.delivery" for="field_delivery">delivery</label>
+            
+            <select class="form-control" id="field_delivery" name="delivery" ng-model="socialOrder.delivery" ng-options="address as address.id for address in addresss track by address.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.billing" for="field_billing">billing</label>
+            
+            <select class="form-control" id="field_billing" name="billing" ng-model="socialOrder.billing" ng-options="address as address.id for address in addresss track by address.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.user" for="field_user">user</label>
+            
+            <select class="form-control" id="field_user" name="user" ng-model="socialOrder.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

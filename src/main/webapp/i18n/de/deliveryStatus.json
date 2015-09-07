@@ -1,0 +1,9 @@
+{
+    "coreApp": {
+        "DeliveryStatus" : {
+            "SELECT": "{VALUE, select, sent{sent} delivered{delivered} other{}}",
+            "sent": "sent",
+            "delivered": "delivered"
+        }
+    }
+}

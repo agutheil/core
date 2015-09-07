@@ -1,0 +1,10 @@
+{
+    "coreApp": {
+        "PaymentStatus" : {
+            "SELECT": "{VALUE, select, pending{pending} paid{paid} error{error} other{}}",
+            "pending": "pending",
+            "paid": "paid",
+            "error": "error"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "coreApp": {
+        "OrderStatus" : {
+            "SELECT": "{VALUE, select, created{created} inProgress{inProgress} finished{finished} error{error} other{}}",
+            "created": "created",
+            "inProgress": "inProgress",
+            "finished": "finished",
+            "error": "error"
+        }
+    }
+}

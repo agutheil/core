@@ -1,0 +1,27 @@
+{
+    "coreApp": {
+        "socialOrder" : {
+            "home": {
+                "title": "SocialOrders",
+                "createLabel": "Create a new SocialOrder",
+                "createOrEditLabel": "Create or edit a SocialOrder"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete SocialOrder {{ id }}?"
+            },
+            "detail": {
+                "title": "SocialOrder"
+            },
+            "payerId": "PayerId",
+            "transactionId": "TransactionId",
+            "totalAmount": "TotalAmount",
+            "paymentStatus": "PaymentStatus",
+            "deliveryStatus": "DeliveryStatus",
+            "orderStatus": "OrderStatus",
+            "article": "Article",
+            "delivery": "Delivery",
+            "billing": "Billing",
+            "user": "User"
+        }
+    }
+}
