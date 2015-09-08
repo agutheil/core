@@ -16,6 +16,7 @@ targetCompatibility=1.8
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
+apply plugin: 'eclipse'
 
 bootRepackage {
    mainClass = 'com.mightymerce.core.Application'
