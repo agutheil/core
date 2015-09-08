@@ -1,7 +1,7 @@
 package com.mightymerce.core.integration.impl;
 
 import com.mightymerce.core.domain.Article;
-import com.mightymerce.core.integration.ChannelType;
+import com.mightymerce.core.domain.enumeration.Channel;
 import com.mightymerce.core.integration.SocialPoster;
 import com.mightymerce.core.integration.SocialPost;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,16 +23,16 @@ public class DefaultSocialPoster implements SocialPoster{
     }
 
     @Override
-    public String post(Article article, String accessToken, ChannelType channelType) {
+    public String post(Article article, String accessToken, Channel channel) {
         String result;
-        switch (channelType) {
-            case FACEBOOK:
+        switch (channel) {
+            case facebook:
                 result = facebookPost.post(article, accessToken);
                 break;
-            case TWITTER:
+            case twitter:
                 result = twitterPost.post(article, accessToken);
                 break;
-            case PINTEREST:
+            case pinterest:
                 result = pinterestPost.post(article, accessToken);
                 break;
             default:

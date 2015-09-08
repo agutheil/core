@@ -1,5 +1,7 @@
 package com.mightymerce.core.service;
 
-public interface ChannelPostService {
+import com.mightymerce.core.domain.ChannelPost;
 
+public interface ChannelPostService {
+	 public String updateStatus(ChannelPost channelPost);
 }

@@ -1,8 +1,11 @@
 package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mightymerce.core.domain.Article;
 import com.mightymerce.core.domain.ChannelPost;
+import com.mightymerce.core.domain.enumeration.PublicationStatus;
 import com.mightymerce.core.repository.ChannelPostRepository;
+import com.mightymerce.core.service.ChannelPostService;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -15,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -32,6 +36,9 @@ public class ChannelPostResource {
     @Inject
     private ChannelPostRepository channelPostRepository;
 
+    @Inject
+    private ChannelPostService channelPostService;
+
     /**
      * POST  /channelPosts -> Create a new channelPost.
      */
@@ -45,6 +52,10 @@ public class ChannelPostResource {
             return ResponseEntity.badRequest().header("Failure", "A new channelPost cannot already have an ID").body(null);
         }
         ChannelPost result = channelPostRepository.save(channelPost);
+        String externalPostKey = channelPostService.updateStatus(result); 
+        channelPost.setExternalPostKey(externalPostKey);
+        channelPost.setStatus(PublicationStatus.published);
+        result = channelPostRepository.save(result);
         return ResponseEntity.created(new URI("/api/channelPosts/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("channelPost", result.getId().toString()))
                 .body(result);
