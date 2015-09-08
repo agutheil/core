@@ -5,6 +5,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
         <h4 class="modal-title" id="myMerchantChannelLabel" translate="coreApp.merchantChannel.home.createOrEditLabel">Create or edit a MerchantChannel</h4>
+        <fb:login-button scope="public_profile,email,publish_actions" auto_logout_link="true">
+</fb:login-button>
+<span>FacebookToken: {{facebookToken}}</span>
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
