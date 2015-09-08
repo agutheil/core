@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mightymerceApp')
+angular.module('coreApp')
     .service('Facebook', function($q) {
         var facebookToken = 'empty';
         this.getMyLastName = function() {
