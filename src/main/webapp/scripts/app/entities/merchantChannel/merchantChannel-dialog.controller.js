@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('coreApp').controller('MerchantChannelDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'MerchantChannel', 'User',
-        function($scope, $stateParams, $modalInstance, entity, MerchantChannel, User) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'MerchantChannel', 'User', 'Facebook',
+        function($scope, $stateParams, $modalInstance, entity, MerchantChannel, User, Facebook) {
 
         $scope.merchantChannel = entity;
         $scope.users = User.query();
@@ -28,4 +28,11 @@ angular.module('coreApp').controller('MerchantChannelDialogController',
         $scope.clear = function() {
             $modalInstance.dismiss('cancel');
         };
+        
+        $scope.$watch(function () { return Facebook.facebookToken; },
+            function (value) {
+                console.log("In $watch - facebookToken:" + value);
+                $scope.merchantChannel.accessToken = value;
+            }
+        );
 }]);

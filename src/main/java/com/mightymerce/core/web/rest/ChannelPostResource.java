@@ -10,6 +10,9 @@ import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.service.ChannelPostService;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -61,6 +64,7 @@ public class ChannelPostResource {
         String externalPostKey = channelPostService.updateStatus(result); 
         channelPost.setExternalPostKey(externalPostKey);
         channelPost.setStatus(PublicationStatus.published);
+        channelPost.setPublicationDate(DateTime.now(DateTimeZone.UTC));
         result = channelPostRepository.save(result);
         return ResponseEntity.created(new URI("/api/channelPosts/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("channelPost", result.getId().toString()))

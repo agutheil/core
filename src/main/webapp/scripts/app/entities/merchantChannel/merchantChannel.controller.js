@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coreApp')
-    .controller('MerchantChannelController', function ($scope, MerchantChannel, ParseLinks, Facebook) {
+    .controller('MerchantChannelController', function ($scope, MerchantChannel, ParseLinks) {
         $scope.merchantChannels = [];
         $scope.page = 1;
         $scope.loadAll = function() {
@@ -41,10 +41,5 @@ angular.module('coreApp')
             $scope.merchantChannel = {accessToken: null, channel: null, id: null};
         };
 
-        $scope.$watch(function () { return Facebook.facebookToken; },
-            function (value) {
-                console.log("In $watch - facebookToken:" + value);
-                $scope.merchantChannel.accessToken = value;
-            }
-        );
+        
     });
