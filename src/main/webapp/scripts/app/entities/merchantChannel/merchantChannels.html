@@ -50,7 +50,7 @@
             <tbody>
                 <tr ng-repeat="merchantChannel in merchantChannels">
                     <td><a ui-sref="merchantChannel.detail({id:merchantChannel.id})">{{merchantChannel.id}}</a></td>
-                    <td>{{merchantChannel.accessToken}}</td>
+                    <td>{{merchantChannel.accessToken | limitTo:10}}...</td>
                     <td>{{merchantChannel.channel}}</td>
                     <td>
                         <button type="submit"
