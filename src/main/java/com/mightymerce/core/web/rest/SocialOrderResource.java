@@ -4,10 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Article;
 import com.mightymerce.core.domain.FlatSocialOrder;
 import com.mightymerce.core.domain.SocialOrder;
+import com.mightymerce.core.domain.User;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 import com.mightymerce.core.domain.enumeration.PaymentStatus;
 import com.mightymerce.core.repository.ArticleRepository;
 import com.mightymerce.core.repository.SocialOrderRepository;
+import com.mightymerce.core.repository.UserRepository;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -39,6 +41,9 @@ public class SocialOrderResource {
     
     @Inject
     private ArticleRepository articleRepository;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /socialOrders -> Create a new socialOrder.
@@ -65,23 +70,27 @@ public class SocialOrderResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<SocialOrder> createflat(@RequestBody FlatSocialOrder flatSocialOrder) throws URISyntaxException {
+    public ResponseEntity<FlatSocialOrder> createflat(@RequestBody FlatSocialOrder flatSocialOrder) throws URISyntaxException {
         log.debug("REST request to save SocialOrder via a FlatSocialOrder: {}", flatSocialOrder);
         if (flatSocialOrder.getArticle() == null) {
             return ResponseEntity.badRequest().header("Failure", "A new socialOrder needs an article ID").body(null);
         }
         SocialOrder input = new SocialOrder();
-        Article article = articleRepository.getOne(flatSocialOrder.getArticle());
+        Article article = articleRepository.findOne(flatSocialOrder.getArticle());
+        log.info(article.toString());
         input.setArticle(article);
         input.setPaymentStatus(PaymentStatus.valueOf(flatSocialOrder.getPaymentStatus().toLowerCase()));
         input.setOrderStatus(OrderStatus.created);
         input.setPayerId(flatSocialOrder.getPayerId());
         input.setTransactionId(flatSocialOrder.getTransactionId());
         input.setTotalAmount(flatSocialOrder.getAmount());
+        User user = userRepository.findOne(article.getUser().getId());
+        log.info(user.toString());
+        input.setUser(user);
         SocialOrder result = socialOrderRepository.save(input);
         return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
-                .body(result);
+                .body(flatSocialOrder);
     }
 
     /**
@@ -112,7 +121,7 @@ public class SocialOrderResource {
     public ResponseEntity<List<SocialOrder>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<SocialOrder> page = socialOrderRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<SocialOrder> page = socialOrderRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/socialOrders", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
