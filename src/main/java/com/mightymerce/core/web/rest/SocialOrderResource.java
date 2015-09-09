@@ -1,7 +1,12 @@
 package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.FlatSocialOrder;
 import com.mightymerce.core.domain.SocialOrder;
+import com.mightymerce.core.domain.enumeration.OrderStatus;
+import com.mightymerce.core.domain.enumeration.PaymentStatus;
+import com.mightymerce.core.repository.ArticleRepository;
 import com.mightymerce.core.repository.SocialOrderRepository;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
@@ -31,6 +36,9 @@ public class SocialOrderResource {
 
     @Inject
     private SocialOrderRepository socialOrderRepository;
+    
+    @Inject
+    private ArticleRepository articleRepository;
 
     /**
      * POST  /socialOrders -> Create a new socialOrder.
@@ -45,6 +53,32 @@ public class SocialOrderResource {
             return ResponseEntity.badRequest().header("Failure", "A new socialOrder cannot already have an ID").body(null);
         }
         SocialOrder result = socialOrderRepository.save(socialOrder);
+        return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
+                .body(result);
+    }
+    
+    /**
+     * POST  /flatSocialOrders -> Create a new socialOrder via a flattened Model.
+     */
+    @RequestMapping(value = "/flatSocialOrders",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<SocialOrder> createflat(@RequestBody FlatSocialOrder flatSocialOrder) throws URISyntaxException {
+        log.debug("REST request to save SocialOrder via a FlatSocialOrder: {}", flatSocialOrder);
+        if (flatSocialOrder.getArticle() == null) {
+            return ResponseEntity.badRequest().header("Failure", "A new socialOrder needs an article ID").body(null);
+        }
+        SocialOrder input = new SocialOrder();
+        Article article = articleRepository.getOne(flatSocialOrder.getArticle());
+        input.setArticle(article);
+        input.setPaymentStatus(PaymentStatus.valueOf(flatSocialOrder.getPaymentStatus().toLowerCase()));
+        input.setOrderStatus(OrderStatus.created);
+        input.setPayerId(flatSocialOrder.getPayerId());
+        input.setTransactionId(flatSocialOrder.getTransactionId());
+        input.setTotalAmount(flatSocialOrder.getAmount());
+        SocialOrder result = socialOrderRepository.save(input);
         return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
                 .body(result);
