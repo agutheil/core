@@ -47,7 +47,6 @@
                     <th translate="coreApp.channelPost.externalPostKey">ExternalPostKey</th>
                     <th translate="coreApp.channelPost.article">article</th>
                     <th translate="coreApp.channelPost.merchantChannel">merchantChannel</th>
-                    <th translate="coreApp.channelPost.user">user</th>
                     <th></th>
                 </tr>
             </thead>
@@ -62,9 +61,6 @@
                     </td>
                     <td>
                         <a ui-sref="merchantChannel.detail({id:channelPost.merchantChannel.id})">{{channelPost.merchantChannel.channel}}</a>
-                    </td>
-                    <td>
-                        {{channelPost.user.login}}
                     </td>
                     <td>
                         <button type="submit"

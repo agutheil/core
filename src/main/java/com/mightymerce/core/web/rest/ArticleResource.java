@@ -2,7 +2,10 @@ package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.User;
 import com.mightymerce.core.repository.ArticleRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +35,9 @@ public class ArticleResource {
 
     @Inject
     private ArticleRepository articleRepository;
+    
+    @Inject 
+    private UserRepository userRepository;
 
     /**
      * POST  /articles -> Create a new article.
@@ -45,6 +51,7 @@ public class ArticleResource {
         if (article.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new article cannot already have an ID").body(null);
         }
+        article.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         Article result = articleRepository.save(article);
         return ResponseEntity.created(new URI("/api/articles/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("article", result.getId().toString()))
@@ -63,6 +70,7 @@ public class ArticleResource {
         if (article.getId() == null) {
             return create(article);
         }
+        article.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         Article result = articleRepository.save(article);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("article", article.getId().toString()))
@@ -79,7 +87,7 @@ public class ArticleResource {
     public ResponseEntity<List<Article>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<Article> page = articleRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<Article> page = articleRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/articles", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

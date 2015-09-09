@@ -1,5 +1,6 @@
 package com.mightymerce.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.mightymerce.core.domain.util.CustomDateTimeDeserializer;
@@ -49,6 +50,7 @@ public class ChannelPost implements Serializable {
     @ManyToOne
     private MerchantChannel merchantChannel;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

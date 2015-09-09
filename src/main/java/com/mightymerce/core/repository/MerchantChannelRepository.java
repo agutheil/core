@@ -1,6 +1,9 @@
 package com.mightymerce.core.repository;
 
 import com.mightymerce.core.domain.MerchantChannel;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
@@ -12,5 +15,8 @@ public interface MerchantChannelRepository extends JpaRepository<MerchantChannel
 
     @Query("select merchantChannel from MerchantChannel merchantChannel where merchantChannel.user.login = ?#{principal.username}")
     List<MerchantChannel> findByUserIsCurrentUser();
+    
+    @Query("select merchantChannel from MerchantChannel merchantChannel where merchantChannel.user.login = ?#{principal.username}")
+    Page<MerchantChannel> findByUserIsCurrentUser(Pageable pageabel);
 
 }

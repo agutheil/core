@@ -47,7 +47,6 @@
                     <th translate="coreApp.article.description">Description</th>
                     <th translate="coreApp.article.price">Price</th>
                     <th translate="coreApp.article.currency">Currency</th>
-                    <th translate="coreApp.article.user">user</th>
                     <th></th>
                 </tr>
             </thead>
@@ -59,9 +58,6 @@
                     <td>{{article.description}}</td>
                     <td>{{article.price}}</td>
                     <td>{{article.currency}}</td>
-                    <td>
-                        {{article.user.login}}
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="article.detail({id:article.id})"

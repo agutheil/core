@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.Country;
 
 /**
@@ -52,6 +53,7 @@ public class Address implements Serializable {
     @Column(name = "country")
     private Country country;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

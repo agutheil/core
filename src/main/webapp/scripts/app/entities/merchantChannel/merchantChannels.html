@@ -44,7 +44,6 @@
                     <th translate="global.field.id">ID</th>
                     <th translate="coreApp.merchantChannel.accessToken">AccessToken</th>
                     <th translate="coreApp.merchantChannel.channel">Channel</th>
-                    <th translate="coreApp.merchantChannel.user">user</th>
                     <th></th>
                 </tr>
             </thead>
@@ -53,9 +52,6 @@
                     <td><a ui-sref="merchantChannel.detail({id:merchantChannel.id})">{{merchantChannel.id}}</a></td>
                     <td>{{merchantChannel.accessToken}}</td>
                     <td>{{merchantChannel.channel}}</td>
-                    <td>
-                        {{merchantChannel.user.login}}
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="merchantChannel.detail({id:merchantChannel.id})"

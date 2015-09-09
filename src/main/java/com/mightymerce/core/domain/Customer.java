@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.Salutation;
 
 /**
@@ -44,6 +45,7 @@ public class Customer implements Serializable {
     @Column(name = "payer_id", nullable = false)
     private String payerId;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

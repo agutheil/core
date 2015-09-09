@@ -3,6 +3,8 @@ package com.mightymerce.core.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.MerchantChannel;
 import com.mightymerce.core.repository.MerchantChannelRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +34,9 @@ public class MerchantChannelResource {
 
     @Inject
     private MerchantChannelRepository merchantChannelRepository;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /merchantChannels -> Create a new merchantChannel.
@@ -45,6 +50,7 @@ public class MerchantChannelResource {
         if (merchantChannel.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new merchantChannel cannot already have an ID").body(null);
         }
+        merchantChannel.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         MerchantChannel result = merchantChannelRepository.save(merchantChannel);
         return ResponseEntity.created(new URI("/api/merchantChannels/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("merchantChannel", result.getId().toString()))
@@ -63,6 +69,7 @@ public class MerchantChannelResource {
         if (merchantChannel.getId() == null) {
             return create(merchantChannel);
         }
+        merchantChannel.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         MerchantChannel result = merchantChannelRepository.save(merchantChannel);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("merchantChannel", merchantChannel.getId().toString()))
@@ -79,7 +86,7 @@ public class MerchantChannelResource {
     public ResponseEntity<List<MerchantChannel>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<MerchantChannel> page = merchantChannelRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<MerchantChannel> page = merchantChannelRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/merchantChannels", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

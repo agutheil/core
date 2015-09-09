@@ -49,7 +49,6 @@
                     <th translate="coreApp.address.postalCode">PostalCode</th>
                     <th translate="coreApp.address.town">Town</th>
                     <th translate="coreApp.address.country">Country</th>
-                    <th translate="coreApp.address.user">user</th>
                     <th></th>
                 </tr>
             </thead>
@@ -63,9 +62,6 @@
                     <td>{{address.postalCode}}</td>
                     <td>{{address.town}}</td>
                     <td>{{address.country}}</td>
-                    <td>
-                        {{address.user.login}}
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="address.detail({id:address.id})"

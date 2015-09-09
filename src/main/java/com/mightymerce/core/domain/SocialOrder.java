@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.Objects;
 
 import com.mightymerce.core.domain.enumeration.PaymentStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.DeliveryStatus;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 
@@ -57,6 +58,7 @@ public class SocialOrder implements Serializable {
     @ManyToOne
     private Address billing;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

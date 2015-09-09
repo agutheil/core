@@ -5,6 +5,8 @@ import com.mightymerce.core.domain.Article;
 import com.mightymerce.core.domain.ChannelPost;
 import com.mightymerce.core.domain.enumeration.PublicationStatus;
 import com.mightymerce.core.repository.ChannelPostRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.service.ChannelPostService;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
@@ -38,6 +40,9 @@ public class ChannelPostResource {
 
     @Inject
     private ChannelPostService channelPostService;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /channelPosts -> Create a new channelPost.
@@ -51,6 +56,7 @@ public class ChannelPostResource {
         if (channelPost.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new channelPost cannot already have an ID").body(null);
         }
+        channelPost.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         ChannelPost result = channelPostRepository.save(channelPost);
         String externalPostKey = channelPostService.updateStatus(result); 
         channelPost.setExternalPostKey(externalPostKey);
@@ -73,6 +79,7 @@ public class ChannelPostResource {
         if (channelPost.getId() == null) {
             return create(channelPost);
         }
+        channelPost.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         ChannelPost result = channelPostRepository.save(channelPost);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("channelPost", channelPost.getId().toString()))
@@ -89,7 +96,7 @@ public class ChannelPostResource {
     public ResponseEntity<List<ChannelPost>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<ChannelPost> page = channelPostRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<ChannelPost> page = channelPostRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/channelPosts", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

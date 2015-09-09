@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.Channel;
 
 /**
@@ -34,6 +35,7 @@ public class MerchantChannel implements Serializable {
     @Column(name = "channel", nullable = false)
     private Channel channel;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

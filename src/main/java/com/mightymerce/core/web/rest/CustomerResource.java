@@ -3,6 +3,8 @@ package com.mightymerce.core.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Customer;
 import com.mightymerce.core.repository.CustomerRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +34,9 @@ public class CustomerResource {
 
     @Inject
     private CustomerRepository customerRepository;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /customers -> Create a new customer.
@@ -45,6 +50,7 @@ public class CustomerResource {
         if (customer.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new customer cannot already have an ID").body(null);
         }
+        customer.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         Customer result = customerRepository.save(customer);
         return ResponseEntity.created(new URI("/api/customers/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("customer", result.getId().toString()))
@@ -63,6 +69,7 @@ public class CustomerResource {
         if (customer.getId() == null) {
             return create(customer);
         }
+        customer.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         Customer result = customerRepository.save(customer);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("customer", customer.getId().toString()))
@@ -79,7 +86,7 @@ public class CustomerResource {
     public ResponseEntity<List<Customer>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<Customer> page = customerRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<Customer> page = customerRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/customers", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

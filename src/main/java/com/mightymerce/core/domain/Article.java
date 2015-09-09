@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.Currency;
 
 /**
@@ -47,6 +48,7 @@ public class Article implements Serializable {
     @Column(name = "currency", nullable = false)
     private Currency currency;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 

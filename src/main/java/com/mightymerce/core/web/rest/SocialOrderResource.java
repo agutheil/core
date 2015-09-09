@@ -10,6 +10,7 @@ import com.mightymerce.core.domain.enumeration.PaymentStatus;
 import com.mightymerce.core.repository.ArticleRepository;
 import com.mightymerce.core.repository.SocialOrderRepository;
 import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -57,6 +58,7 @@ public class SocialOrderResource {
         if (socialOrder.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new socialOrder cannot already have an ID").body(null);
         }
+        socialOrder.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         SocialOrder result = socialOrderRepository.save(socialOrder);
         return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
@@ -105,6 +107,7 @@ public class SocialOrderResource {
         if (socialOrder.getId() == null) {
             return create(socialOrder);
         }
+        socialOrder.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         SocialOrder result = socialOrderRepository.save(socialOrder);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("socialOrder", socialOrder.getId().toString()))

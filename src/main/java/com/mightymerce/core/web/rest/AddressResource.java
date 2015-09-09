@@ -3,6 +3,8 @@ package com.mightymerce.core.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Address;
 import com.mightymerce.core.repository.AddressRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +34,9 @@ public class AddressResource {
 
     @Inject
     private AddressRepository addressRepository;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /addresss -> Create a new address.
@@ -45,6 +50,7 @@ public class AddressResource {
         if (address.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new address cannot already have an ID").body(null);
         }
+        address.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         Address result = addressRepository.save(address);
         return ResponseEntity.created(new URI("/api/addresss/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("address", result.getId().toString()))
@@ -63,6 +69,7 @@ public class AddressResource {
         if (address.getId() == null) {
             return create(address);
         }
+        address.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         Address result = addressRepository.save(address);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("address", address.getId().toString()))
@@ -79,7 +86,7 @@ public class AddressResource {
     public ResponseEntity<List<Address>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<Address> page = addressRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<Address> page = addressRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/addresss", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

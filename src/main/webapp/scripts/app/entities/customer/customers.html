@@ -47,7 +47,6 @@
                     <th translate="coreApp.customer.middleName">MiddleName</th>
                     <th translate="coreApp.customer.lastName">LastName</th>
                     <th translate="coreApp.customer.payerId">PayerId</th>
-                    <th translate="coreApp.customer.user">user</th>
                     <th></th>
                 </tr>
             </thead>
@@ -59,9 +58,6 @@
                     <td>{{customer.middleName}}</td>
                     <td>{{customer.lastName}}</td>
                     <td>{{customer.payerId}}</td>
-                    <td>
-                        {{customer.user.login}}
-                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="customer.detail({id:customer.id})"
