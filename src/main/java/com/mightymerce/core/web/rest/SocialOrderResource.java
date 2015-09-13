@@ -1,10 +1,24 @@
 package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mightymerce.core.domain.Address;
+import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Customer;
+import com.mightymerce.core.domain.FlatSocialOrder;
 import com.mightymerce.core.domain.SocialOrder;
+import com.mightymerce.core.domain.User;
+import com.mightymerce.core.domain.enumeration.Country;
+import com.mightymerce.core.domain.enumeration.OrderStatus;
+import com.mightymerce.core.domain.enumeration.PaymentStatus;
+import com.mightymerce.core.repository.AddressRepository;
+import com.mightymerce.core.repository.ArticleRepository;
+import com.mightymerce.core.repository.CustomerRepository;
 import com.mightymerce.core.repository.SocialOrderRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,6 +29,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -31,6 +46,18 @@ public class SocialOrderResource {
 
     @Inject
     private SocialOrderRepository socialOrderRepository;
+    
+    @Inject
+    private CustomerRepository customerRepository;
+    
+    @Inject
+    private ArticleRepository articleRepository;
+    
+    @Inject
+    private AddressRepository addressRepository;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /socialOrders -> Create a new socialOrder.
@@ -44,10 +71,64 @@ public class SocialOrderResource {
         if (socialOrder.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new socialOrder cannot already have an ID").body(null);
         }
+        socialOrder.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         SocialOrder result = socialOrderRepository.save(socialOrder);
         return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
                 .body(result);
+    }
+    
+    /**
+     * POST  /flatSocialOrders -> Create a new socialOrder via a flattened Model.
+     */
+    @RequestMapping(value = "/flatSocialOrders",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<FlatSocialOrder> createflat(@RequestBody FlatSocialOrder flatSocialOrder) throws URISyntaxException {
+        log.debug("REST request to save SocialOrder via a FlatSocialOrder: {}", flatSocialOrder);
+        if (flatSocialOrder.getArticle() == null) {
+            return ResponseEntity.badRequest().header("Failure", "A new socialOrder needs an article ID").body(null);
+        }
+        
+        
+        
+        SocialOrder input = new SocialOrder();
+        Article article = articleRepository.findOne(flatSocialOrder.getArticle());
+        User user = userRepository.findOne(article.getUser().getId());
+        log.info(user.toString());
+        
+        Customer customer = new Customer();
+        customer.setLastName(flatSocialOrder.getLastName());
+        customer.setName(flatSocialOrder.getFirstName());
+        customer.setPayerId(flatSocialOrder.getPayerId());
+        customer.setUser(user);
+        customer = customerRepository.save(customer);
+        
+        Address delivery = new Address();
+        delivery.setAddressee(flatSocialOrder.getShipToName());
+//        Country country = Country.valueOf(flatSocialOrder.getShipToCntryCode());
+//        delivery.setCountry(flatSocialOrder.getShipToCntryCode(country));
+        delivery.setStreetname(flatSocialOrder.getShipToStreet());
+        delivery.setHousenumber("");
+        delivery.setTown(flatSocialOrder.getShipToCity());
+        delivery.setPostalCode(flatSocialOrder.getShipToZip());
+        delivery.setUser(user);
+        delivery = addressRepository.save(delivery);
+        
+        input.setArticle(article);
+        input.setPaymentStatus(flatSocialOrder.getPaymentStatus());
+        input.setOrderStatus(OrderStatus.created);
+        input.setTransactionId(flatSocialOrder.getTransactionId());
+        input.setTotalAmount(flatSocialOrder.getTotalAmt());      
+        input.setUser(user);
+        input.setDelivery(delivery);
+        input.setCustomer(customer);
+        SocialOrder result = socialOrderRepository.save(input);
+        
+        return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
+                .body(flatSocialOrder);
     }
 
     /**
@@ -62,6 +143,7 @@ public class SocialOrderResource {
         if (socialOrder.getId() == null) {
             return create(socialOrder);
         }
+        socialOrder.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         SocialOrder result = socialOrderRepository.save(socialOrder);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("socialOrder", socialOrder.getId().toString()))
@@ -78,7 +160,7 @@ public class SocialOrderResource {
     public ResponseEntity<List<SocialOrder>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        Page<SocialOrder> page = socialOrderRepository.findAll(PaginationUtil.generatePageRequest(offset, limit));
+        Page<SocialOrder> page = socialOrderRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/socialOrders", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

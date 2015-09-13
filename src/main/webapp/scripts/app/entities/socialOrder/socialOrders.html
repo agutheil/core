@@ -51,7 +51,6 @@
                     <th translate="coreApp.socialOrder.delivery">delivery</th>
                     <th translate="coreApp.socialOrder.billing">billing</th>
                     <th translate="coreApp.socialOrder.customer">customer</th>
-                    <th translate="coreApp.socialOrder.user">user</th>
                     <th></th>
                 </tr>
             </thead>
@@ -74,9 +73,6 @@
                     </td>
                     <td>
                         <a ui-sref="customer.detail({id:socialOrder.customer.id})">{{socialOrder.customer.payerId}}</a>
-                    </td>
-                    <td>
-                        {{socialOrder.user.login}}
                     </td>
                     <td>
                         <button type="submit"
