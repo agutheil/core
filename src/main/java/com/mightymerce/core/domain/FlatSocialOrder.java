@@ -3,16 +3,24 @@ package com.mightymerce.core.domain;
 import java.math.BigDecimal;
 
 public class FlatSocialOrder {
-	
+
 	private Long article;
-    
-    private String payerId;
-    
-    private String transactionId;
-    
-    private String paymentStatus;
-    
-    private BigDecimal amount;
+	private String transactionId;    
+	private String paymentStatus;
+	private String email; 			
+	private  String payerId 		;	// ' Unique PayPal customer account identification number.
+	private String payerStatus	;	// ' Status of payer. Character length and limitations: 10 single-byte alphabetic characters.
+	private String firstName	;	// ' Payer's first name.
+	private String lastName		;	// ' Payer's last name.
+	private String shipToName	;	// ' Person's name associated with this address.
+	private String shipToStreet	;	// ' First street address.
+	private String shipToCity	;	// ' Name of city.
+	private String shipToState	;	// ' State or province
+	private String shipToCntryCode;	// ' Country code. 
+	private String shipToZip	;	// ' U.S. Zip code or other country-specific postal code.
+	private String addressStatus;	// ' Status of street address on file with PayPal 
+	private BigDecimal totalAmt ;	// ' Total Amount to be paid by buyer
+	private String currencyCode ;    // 'Currency being used 
 
 	public Long getArticle() {
 		return article;
@@ -20,14 +28,6 @@ public class FlatSocialOrder {
 
 	public void setArticle(Long article) {
 		this.article = article;
-	}
-
-	public String getPayerId() {
-		return payerId;
-	}
-
-	public void setPayerId(String payerId) {
-		this.payerId = payerId;
 	}
 
 	public String getTransactionId() {
@@ -46,66 +46,116 @@ public class FlatSocialOrder {
 		this.paymentStatus = paymentStatus;
 	}
 
-	public BigDecimal getAmount() {
-		return amount;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
-		result = prime * result + ((article == null) ? 0 : article.hashCode());
-		result = prime * result + ((payerId == null) ? 0 : payerId.hashCode());
-		result = prime * result + ((paymentStatus == null) ? 0 : paymentStatus.hashCode());
-		result = prime * result + ((transactionId == null) ? 0 : transactionId.hashCode());
-		return result;
+	public String getPayerId() {
+		return payerId;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		FlatSocialOrder other = (FlatSocialOrder) obj;
-		if (amount == null) {
-			if (other.amount != null)
-				return false;
-		} else if (!amount.equals(other.amount))
-			return false;
-		if (article == null) {
-			if (other.article != null)
-				return false;
-		} else if (!article.equals(other.article))
-			return false;
-		if (payerId == null) {
-			if (other.payerId != null)
-				return false;
-		} else if (!payerId.equals(other.payerId))
-			return false;
-		if (paymentStatus == null) {
-			if (other.paymentStatus != null)
-				return false;
-		} else if (!paymentStatus.equals(other.paymentStatus))
-			return false;
-		if (transactionId == null) {
-			if (other.transactionId != null)
-				return false;
-		} else if (!transactionId.equals(other.transactionId))
-			return false;
-		return true;
+	public void setPayerId(String payerId) {
+		this.payerId = payerId;
 	}
 
-	@Override
-	public String toString() {
-		return "FlatSocialOrder [article=" + article + ", payerId=" + payerId + ", transactionId=" + transactionId
-				+ ", paymentStatus=" + paymentStatus + ", amount=" + amount + "]";
+	public String getPayerStatus() {
+		return payerStatus;
 	}
+
+	public void setPayerStatus(String payerStatus) {
+		this.payerStatus = payerStatus;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getShipToName() {
+		return shipToName;
+	}
+
+	public void setShipToName(String shipToName) {
+		this.shipToName = shipToName;
+	}
+
+	public String getShipToStreet() {
+		return shipToStreet;
+	}
+
+	public void setShipToStreet(String shipToStreet) {
+		this.shipToStreet = shipToStreet;
+	}
+
+	public String getShipToCity() {
+		return shipToCity;
+	}
+
+	public void setShipToCity(String shipToCity) {
+		this.shipToCity = shipToCity;
+	}
+
+	public String getShipToState() {
+		return shipToState;
+	}
+
+	public void setShipToState(String shipToState) {
+		this.shipToState = shipToState;
+	}
+
+	public String getShipToCntryCode() {
+		return shipToCntryCode;
+	}
+
+	public void setShipToCntryCode(String shipToCntryCode) {
+		this.shipToCntryCode = shipToCntryCode;
+	}
+
+	public String getShipToZip() {
+		return shipToZip;
+	}
+
+	public void setShipToZip(String shipToZip) {
+		this.shipToZip = shipToZip;
+	}
+
+	public String getAddressStatus() {
+		return addressStatus;
+	}
+
+	public void setAddressStatus(String addressStatus) {
+		this.addressStatus = addressStatus;
+	}
+
+	public BigDecimal getTotalAmt() {
+		return totalAmt;
+	}
+
+	public void setTotalAmt(BigDecimal totalAmt) {
+		this.totalAmt = totalAmt;
+	}
+
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
 }

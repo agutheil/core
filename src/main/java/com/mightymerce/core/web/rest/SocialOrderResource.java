@@ -1,18 +1,24 @@
 package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mightymerce.core.domain.Address;
 import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Customer;
 import com.mightymerce.core.domain.FlatSocialOrder;
 import com.mightymerce.core.domain.SocialOrder;
 import com.mightymerce.core.domain.User;
+import com.mightymerce.core.domain.enumeration.Country;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 import com.mightymerce.core.domain.enumeration.PaymentStatus;
+import com.mightymerce.core.repository.AddressRepository;
 import com.mightymerce.core.repository.ArticleRepository;
+import com.mightymerce.core.repository.CustomerRepository;
 import com.mightymerce.core.repository.SocialOrderRepository;
 import com.mightymerce.core.repository.UserRepository;
 import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -23,6 +29,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -41,7 +48,13 @@ public class SocialOrderResource {
     private SocialOrderRepository socialOrderRepository;
     
     @Inject
+    private CustomerRepository customerRepository;
+    
+    @Inject
     private ArticleRepository articleRepository;
+    
+    @Inject
+    private AddressRepository addressRepository;
     
     @Inject
     private UserRepository userRepository;
@@ -77,18 +90,41 @@ public class SocialOrderResource {
         if (flatSocialOrder.getArticle() == null) {
             return ResponseEntity.badRequest().header("Failure", "A new socialOrder needs an article ID").body(null);
         }
+        
+        
+        
         SocialOrder input = new SocialOrder();
         Article article = articleRepository.findOne(flatSocialOrder.getArticle());
-        log.info(article.toString());
+        User user = userRepository.findOne(article.getUser().getId());
+        log.info(user.toString());
+        
+        Customer customer = new Customer();
+        customer.setLastName(flatSocialOrder.getLastName());
+        customer.setName(flatSocialOrder.getFirstName());
+        customer.setPayerId(flatSocialOrder.getPayerId());
+        customer.setUser(user);
+        customer = customerRepository.save(customer);
+        
+        Address delivery = new Address();
+        delivery.setAddressee(flatSocialOrder.getShipToName());
+//        Country country = Country.valueOf(flatSocialOrder.getShipToCntryCode());
+//        delivery.setCountry(flatSocialOrder.getShipToCntryCode(country));
+        delivery.setStreetname(flatSocialOrder.getShipToStreet());
+        delivery.setHousenumber("");
+        delivery.setTown(flatSocialOrder.getShipToCity());
+        delivery.setPostalCode(flatSocialOrder.getShipToZip());
+        delivery.setUser(user);
+        delivery = addressRepository.save(delivery);
+        
         input.setArticle(article);
         input.setPaymentStatus(PaymentStatus.valueOf(flatSocialOrder.getPaymentStatus().toLowerCase()));
         input.setOrderStatus(OrderStatus.created);
         input.setPayerId(flatSocialOrder.getPayerId());
         input.setTransactionId(flatSocialOrder.getTransactionId());
-        input.setTotalAmount(flatSocialOrder.getAmount());
-        User user = userRepository.findOne(article.getUser().getId());
-        log.info(user.toString());
+        input.setTotalAmount(flatSocialOrder.getTotalAmt());      
         input.setUser(user);
+        input.setDelivery(delivery);
+        
         SocialOrder result = socialOrderRepository.save(input);
         return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
