@@ -38,6 +38,6 @@ angular.module('coreApp')
         };
 
         $scope.clear = function () {
-            $scope.socialOrder = {payerId: null, transactionId: null, totalAmount: null, paymentStatus: null, deliveryStatus: null, orderStatus: null, id: null};
+            $scope.socialOrder = {transactionId: null, totalAmount: null, paymentStatus: null, deliveryStatus: null, orderStatus: null, id: null};
         };
     });

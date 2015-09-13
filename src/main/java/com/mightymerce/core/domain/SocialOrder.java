@@ -10,8 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
-import com.mightymerce.core.domain.enumeration.PaymentStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.DeliveryStatus;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 
@@ -28,18 +26,14 @@ public class SocialOrder implements Serializable {
     private Long id;
     
     
-    @Column(name = "payer_id")
-    private String payerId;
-    
     @Column(name = "transaction_id")
     private String transactionId;
     
     @Column(name = "total_amount", precision=10, scale=2)
     private BigDecimal totalAmount;
     
-    @Enumerated(EnumType.STRING)
     @Column(name = "payment_status")
-    private PaymentStatus paymentStatus;
+    private String paymentStatus;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "delivery_status")
@@ -58,7 +52,9 @@ public class SocialOrder implements Serializable {
     @ManyToOne
     private Address billing;
 
-    @JsonIgnore
+    @ManyToOne
+    private Customer customer;
+
     @ManyToOne
     private User user;
 
@@ -68,14 +64,6 @@ public class SocialOrder implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPayerId() {
-        return payerId;
-    }
-
-    public void setPayerId(String payerId) {
-        this.payerId = payerId;
     }
 
     public String getTransactionId() {
@@ -94,11 +82,11 @@ public class SocialOrder implements Serializable {
         this.totalAmount = totalAmount;
     }
 
-    public PaymentStatus getPaymentStatus() {
+    public String getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(PaymentStatus paymentStatus) {
+    public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
@@ -142,6 +130,14 @@ public class SocialOrder implements Serializable {
         this.billing = address;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public User getUser() {
         return user;
     }
@@ -175,7 +171,6 @@ public class SocialOrder implements Serializable {
     public String toString() {
         return "SocialOrder{" +
                 "id=" + id +
-                ", payerId='" + payerId + "'" +
                 ", transactionId='" + transactionId + "'" +
                 ", totalAmount='" + totalAmount + "'" +
                 ", paymentStatus='" + paymentStatus + "'" +

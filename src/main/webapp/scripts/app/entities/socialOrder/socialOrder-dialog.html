@@ -15,13 +15,6 @@
         </div>
 
         <div class="form-group">
-            <label translate="coreApp.socialOrder.payerId" for="field_payerId">PayerId</label>
-            <input type="text" class="form-control" name="payerId" id="field_payerId"
-                    ng-model="socialOrder.payerId"
-                    >
-
-        </div>
-        <div class="form-group">
             <label translate="coreApp.socialOrder.transactionId" for="field_transactionId">TransactionId</label>
             <input type="text" class="form-control" name="transactionId" id="field_transactionId"
                     ng-model="socialOrder.transactionId"
@@ -37,11 +30,9 @@
         </div>
         <div class="form-group">
             <label translate="coreApp.socialOrder.paymentStatus" for="field_paymentStatus">PaymentStatus</label>
-            <select class="form-control" name="paymentStatus" ng-model="socialOrder.paymentStatus" id="field_paymentStatus">
-                <option value="pending" translate="coreApp.PaymentStatus.pending">pending</option>
-                <option value="paid" translate="coreApp.PaymentStatus.paid">paid</option>
-                <option value="error" translate="coreApp.PaymentStatus.error">error</option>
-            </select>
+            <input type="text" class="form-control" name="paymentStatus" id="field_paymentStatus"
+                    ng-model="socialOrder.paymentStatus"
+                    >
 
         </div>
         <div class="form-group">
@@ -73,7 +64,7 @@
         <div class="form-group">
             <label translate="coreApp.socialOrder.delivery" for="field_delivery">delivery</label>
             
-            <select class="form-control" id="field_delivery" name="delivery" ng-model="socialOrder.delivery" ng-options="address as address.id for address in addresss track by address.id">
+            <select class="form-control" id="field_delivery" name="delivery" ng-model="socialOrder.delivery" ng-options="address as address.addressee for address in addresss track by address.id">
                 <option value=""></option>
             </select>
             
@@ -81,7 +72,23 @@
         <div class="form-group">
             <label translate="coreApp.socialOrder.billing" for="field_billing">billing</label>
             
-            <select class="form-control" id="field_billing" name="billing" ng-model="socialOrder.billing" ng-options="address as address.id for address in addresss track by address.id">
+            <select class="form-control" id="field_billing" name="billing" ng-model="socialOrder.billing" ng-options="address as address.addressee for address in addresss track by address.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.customer" for="field_customer">customer</label>
+            
+            <select class="form-control" id="field_customer" name="customer" ng-model="socialOrder.customer" ng-options="customer as customer.payerId for customer in customers track by customer.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.socialOrder.user" for="field_user">user</label>
+            
+            <select class="form-control" id="field_user" name="user" ng-model="socialOrder.user" ng-options="user as user.login for user in users track by user.id">
                 <option value=""></option>
             </select>
             

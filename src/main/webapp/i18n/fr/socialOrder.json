@@ -12,7 +12,6 @@
             "detail": {
                 "title": "SocialOrder"
             },
-            "payerId": "PayerId",
             "transactionId": "TransactionId",
             "totalAmount": "TotalAmount",
             "paymentStatus": "PaymentStatus",
@@ -21,6 +20,7 @@
             "article": "Article",
             "delivery": "Delivery",
             "billing": "Billing",
+            "customer": "Customer",
             "user": "User"
         }
     }

@@ -42,7 +42,6 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
-                    <th translate="coreApp.socialOrder.payerId">PayerId</th>
                     <th translate="coreApp.socialOrder.transactionId">TransactionId</th>
                     <th translate="coreApp.socialOrder.totalAmount">TotalAmount</th>
                     <th translate="coreApp.socialOrder.paymentStatus">PaymentStatus</th>
@@ -51,13 +50,14 @@
                     <th translate="coreApp.socialOrder.article">article</th>
                     <th translate="coreApp.socialOrder.delivery">delivery</th>
                     <th translate="coreApp.socialOrder.billing">billing</th>
+                    <th translate="coreApp.socialOrder.customer">customer</th>
+                    <th translate="coreApp.socialOrder.user">user</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="socialOrder in socialOrders">
                     <td><a ui-sref="socialOrder.detail({id:socialOrder.id})">{{socialOrder.id}}</a></td>
-                    <td>{{socialOrder.payerId}}</td>
                     <td>{{socialOrder.transactionId}}</td>
                     <td>{{socialOrder.totalAmount}}</td>
                     <td>{{socialOrder.paymentStatus}}</td>
@@ -67,10 +67,16 @@
                         <a ui-sref="article.detail({id:socialOrder.article.id})">{{socialOrder.article.code}}</a>
                     </td>
                     <td>
-                        <a ui-sref="address.detail({id:socialOrder.delivery.id})">{{socialOrder.delivery.id}}</a>
+                        <a ui-sref="address.detail({id:socialOrder.delivery.id})">{{socialOrder.delivery.addressee}}</a>
                     </td>
                     <td>
-                        <a ui-sref="address.detail({id:socialOrder.billing.id})">{{socialOrder.billing.id}}</a>
+                        <a ui-sref="address.detail({id:socialOrder.billing.id})">{{socialOrder.billing.addressee}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="customer.detail({id:socialOrder.customer.id})">{{socialOrder.customer.payerId}}</a>
+                    </td>
+                    <td>
+                        {{socialOrder.user.login}}
                     </td>
                     <td>
                         <button type="submit"

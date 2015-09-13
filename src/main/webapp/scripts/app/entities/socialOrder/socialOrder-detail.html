@@ -12,14 +12,6 @@
             <tbody>
             <tr>
                 <td>
-                    <span translate="coreApp.socialOrder.payerId">PayerId</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{socialOrder.payerId}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <span translate="coreApp.socialOrder.transactionId">TransactionId</span>
                 </td>
                 <td>
@@ -39,8 +31,7 @@
                     <span translate="coreApp.socialOrder.paymentStatus">PaymentStatus</span>
                 </td>
                 <td>
-                    <span class="input-sm form-control readonly" translate="coreApp.PaymentStatus.SELECT"
-                          translate-interpolation="messageformat" translate-values="{ VALUE: socialOrder.paymentStatus }"></span>
+                    <span class="form-control-static">{{socialOrder.paymentStatus}}</span>
                 </td>
             </tr>
             <tr>
@@ -74,7 +65,7 @@
                     <span translate="coreApp.socialOrder.delivery">delivery</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="address.detail({id:socialOrder.delivery.id})">{{socialOrder.delivery.id}}</a>
+                    <a class="form-control-static" ui-sref="address.detail({id:socialOrder.delivery.id})">{{socialOrder.delivery.addressee}}</a>
                 </td>
             </tr>
             <tr>
@@ -82,7 +73,23 @@
                     <span translate="coreApp.socialOrder.billing">billing</span>
                 </td>
                 <td>
-                    <a class="form-control-static" ui-sref="address.detail({id:socialOrder.billing.id})">{{socialOrder.billing.id}}</a>
+                    <a class="form-control-static" ui-sref="address.detail({id:socialOrder.billing.id})">{{socialOrder.billing.addressee}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.customer">customer</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="customer.detail({id:socialOrder.customer.id})">{{socialOrder.customer.payerId}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.socialOrder.user">user</span>
+                </td>
+                <td>
+                    {{socialOrder.user.login}}
                 </td>
             </tr>
             </tbody>

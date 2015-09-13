@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('coreApp').controller('SocialOrderDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'SocialOrder', 'Article', 'Address', 'User',
-        function($scope, $stateParams, $modalInstance, entity, SocialOrder, Article, Address, User) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'SocialOrder', 'Article', 'Address', 'Customer', 'User',
+        function($scope, $stateParams, $modalInstance, entity, SocialOrder, Article, Address, Customer, User) {
 
         $scope.socialOrder = entity;
         $scope.articles = Article.query();
         $scope.addresss = Address.query();
+        $scope.customers = Customer.query();
         $scope.users = User.query();
         $scope.load = function(id) {
             SocialOrder.get({id : id}, function(result) {

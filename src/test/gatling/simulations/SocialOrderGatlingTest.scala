@@ -80,7 +80,7 @@ class SocialOrderGatlingTest extends Simulation {
             .exec(http("Create new socialOrder")
             .post("/api/socialOrders")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "payerId":"SAMPLE_TEXT", "transactionId":"SAMPLE_TEXT", "totalAmount":null, "paymentStatus":null, "deliveryStatus":null, "orderStatus":null}""")).asJSON
+            .body(StringBody("""{"id":null, "transactionId":"SAMPLE_TEXT", "totalAmount":null, "paymentStatus":"SAMPLE_TEXT", "deliveryStatus":null, "orderStatus":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_socialOrder_url")))
             .pause(10)

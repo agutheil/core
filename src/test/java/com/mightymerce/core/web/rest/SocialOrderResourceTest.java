@@ -29,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.mightymerce.core.domain.enumeration.PaymentStatus;
 import com.mightymerce.core.domain.enumeration.DeliveryStatus;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 
@@ -44,16 +43,13 @@ import com.mightymerce.core.domain.enumeration.OrderStatus;
 @IntegrationTest
 public class SocialOrderResourceTest {
 
-    private static final String DEFAULT_PAYER_ID = "SAMPLE_TEXT";
-    private static final String UPDATED_PAYER_ID = "UPDATED_TEXT";
     private static final String DEFAULT_TRANSACTION_ID = "SAMPLE_TEXT";
     private static final String UPDATED_TRANSACTION_ID = "UPDATED_TEXT";
 
     private static final BigDecimal DEFAULT_TOTAL_AMOUNT = new BigDecimal(1);
     private static final BigDecimal UPDATED_TOTAL_AMOUNT = new BigDecimal(2);
-
-    private static final PaymentStatus DEFAULT_PAYMENT_STATUS = PaymentStatus.pending;
-    private static final PaymentStatus UPDATED_PAYMENT_STATUS = PaymentStatus.paid;
+    private static final String DEFAULT_PAYMENT_STATUS = "SAMPLE_TEXT";
+    private static final String UPDATED_PAYMENT_STATUS = "UPDATED_TEXT";
 
     private static final DeliveryStatus DEFAULT_DELIVERY_STATUS = DeliveryStatus.sent;
     private static final DeliveryStatus UPDATED_DELIVERY_STATUS = DeliveryStatus.delivered;
@@ -82,7 +78,6 @@ public class SocialOrderResourceTest {
     @Before
     public void initTest() {
         socialOrder = new SocialOrder();
-        socialOrder.setPayerId(DEFAULT_PAYER_ID);
         socialOrder.setTransactionId(DEFAULT_TRANSACTION_ID);
         socialOrder.setTotalAmount(DEFAULT_TOTAL_AMOUNT);
         socialOrder.setPaymentStatus(DEFAULT_PAYMENT_STATUS);
@@ -106,7 +101,6 @@ public class SocialOrderResourceTest {
         List<SocialOrder> socialOrders = socialOrderRepository.findAll();
         assertThat(socialOrders).hasSize(databaseSizeBeforeCreate + 1);
         SocialOrder testSocialOrder = socialOrders.get(socialOrders.size() - 1);
-        assertThat(testSocialOrder.getPayerId()).isEqualTo(DEFAULT_PAYER_ID);
         assertThat(testSocialOrder.getTransactionId()).isEqualTo(DEFAULT_TRANSACTION_ID);
         assertThat(testSocialOrder.getTotalAmount()).isEqualTo(DEFAULT_TOTAL_AMOUNT);
         assertThat(testSocialOrder.getPaymentStatus()).isEqualTo(DEFAULT_PAYMENT_STATUS);
@@ -125,7 +119,6 @@ public class SocialOrderResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(socialOrder.getId().intValue())))
-                .andExpect(jsonPath("$.[*].payerId").value(hasItem(DEFAULT_PAYER_ID.toString())))
                 .andExpect(jsonPath("$.[*].transactionId").value(hasItem(DEFAULT_TRANSACTION_ID.toString())))
                 .andExpect(jsonPath("$.[*].totalAmount").value(hasItem(DEFAULT_TOTAL_AMOUNT.intValue())))
                 .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())))
@@ -144,7 +137,6 @@ public class SocialOrderResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(socialOrder.getId().intValue()))
-            .andExpect(jsonPath("$.payerId").value(DEFAULT_PAYER_ID.toString()))
             .andExpect(jsonPath("$.transactionId").value(DEFAULT_TRANSACTION_ID.toString()))
             .andExpect(jsonPath("$.totalAmount").value(DEFAULT_TOTAL_AMOUNT.intValue()))
             .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()))
@@ -169,7 +161,6 @@ public class SocialOrderResourceTest {
 		int databaseSizeBeforeUpdate = socialOrderRepository.findAll().size();
 
         // Update the socialOrder
-        socialOrder.setPayerId(UPDATED_PAYER_ID);
         socialOrder.setTransactionId(UPDATED_TRANSACTION_ID);
         socialOrder.setTotalAmount(UPDATED_TOTAL_AMOUNT);
         socialOrder.setPaymentStatus(UPDATED_PAYMENT_STATUS);
@@ -186,7 +177,6 @@ public class SocialOrderResourceTest {
         List<SocialOrder> socialOrders = socialOrderRepository.findAll();
         assertThat(socialOrders).hasSize(databaseSizeBeforeUpdate);
         SocialOrder testSocialOrder = socialOrders.get(socialOrders.size() - 1);
-        assertThat(testSocialOrder.getPayerId()).isEqualTo(UPDATED_PAYER_ID);
         assertThat(testSocialOrder.getTransactionId()).isEqualTo(UPDATED_TRANSACTION_ID);
         assertThat(testSocialOrder.getTotalAmount()).isEqualTo(UPDATED_TOTAL_AMOUNT);
         assertThat(testSocialOrder.getPaymentStatus()).isEqualTo(UPDATED_PAYMENT_STATUS);

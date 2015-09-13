@@ -19,7 +19,6 @@ angular.module('coreApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('socialOrder');
-                        $translatePartialLoader.addPart('paymentStatus');
                         $translatePartialLoader.addPart('deliveryStatus');
                         $translatePartialLoader.addPart('orderStatus');
                         $translatePartialLoader.addPart('global');
@@ -43,7 +42,6 @@ angular.module('coreApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('socialOrder');
-                        $translatePartialLoader.addPart('paymentStatus');
                         $translatePartialLoader.addPart('deliveryStatus');
                         $translatePartialLoader.addPart('orderStatus');
                         return $translate.refresh();
@@ -66,7 +64,7 @@ angular.module('coreApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {payerId: null, transactionId: null, totalAmount: null, paymentStatus: null, deliveryStatus: null, orderStatus: null, id: null};
+                                return {transactionId: null, totalAmount: null, paymentStatus: null, deliveryStatus: null, orderStatus: null, id: null};
                             }
                         }
                     }).result.then(function(result) {
