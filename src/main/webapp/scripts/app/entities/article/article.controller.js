@@ -38,6 +38,6 @@ angular.module('coreApp')
         };
 
         $scope.clear = function () {
-            $scope.article = {code: null, name: null, description: null, price: null, currency: null, id: null};
+            $scope.article = {code: null, name: null, description: null, price: null, deliveryCosts: null, currency: null, id: null};
         };
     });

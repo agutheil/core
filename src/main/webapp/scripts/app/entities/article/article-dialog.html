@@ -71,6 +71,23 @@
             </div>
         </div>
         <div class="form-group">
+            <label translate="coreApp.article.deliveryCosts" for="field_deliveryCosts">DeliveryCosts</label>
+            <input type="number" class="form-control" name="deliveryCosts" id="field_deliveryCosts"
+                    ng-model="article.deliveryCosts"
+                    required>
+
+            <div ng-show="editForm.deliveryCosts.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.deliveryCosts.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.deliveryCosts.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
             <label translate="coreApp.article.currency" for="field_currency">Currency</label>
             <select class="form-control" name="currency" ng-model="article.currency" id="field_currency" required>
                 <option value="EUR" translate="coreApp.Currency.EUR">EUR</option>

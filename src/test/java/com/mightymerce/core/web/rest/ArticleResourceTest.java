@@ -52,6 +52,9 @@ public class ArticleResourceTest {
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
 
+    private static final BigDecimal DEFAULT_DELIVERY_COSTS = new BigDecimal(1);
+    private static final BigDecimal UPDATED_DELIVERY_COSTS = new BigDecimal(2);
+
     private static final Currency DEFAULT_CURRENCY = Currency.EUR;
     private static final Currency UPDATED_CURRENCY = Currency.GBP;
 
@@ -80,6 +83,7 @@ public class ArticleResourceTest {
         article.setName(DEFAULT_NAME);
         article.setDescription(DEFAULT_DESCRIPTION);
         article.setPrice(DEFAULT_PRICE);
+        article.setDeliveryCosts(DEFAULT_DELIVERY_COSTS);
         article.setCurrency(DEFAULT_CURRENCY);
     }
 
@@ -103,6 +107,7 @@ public class ArticleResourceTest {
         assertThat(testArticle.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testArticle.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testArticle.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testArticle.getDeliveryCosts()).isEqualTo(DEFAULT_DELIVERY_COSTS);
         assertThat(testArticle.getCurrency()).isEqualTo(DEFAULT_CURRENCY);
     }
 
@@ -180,6 +185,24 @@ public class ArticleResourceTest {
 
     @Test
     @Transactional
+    public void checkDeliveryCostsIsRequired() throws Exception {
+        int databaseSizeBeforeTest = articleRepository.findAll().size();
+        // set the field null
+        article.setDeliveryCosts(null);
+
+        // Create the Article, which fails.
+
+        restArticleMockMvc.perform(post("/api/articles")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(article)))
+                .andExpect(status().isBadRequest());
+
+        List<Article> articles = articleRepository.findAll();
+        assertThat(articles).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void checkCurrencyIsRequired() throws Exception {
         int databaseSizeBeforeTest = articleRepository.findAll().size();
         // set the field null
@@ -211,6 +234,7 @@ public class ArticleResourceTest {
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
                 .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
+                .andExpect(jsonPath("$.[*].deliveryCosts").value(hasItem(DEFAULT_DELIVERY_COSTS.intValue())))
                 .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY.toString())));
     }
 
@@ -229,6 +253,7 @@ public class ArticleResourceTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
+            .andExpect(jsonPath("$.deliveryCosts").value(DEFAULT_DELIVERY_COSTS.intValue()))
             .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY.toString()));
     }
 
@@ -253,6 +278,7 @@ public class ArticleResourceTest {
         article.setName(UPDATED_NAME);
         article.setDescription(UPDATED_DESCRIPTION);
         article.setPrice(UPDATED_PRICE);
+        article.setDeliveryCosts(UPDATED_DELIVERY_COSTS);
         article.setCurrency(UPDATED_CURRENCY);
         
 
@@ -269,6 +295,7 @@ public class ArticleResourceTest {
         assertThat(testArticle.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testArticle.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testArticle.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testArticle.getDeliveryCosts()).isEqualTo(UPDATED_DELIVERY_COSTS);
         assertThat(testArticle.getCurrency()).isEqualTo(UPDATED_CURRENCY);
     }
 

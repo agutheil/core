@@ -43,6 +43,14 @@
         },
         {
             "fieldId": 5,
+            "fieldName": "deliveryCosts",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
             "fieldName": "currency",
             "fieldType": "Currency",
             "fieldValues": "EUR,GBP,USD,CHF",

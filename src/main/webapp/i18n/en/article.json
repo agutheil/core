@@ -19,6 +19,7 @@
             "name": "Name",
             "description": "Description",
             "price": "Price",
+            "deliveryCosts": "DeliveryCosts",
             "currency": "Currency",
             "user": "User"
         }

@@ -5,10 +5,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,10 +43,14 @@ public class Article implements Serializable {
     private BigDecimal price;
 
     @NotNull        
+    @Column(name = "delivery_costs", precision=10, scale=2, nullable = false)
+    private BigDecimal deliveryCosts;
+
+    @NotNull        
     @Enumerated(EnumType.STRING)
     @Column(name = "currency", nullable = false)
     private Currency currency;
-
+    
     @JsonIgnore
     @ManyToOne
     private User user;
@@ -90,6 +93,14 @@ public class Article implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getDeliveryCosts() {
+        return deliveryCosts;
+    }
+
+    public void setDeliveryCosts(BigDecimal deliveryCosts) {
+        this.deliveryCosts = deliveryCosts;
     }
 
     public Currency getCurrency() {
@@ -137,6 +148,7 @@ public class Article implements Serializable {
                 ", name='" + name + "'" +
                 ", description='" + description + "'" +
                 ", price='" + price + "'" +
+                ", deliveryCosts='" + deliveryCosts + "'" +
                 ", currency='" + currency + "'" +
                 '}';
     }
