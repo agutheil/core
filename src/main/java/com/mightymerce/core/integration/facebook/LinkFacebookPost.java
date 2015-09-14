@@ -41,8 +41,8 @@ public class LinkFacebookPost implements SocialPost {
         String link = checkoutLink+article.getId();
         String name  = article.getName();
         String caption = article.getDescription();
-        String description = article.toString();
+        String description = article.getPrice() + " " + article.getCurrency();
         FacebookLink facebookLink = new FacebookLink(link,name,caption,description);
-        return facebook.feedOperations().postLink(description, facebookLink);
+        return facebook.feedOperations().postLink("", facebookLink);
     }
 }
