@@ -59,6 +59,22 @@
                           translate-interpolation="messageformat" translate-values="{ VALUE: article.currency }"></span>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.image1">Image1</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:image/*;base64,' + article.image1}}" style="max-width: 100%;" ng-if="article.image1"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.article.image2">Image2</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:image/*;base64,' + article.image2}}" style="max-width: 100%;" ng-if="article.image2"/>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

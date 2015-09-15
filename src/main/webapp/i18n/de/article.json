@@ -18,6 +18,8 @@
             "price": "Price",
             "deliveryCosts": "DeliveryCosts",
             "currency": "Currency",
+            "image1": "Image1",
+            "image2": "Image2",
             "user": "User"
         }
     }

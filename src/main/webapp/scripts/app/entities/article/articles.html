@@ -48,6 +48,8 @@
                     <th translate="coreApp.article.price">Price</th>
                     <th translate="coreApp.article.deliveryCosts">DeliveryCosts</th>
                     <th translate="coreApp.article.currency">Currency</th>
+                    <th translate="coreApp.article.image1">Image1</th>
+                    <th translate="coreApp.article.image2">Image2</th>
                     <th></th>
                 </tr>
             </thead>
@@ -60,6 +62,14 @@
                     <td>{{article.price}}</td>
                     <td>{{article.deliveryCosts}}</td>
                     <td>{{article.currency}}</td>
+                    <td>
+                        <img data-ng-src="{{'data:image/*;base64,' + article.image1}}" style="max-height: 30px;" ng-if="article.image1"/>
+                        {{byteSize(article.image1)}}
+                    </td>
+                    <td>
+                        <img data-ng-src="{{'data:image/*;base64,' + article.image2}}" style="max-height: 30px;" ng-if="article.image2"/>
+                        {{byteSize(article.image2)}}
+                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="article.detail({id:article.id})"

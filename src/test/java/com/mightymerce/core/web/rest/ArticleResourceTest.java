@@ -19,6 +19,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -58,6 +59,12 @@ public class ArticleResourceTest {
     private static final Currency DEFAULT_CURRENCY = Currency.EUR;
     private static final Currency UPDATED_CURRENCY = Currency.GBP;
 
+    private static final byte[] DEFAULT_IMAGE1 = TestUtil.createByteArray(1000, "0");
+    private static final byte[] UPDATED_IMAGE1 = TestUtil.createByteArray(2500000, "1");
+
+    private static final byte[] DEFAULT_IMAGE2 = TestUtil.createByteArray(1000, "0");
+    private static final byte[] UPDATED_IMAGE2 = TestUtil.createByteArray(2500000, "1");
+
     @Inject
     private ArticleRepository articleRepository;
 
@@ -85,6 +92,8 @@ public class ArticleResourceTest {
         article.setPrice(DEFAULT_PRICE);
         article.setDeliveryCosts(DEFAULT_DELIVERY_COSTS);
         article.setCurrency(DEFAULT_CURRENCY);
+        article.setImage1(DEFAULT_IMAGE1);
+        article.setImage2(DEFAULT_IMAGE2);
     }
 
     @Test
@@ -109,6 +118,8 @@ public class ArticleResourceTest {
         assertThat(testArticle.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testArticle.getDeliveryCosts()).isEqualTo(DEFAULT_DELIVERY_COSTS);
         assertThat(testArticle.getCurrency()).isEqualTo(DEFAULT_CURRENCY);
+        assertThat(testArticle.getImage1()).isEqualTo(DEFAULT_IMAGE1);
+        assertThat(testArticle.getImage2()).isEqualTo(DEFAULT_IMAGE2);
     }
 
     @Test
@@ -221,6 +232,42 @@ public class ArticleResourceTest {
 
     @Test
     @Transactional
+    public void checkImage1IsRequired() throws Exception {
+        int databaseSizeBeforeTest = articleRepository.findAll().size();
+        // set the field null
+        article.setImage1(null);
+
+        // Create the Article, which fails.
+
+        restArticleMockMvc.perform(post("/api/articles")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(article)))
+                .andExpect(status().isBadRequest());
+
+        List<Article> articles = articleRepository.findAll();
+        assertThat(articles).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkImage2IsRequired() throws Exception {
+        int databaseSizeBeforeTest = articleRepository.findAll().size();
+        // set the field null
+        article.setImage2(null);
+
+        // Create the Article, which fails.
+
+        restArticleMockMvc.perform(post("/api/articles")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(article)))
+                .andExpect(status().isBadRequest());
+
+        List<Article> articles = articleRepository.findAll();
+        assertThat(articles).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllArticles() throws Exception {
         // Initialize the database
         articleRepository.saveAndFlush(article);
@@ -235,7 +282,9 @@ public class ArticleResourceTest {
                 .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
                 .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
                 .andExpect(jsonPath("$.[*].deliveryCosts").value(hasItem(DEFAULT_DELIVERY_COSTS.intValue())))
-                .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY.toString())));
+                .andExpect(jsonPath("$.[*].currency").value(hasItem(DEFAULT_CURRENCY.toString())))
+                .andExpect(jsonPath("$.[*].image1").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE1))))
+                .andExpect(jsonPath("$.[*].image2").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE2))));
     }
 
     @Test
@@ -254,7 +303,9 @@ public class ArticleResourceTest {
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.deliveryCosts").value(DEFAULT_DELIVERY_COSTS.intValue()))
-            .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY.toString()));
+            .andExpect(jsonPath("$.currency").value(DEFAULT_CURRENCY.toString()))
+            .andExpect(jsonPath("$.image1").value(Base64Utils.encodeToString(DEFAULT_IMAGE1)))
+            .andExpect(jsonPath("$.image2").value(Base64Utils.encodeToString(DEFAULT_IMAGE2)));
     }
 
     @Test
@@ -280,6 +331,8 @@ public class ArticleResourceTest {
         article.setPrice(UPDATED_PRICE);
         article.setDeliveryCosts(UPDATED_DELIVERY_COSTS);
         article.setCurrency(UPDATED_CURRENCY);
+        article.setImage1(UPDATED_IMAGE1);
+        article.setImage2(UPDATED_IMAGE2);
         
 
         restArticleMockMvc.perform(put("/api/articles")
@@ -297,6 +350,8 @@ public class ArticleResourceTest {
         assertThat(testArticle.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testArticle.getDeliveryCosts()).isEqualTo(UPDATED_DELIVERY_COSTS);
         assertThat(testArticle.getCurrency()).isEqualTo(UPDATED_CURRENCY);
+        assertThat(testArticle.getImage1()).isEqualTo(UPDATED_IMAGE1);
+        assertThat(testArticle.getImage2()).isEqualTo(UPDATED_IMAGE2);
     }
 
     @Test

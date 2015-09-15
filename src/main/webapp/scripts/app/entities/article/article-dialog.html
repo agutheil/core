@@ -103,6 +103,78 @@
                 </p>
             </div>
         </div>
+        <div class="form-group" ngf-drop ngf-change="setImage1($files, article)" ngf-accept="'image/*'">
+            <label translate="coreApp.article.image1" for="field_image1">Image1</label>
+            <div>
+                <img data-ng-src="{{'data:image/*;base64,' + article.image1}}" style="max-height: 100px;" ng-if="article.image1"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{byteSize(article.image1)}}</span>
+                    <button ng-click="article.image1=null"
+                            ng-if="article.image1"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="setImage1($files, article)" accept="image/*" translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="image1" id="field_image1"
+                    ng-model="article.image1"
+                    required minbytes="1000" maxbytes="2500000">
+
+            <div ng-show="editForm.image1.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.image1.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.image1.$error.minbytes" translate="entity.validation.minbytes" translate-value-min="1000">
+                    This field should be more than 1000.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.image1.$error.maxbytes" translate="entity.validation.maxbytes" translate-value-max="2500000">
+                    This field cannot be more than 2500000.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="setImage2($files, article)" ngf-accept="'image/*'">
+            <label translate="coreApp.article.image2" for="field_image2">Image2</label>
+            <div>
+                <img data-ng-src="{{'data:image/*;base64,' + article.image2}}" style="max-height: 100px;" ng-if="article.image2"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{byteSize(article.image2)}}</span>
+                    <button ng-click="article.image2=null"
+                            ng-if="article.image2"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="setImage2($files, article)" accept="image/*" translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="image2" id="field_image2"
+                    ng-model="article.image2"
+                    required minbytes="1000" maxbytes="2500000">
+
+            <div ng-show="editForm.image2.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.image2.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.image2.$error.minbytes" translate="entity.validation.minbytes" translate-value-min="1000">
+                    This field should be more than 1000.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.image2.$error.maxbytes" translate="entity.validation.maxbytes" translate-value-max="2500000">
+                    This field cannot be more than 2500000.
+                </p>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

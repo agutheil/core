@@ -5,9 +5,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,7 +26,6 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-
     @NotNull        
     @Column(name = "code", nullable = false)
     private String code;
@@ -50,7 +50,19 @@ public class Article implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "currency", nullable = false)
     private Currency currency;
-    
+
+    @NotNull
+    @Size(min = 1000, max = 2500000)        
+    @Lob
+    @Column(name = "image1", nullable = false)
+    private byte[] image1;
+
+    @NotNull
+    @Size(min = 1000, max = 2500000)        
+    @Lob
+    @Column(name = "image2", nullable = false)
+    private byte[] image2;
+
     @JsonIgnore
     @ManyToOne
     private User user;
@@ -111,6 +123,22 @@ public class Article implements Serializable {
         this.currency = currency;
     }
 
+    public byte[] getImage1() {
+        return image1;
+    }
+
+    public void setImage1(byte[] image1) {
+        this.image1 = image1;
+    }
+
+    public byte[] getImage2() {
+        return image2;
+    }
+
+    public void setImage2(byte[] image2) {
+        this.image2 = image2;
+    }
+
     public User getUser() {
         return user;
     }
@@ -150,6 +178,8 @@ public class Article implements Serializable {
                 ", price='" + price + "'" +
                 ", deliveryCosts='" + deliveryCosts + "'" +
                 ", currency='" + currency + "'" +
+                ", image1='" + image1 + "'" +
+                ", image2='" + image2 + "'" +
                 '}';
     }
 }

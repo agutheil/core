@@ -57,6 +57,32 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "image1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required",
+                "minbytes",
+                "maxbytes"
+            ],
+            "fieldValidateRulesMinbytes": "1000",
+            "fieldValidateRulesMaxbytes": "2500000"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "image2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required",
+                "minbytes",
+                "maxbytes"
+            ],
+            "fieldValidateRulesMinbytes": "1000",
+            "fieldValidateRulesMaxbytes": "2500000"
         }
     ],
     "changelogDate": "20150907220409",

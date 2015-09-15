@@ -40,6 +40,12 @@
             <column name="currency" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="image1" type="blob">
+                <constraints nullable="false" />
+            </column>
+            <column name="image2" type="blob">
+                <constraints nullable="false" />
+            </column>
             <column name="user_id" type="bigint"/>
         </createTable>
         

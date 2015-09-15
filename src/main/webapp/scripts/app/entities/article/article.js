@@ -62,7 +62,7 @@ angular.module('coreApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {code: null, name: null, description: null, price: null, deliveryCosts: null, currency: null, id: null};
+                                return {code: null, name: null, description: null, price: null, deliveryCosts: null, currency: null, image1: null, image2: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

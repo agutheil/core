@@ -80,7 +80,7 @@ class ArticleGatlingTest extends Simulation {
             .exec(http("Create new article")
             .post("/api/articles")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "code":"SAMPLE_TEXT", "name":"SAMPLE_TEXT", "description":"SAMPLE_TEXT", "price":null, "deliveryCosts":null, "currency":null}""")).asJSON
+            .body(StringBody("""{"id":null, "code":"SAMPLE_TEXT", "name":"SAMPLE_TEXT", "description":"SAMPLE_TEXT", "price":null, "deliveryCosts":null, "currency":null, "image1":null, "image2":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_article_url")))
             .pause(10)
