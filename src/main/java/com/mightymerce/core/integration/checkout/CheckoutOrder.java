@@ -1,8 +1,11 @@
-package com.mightymerce.core.domain;
+package com.mightymerce.core.integration.checkout;
 
 import java.math.BigDecimal;
 
-public class FlatSocialOrder {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CheckoutOrder {
 
 	private Long article;
 	private String transactionId;    

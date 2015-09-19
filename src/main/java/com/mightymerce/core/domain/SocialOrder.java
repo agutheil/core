@@ -25,8 +25,7 @@ public class SocialOrder implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    
-    @Column(name = "transaction_id")
+    @Column(name = "transaction_id") //TODO unique
     private String transactionId;
     
     @Column(name = "total_amount", precision=10, scale=2)

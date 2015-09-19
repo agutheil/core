@@ -4,12 +4,12 @@ import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Address;
 import com.mightymerce.core.domain.Article;
 import com.mightymerce.core.domain.Customer;
-import com.mightymerce.core.domain.FlatSocialOrder;
 import com.mightymerce.core.domain.SocialOrder;
 import com.mightymerce.core.domain.User;
 import com.mightymerce.core.domain.enumeration.Country;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 import com.mightymerce.core.domain.enumeration.PaymentStatus;
+import com.mightymerce.core.integration.checkout.CheckoutOrder;
 import com.mightymerce.core.repository.AddressRepository;
 import com.mightymerce.core.repository.ArticleRepository;
 import com.mightymerce.core.repository.CustomerRepository;
@@ -76,59 +76,6 @@ public class SocialOrderResource {
         return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
                 .body(result);
-    }
-    
-    /**
-     * POST  /flatSocialOrders -> Create a new socialOrder via a flattened Model.
-     */
-    @RequestMapping(value = "/flatSocialOrders",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<FlatSocialOrder> createflat(@RequestBody FlatSocialOrder flatSocialOrder) throws URISyntaxException {
-        log.debug("REST request to save SocialOrder via a FlatSocialOrder: {}", flatSocialOrder);
-        if (flatSocialOrder.getArticle() == null) {
-            return ResponseEntity.badRequest().header("Failure", "A new socialOrder needs an article ID").body(null);
-        }
-        
-        
-        
-        SocialOrder input = new SocialOrder();
-        Article article = articleRepository.findOne(flatSocialOrder.getArticle());
-        User user = userRepository.findOne(article.getUser().getId());
-        log.info(user.toString());
-        
-        Customer customer = new Customer();
-        customer.setLastName(flatSocialOrder.getLastName());
-        customer.setName(flatSocialOrder.getFirstName());
-        customer.setPayerId(flatSocialOrder.getPayerId());
-        customer.setUser(user);
-        customer = customerRepository.save(customer);
-        
-        Address delivery = new Address();
-        delivery.setAddressee(flatSocialOrder.getShipToName());
-//        Country country = Country.valueOf(flatSocialOrder.getShipToCntryCode());
-//        delivery.setCountry(flatSocialOrder.getShipToCntryCode(country));
-        delivery.setStreetname(flatSocialOrder.getShipToStreet());
-        delivery.setHousenumber("");
-        delivery.setTown(flatSocialOrder.getShipToCity());
-        delivery.setPostalCode(flatSocialOrder.getShipToZip());
-        delivery.setUser(user);
-        delivery = addressRepository.save(delivery);
-        
-        input.setArticle(article);
-        input.setPaymentStatus(flatSocialOrder.getPaymentStatus());
-        input.setOrderStatus(OrderStatus.created);
-        input.setTransactionId(flatSocialOrder.getTransactionId());
-        input.setTotalAmount(flatSocialOrder.getTotalAmt());      
-        input.setUser(user);
-        input.setDelivery(delivery);
-        input.setCustomer(customer);
-        SocialOrder result = socialOrderRepository.save(input);
-        
-        return ResponseEntity.created(new URI("/api/socialOrders/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("socialOrder", result.getId().toString()))
-                .body(flatSocialOrder);
     }
 
     /**
