@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mightymerce.core.domain.enumeration.DeliveryStatus;
 import com.mightymerce.core.domain.enumeration.OrderStatus;
 
@@ -54,6 +55,7 @@ public class SocialOrder implements Serializable {
     @ManyToOne
     private Customer customer;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 
