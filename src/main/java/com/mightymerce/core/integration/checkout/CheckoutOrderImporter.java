@@ -9,12 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.mightymerce.core.domain.SocialOrder;
-import com.mightymerce.core.repository.AddressRepository;
-import com.mightymerce.core.repository.ArticleRepository;
-import com.mightymerce.core.repository.CustomerRepository;
 import com.mightymerce.core.repository.SocialOrderRepository;
-import com.mightymerce.core.repository.UserRepository;
-import com.mightymerce.core.service.impl.ChannelPostServiceImpl;
 
 @Component
 public class CheckoutOrderImporter {

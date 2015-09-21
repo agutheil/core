@@ -40,7 +40,7 @@ public class CheckoutOrderToSocialOrderConverter {
 	SocialOrder convertAndSave(CheckoutOrder checkoutOrder) {
         
         SocialOrder output = new SocialOrder();
-        Article article = articleRepository.findOne(checkoutOrder.getArticle());
+        Article article = articleRepository.findOne(checkoutOrder.getCoreArticleId());
         if (article == null) {
         	throw new CheckoutOrderImportException("Article not found. Cannot import Order with txid "+checkoutOrder.getTransactionId());
         }

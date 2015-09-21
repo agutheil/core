@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CheckoutOrder {
 
-	private Long article;
+	private Long coreArticleId;
 	private String transactionId;    
 	private String paymentStatus;
 	private String email; 			
@@ -25,12 +25,12 @@ public class CheckoutOrder {
 	private BigDecimal totalAmt ;	// ' Total Amount to be paid by buyer
 	private String currencyCode ;    // 'Currency being used 
 
-	public Long getArticle() {
-		return article;
+	public Long getCoreArticleId() {
+		return coreArticleId;
 	}
 
-	public void setArticle(Long article) {
-		this.article = article;
+	public void setCoreArticleId(Long coreArticleId) {
+		this.coreArticleId = coreArticleId;
 	}
 
 	public String getTransactionId() {

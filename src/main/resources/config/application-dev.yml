@@ -51,3 +51,8 @@ cache:
     timeToLiveSeconds: 3600
     ehcache:
         maxBytesLocalHeap: 16M
+        
+mightymerce:
+    checkoutUrl: http://127.0.0.1:8081/
+    checkoutUser: admin
+    checkoutPassword: admin
