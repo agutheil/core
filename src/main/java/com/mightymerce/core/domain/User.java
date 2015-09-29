@@ -36,17 +36,39 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @JsonIgnore
     @NotNull
-    @Size(min = 60, max = 60) 
+    @Size(min = 60, max = 60)
     @Column(length = 60)
     private String password;
 
+    @NotNull
+    @Size(max = 200)
+    @Column(name = "company_name", length = 200, nullable = false)
+    private String companyName;
+
+    @NotNull
     @Size(max = 50)
-    @Column(name = "first_name", length = 50)
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
+    @NotNull
     @Size(max = 50)
-    @Column(name = "last_name", length = 50)
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
+
+    @NotNull
+    @Size(max = 500)
+    @Column(name = "street_address", length = 500, nullable = false)
+    private String streetAddress;
+
+    @NotNull
+    @Size(max = 20)
+    @Column(name = "zip_code", length = 20, nullable = false)
+    private String zipCode;
+
+    @NotNull
+    @Size(max = 200)
+    @Column(name = "city", length = 200, nullable = false)
+    private String city;
 
     @Email
     @Size(max = 100)
@@ -81,6 +103,38 @@ public class User extends AbstractAuditingEntity implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Authority> authorities = new HashSet<>();
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public Long getId() {
         return id;
@@ -205,8 +259,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
     public String toString() {
         return "User{" +
                 "login='" + login + '\'' +
+                ", companyName='" + companyName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
                 ", activated='" + activated + '\'' +
                 ", langKey='" + langKey + '\'' +

@@ -1,0 +1,42 @@
+<div>
+
+    <jh-alert></jh-alert>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 translate="coreApp.deliveryOption.home.title">Delivery Options</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th translate="coreApp.deliveryOption.list.title">Title</th>
+                        <th translate="coreApp.deliveryOption.list.within">Delivered Within</th>
+                        <th translate="coreApp.deliveryOption.list.country">Delivery Country</th>
+                        <th translate="coreApp.deliveryOption.list.cost">Costs</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="deliveryOption in deliveryOptions">
+                        <td>{{deliveryOption.title}}</td>
+                        <td>{{deliveryOption.within}}</td>
+                        <td>{{deliveryOption.country}}</td>
+                        <td>{{deliveryOption.cost}} {{deliveryOption.currency}}</td>
+                        <td>
+                            <button type="submit"
+                                    ui-sref="deliveryOption.edit({id:deliveryOption.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,22 @@
+{
+    "coreApp": {
+        "legalInfo" : {
+            "home": {
+                "title": "LegalInfos",
+                "createLabel": "Create a new LegalInfo",
+                "createOrEditLabel": "Create or edit a LegalInfo"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete LegalInfo {{ id }}?"
+            },
+            "detail": {
+                "title": "LegalInfo"
+            },
+            "title": "Title",
+            "purpose": "Purpose",
+            "pageTitle": "PageTitle",
+            "pageText": "PageText",
+            "user": "User"
+        }
+    }
+}

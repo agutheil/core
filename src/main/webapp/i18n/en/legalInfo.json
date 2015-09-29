@@ -1,0 +1,25 @@
+{
+    "coreApp": {
+        "legalInfo" : {
+            "home": {
+                "title": "Required Legal Information",
+                "createLabel": "Create a new LegalInfo",
+                "createOrEditLabel": "Edit Legal Copy"
+            },
+            "created": "A new LegalInfo is created with identifier {{ param }}",
+            "updated": "A LegalInfo is updated with identifier {{ param }}",
+            "deleted": "A LegalInfo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete LegalInfo {{ id }}?"
+            },
+            "detail": {
+                "title": "Legal Information"
+            },
+            "title": "Title",
+            "purpose": "Purpose",
+            "pageTitle": "Page Title*",
+            "pageText": "Copy*",
+            "user": "User"
+        }
+    }
+}

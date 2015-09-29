@@ -1,0 +1,78 @@
+
+<div>
+    <h2><span translate="coreApp.deliveryOption.detail.title">DeliveryOption</span> {{deliveryOption.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.title">Title</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{deliveryOption.title}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.within">Within</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{deliveryOption.within}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.country">Country</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{deliveryOption.country}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.taxrow">Taxrow</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{deliveryOption.taxrow}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.cost">Cost</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{deliveryOption.cost}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.currency">Currency</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{deliveryOption.currency}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.deliveryOption.user">user</span>
+                </td>
+                <td>
+                    {{deliveryOption.userId}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

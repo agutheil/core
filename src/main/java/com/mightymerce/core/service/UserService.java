@@ -81,8 +81,8 @@ public class UserService {
            });
     }
 
-    public User createUserInformation(String login, String password, String firstName, String lastName, String email,
-                                      String langKey) {
+    public User createUserInformation(String login, String password, String companyName, String firstName, String lastName, String streetAddress,
+                                      String zipCode, String city, String email, String langKey) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne("ROLE_USER");
@@ -91,8 +91,12 @@ public class UserService {
         newUser.setLogin(login);
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
+        newUser.setCompanyName(companyName);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
+        newUser.setStreetAddress(streetAddress);
+        newUser.setZipCode(zipCode);
+        newUser.setCity(city);
         newUser.setEmail(email);
         newUser.setLangKey(langKey);
         // new user is not active
@@ -106,10 +110,15 @@ public class UserService {
         return newUser;
     }
 
-    public void updateUserInformation(String firstName, String lastName, String email, String langKey) {
+    public void updateUserInformation(String companyName, String firstName, String lastName, String streetAddress,
+                                      String zipCode, String city, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).ifPresent(u -> {
+            u.setCompanyName(companyName);
             u.setFirstName(firstName);
             u.setLastName(lastName);
+            u.setStreetAddress(streetAddress);
+            u.setZipCode(zipCode);
+            u.setCity(city);
             u.setEmail(email);
             u.setLangKey(langKey);
             userRepository.save(u);

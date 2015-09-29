@@ -1,11 +1,22 @@
 {
     "coreApp": {
-        "Currency" : {
-            "SELECT": "{VALUE, select, EUR{EUR} GBP{GBP} USD{USD} CHF{CHF} other{}}",
-            "EUR": "EUR",
-            "GBP": "GBP",
-            "USD": "USD",
-            "CHF": "CHF"
+        "currency" : {
+            "home": {
+                "title": "Currencys",
+                "createLabel": "Create a new Currency",
+                "createOrEditLabel": "Create or edit a Currency"
+            },
+            "created": "A new Currency is created with identifier {{ param }}",
+            "updated": "A Currency is updated with identifier {{ param }}",
+            "deleted": "A Currency is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Currency {{ id }}?"
+            },
+            "detail": {
+                "title": "Currency"
+            },
+            "title": "Title",
+            "description": "Description"
         }
     }
 }

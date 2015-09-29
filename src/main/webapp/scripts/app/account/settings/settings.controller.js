@@ -13,7 +13,8 @@ angular.module('coreApp')
                 $scope.error = null;
                 $scope.success = 'OK';
                 Principal.identity().then(function(account) {
-                    $scope.settingsAccount = account;
+                    console.log(account);
+                    //$scope.settingsAccount = account;
                 });
                 Language.getCurrent().then(function(current) {
                     if ($scope.settingsAccount.langKey !== current) {

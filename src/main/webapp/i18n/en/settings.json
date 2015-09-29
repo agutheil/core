@@ -1,11 +1,21 @@
 {
     "settings": {
-        "title": "User settings for [<b>{{username}}</b>]",
+        "title": "Company Details",
         "form": {
-            "firstname": "First Name",
-            "firstname.placeholder": "Your first name",
-            "lastname": "Last Name",
-            "lastname.placeholder": "Your last name",
+            "companyname": "Company Name*",
+            "companyname.placeholder": "Your Company Name",
+            "firstname": "First Name*",
+            "firstname.placeholder": "Your First Name",
+            "lastname": "Last Name*",
+            "lastname.placeholder": "Your Last Name",
+            "streetaddress": "Street, Street No.*",
+            "streetaddress.placeholder": "Your Street, Street No.",
+            "zipcode": "ZIP*",
+            "zipcode.placeholder": "Your ZIP",
+            "city": "City*",
+            "city.placeholder": "Your City",
+            "email": "E-mail*",
+            "email.placeholder": "Your E-mail",
             "language": "Language",
             "button": "Save"
         },
@@ -16,15 +26,35 @@
             },
             "success": "<strong>Settings saved!</strong>",
             "validate": {
+                "companyname": {
+                    "required": "Your Company Name is required.",
+                    "minlength": "Your Company Name is required to be at least 1 character",
+                    "maxlength": "Your Company Name cannot be longer than 200 characters"
+                },
                 "firstname": {
-                    "required": "Your first name is required.",
-                    "minlength": "Your first name is required to be at least 1 character",
-                    "maxlength": "Your first name cannot be longer than 50 characters"
+                    "required": "Your First Name is required.",
+                    "minlength": "Your First Name is required to be at least 1 character",
+                    "maxlength": "Your First Name cannot be longer than 50 characters"
                 },
                 "lastname": {
-                    "required": "Your last name is required.",
-                    "minlength": "Your last name is required to be at least 1 character",
-                    "maxlength": "Your last name cannot be longer than 50 characters"
+                    "required": "Your Last Name is required.",
+                    "minlength": "Your Last Name is required to be at least 1 character",
+                    "maxlength": "Your Last Name cannot be longer than 50 characters"
+                },
+                "streetaddress": {
+                    "required": "Your Street, Street No. is required.",
+                    "minlength": "Your Street, Street No. is required to be at least 1 character",
+                    "maxlength": "Your Street, Street No. cannot be longer than 500 characters"
+                },
+                "zipcode": {
+                    "required": "Your ZIP is required.",
+                    "minlength": "Your ZIP is required to be at least 5 character",
+                    "maxlength": "Your ZIP cannot be longer than 20 characters"
+                },
+                "city": {
+                    "required": "Your City is required.",
+                    "minlength": "Your City is required to be at least 1 character",
+                    "maxlength": "Your City cannot be longer than 500 characters"
                 }
             }
         }

@@ -57,8 +57,8 @@ public class AccountResource {
                 .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
                     User user = userService.createUserInformation(userDTO.getLogin(), userDTO.getPassword(),
-                    userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail().toLowerCase(),
-                    userDTO.getLangKey());
+                    userDTO.getCompanyName(), userDTO.getFirstName(), userDTO.getLastName(), userDTO.getStreetAddress(),
+                    userDTO.getZipCode(), userDTO.getCity(), userDTO.getEmail().toLowerCase(), userDTO.getLangKey());
                     String baseUrl = request.getScheme() + // "http"
                     "://" +                                // "://"
                     request.getServerName() +              // "myhost"
@@ -133,8 +133,9 @@ public class AccountResource {
             .findOneByLogin(userDTO.getLogin())
             .filter(u -> u.getLogin().equals(SecurityUtils.getCurrentLogin()))
             .map(u -> {
-                userService.updateUserInformation(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-                    userDTO.getLangKey());
+                userService.updateUserInformation(userDTO.getCompanyName(), userDTO.getFirstName(),
+                    userDTO.getLastName(), userDTO.getStreetAddress(), userDTO.getZipCode(), userDTO.getCity(),
+                    userDTO.getEmail(), userDTO.getLangKey());
                 return new ResponseEntity<String>(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
@@ -160,7 +161,7 @@ public class AccountResource {
         produces = MediaType.TEXT_PLAIN_VALUE)
     @Timed
     public ResponseEntity<?> requestPasswordReset(@RequestBody String mail, HttpServletRequest request) {
-        
+
         return userService.requestPasswordReset(mail)
             .map(user -> {
                 String baseUrl = request.getScheme() +
@@ -171,7 +172,7 @@ public class AccountResource {
             mailService.sendPasswordResetMail(user, baseUrl);
             return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
             }).orElse(new ResponseEntity<>("e-mail address not registered", HttpStatus.BAD_REQUEST));
-        
+
     }
 
     @RequestMapping(value = "/account/reset_password/finish",

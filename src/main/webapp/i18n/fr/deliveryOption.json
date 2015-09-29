@@ -1,0 +1,25 @@
+{
+    "coreApp": {
+        "deliveryOption" : {
+            "home": {
+                "title": "DeliveryOptions",
+                "createLabel": "Créer un nouveau DeliveryOption",
+                "createOrEditLabel": "Créer ou éditer un DeliveryOption"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le DeliveryOption {{ id }} ?"
+            },
+            "detail": {
+                "title": "DeliveryOption"
+            },
+            "title": "Title",
+            "within": "Within",
+            "country": "Country",
+            "taxrow": "Taxrow",
+            "cost": "Cost",
+            "currency": "Currency",
+            "user": "User"
+        }
+    }
+}
+

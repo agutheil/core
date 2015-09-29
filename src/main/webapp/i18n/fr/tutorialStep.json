@@ -1,0 +1,21 @@
+{
+    "coreApp": {
+        "tutorialStep" : {
+            "home": {
+                "title": "TutorialSteps",
+                "createLabel": "Créer un nouveau TutorialStep",
+                "createOrEditLabel": "Créer ou éditer un TutorialStep"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le TutorialStep {{ id }} ?"
+            },
+            "detail": {
+                "title": "TutorialStep"
+            },
+            "step": "Step",
+            "completed": "Completed",
+            "user": "User"
+        }
+    }
+}
+
