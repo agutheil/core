@@ -1,0 +1,46 @@
+
+<div>
+    <h2><span translate="coreApp.tutorialStep.detail.title">TutorialStep</span> {{tutorialStep.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.tutorialStep.step">Step</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{tutorialStep.step}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.tutorialStep.completed">Completed</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{tutorialStep.completed}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.tutorialStep.user">user</span>
+                </td>
+                <td>
+                    {{tutorialStep.userId}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

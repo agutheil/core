@@ -1,0 +1,36 @@
+{
+    "coreApp": {
+        "deliveryOption" : {
+            "home": {
+                "title": "Delivery Options",
+                "createLabel": "Create a new DeliveryOption",
+                "editLabel": "Edit Delivery Option"
+            },
+            "edit": {
+                "title": "Edit Delivery Option"
+            },
+            "created": "A new DeliveryOption is created with identifier {{ param }}",
+            "updated": "A DeliveryOption is updated with identifier {{ param }}",
+            "deleted": "A DeliveryOption is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete DeliveryOption {{ id }}?"
+            },
+            "list": {
+                "title": "Title",
+                "within": "Delivered Within",
+                "country": "Delivery Country",
+                "cost": "Costs"
+            },
+            "detail": {
+                "title": "DeliveryOption"
+            },
+            "title": "Title*",
+            "within": "Delivered Within*",
+            "country": "Delivery Country*",
+            "taxrow": "Applicable Tax Row*",
+            "cost": "Delivery Costs (incl. VAT)*",
+            "currency": "Currency*",
+            "user": "User"
+        }
+    }
+}

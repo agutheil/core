@@ -1,25 +1,99 @@
-<div ng-cloak>
-    <div class="row">
+<div ng-cloak ng-switch="isAuthenticated()" xmlns="http://www.w3.org/1999/html">
+
+    <div class="well tutorial-panel" ng-switch-when="true">
+
+        <h1><strong>Welcome {{account.firstName}} {{account.lastName}}!</strong></h1>
+
+        <h4><strong>Take these 4 steps and you are ready to sell products on your customer's favorite social channels.</strong></h4>
+        <br/>
+
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="panel panel-default tutorial-step-panel" ng-switch="(tutorialSteps | filter:{step:'step1'})[0].completed">
+                    <div class="panel-heading tutorial-step-panel-heading">
+                        <h4>Step 1 - Maintain your first product</h4>
+                    </div>
+                    <div class="panel-body" ng-switch-when="false">
+                        Maintain title, description and pricing of your final product. Add an image of your product that is appealing to your customer.
+                        <br/><br/>
+                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Add Product</button>
+                    </div>
+                    <div class="panel-body" ng-switch-when="true">
+                        <span class="glyphicon glyphicon-check"/> Completed
+                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Products</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="panel panel-default tutorial-step-panel" ng-switch="(tutorialSteps | filter:{step:'step2'})[0].completed">
+                    <div class="panel-heading tutorial-step-panel-heading">
+                        <h4>Step 2 - Connect your Social Channels</h4>
+                    </div>
+                    <div class="panel-body" ng-switch-when="false">
+                        Connect the social media channels on which you would like your customers to buy your products.
+                        <br/><br/>
+                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Connect to Social Channels</button>
+                    </div>
+                    <div class="panel-body" ng-switch-when="true">
+                        <span class="glyphicon glyphicon-check"/> Completed
+                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Social Channels</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="panel panel-default tutorial-step-panel" ng-switch="(tutorialSteps | filter:{step:'step3'})[0].completed">
+                    <div class="panel-heading tutorial-step-panel-heading">
+                        <h4>Step 3 - Connect your Paypal Account</h4>
+                    </div>
+                    <div class="panel-body" ng-switch-when="false">
+                        Acivate your Paypal account to facilitate checkout for your customers and to enable payments to your account.
+                        <br/><br/>
+                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Connect to Paypal</button>
+                    </div>
+                    <div class="panel-body" ng-switch-when="true">
+                        <span class="glyphicon glyphicon-check"/> Completed
+                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Paypal Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="panel panel-default tutorial-step-panel" ng-switch="(tutorialSteps | filter:{step:'step4'})[0].completed">
+                    <div class="panel-heading tutorial-step-panel-heading">
+                        <h4>Step 4 - Post your Products on Social Channels</h4>
+                    </div>
+                    <div class="panel-body" ng-switch-when="false">
+                        Finally post your products to one or more activated social channels. With the post of your first product you will
+                        find a Dashboard on your Home screen that allows you to track your posts and orders.
+                        <br/><br/>
+                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Post Product</button>
+                    </div>
+                    <div class="panel-body" ng-switch-when="true">
+                        <span class="glyphicon glyphicon-check"/> Completed
+                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Posts</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row" ng-switch-when="false">
         <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
             <h1 translate="main.title">Welcome, Java Hipster!</h1>
             <p class="lead" translate="main.subtitle">This is your homepage</p>
-
-            <div ng-switch="isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" translate="main.logged.message" translate-values="{username: '{{account.login}}'}">
-                    You are logged in as user "{{account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
-                    If you want to <a href="#/login">authenticate</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">
-                    You don't have an account yet? <a href="#/register">Register a new account</a>
-                </div>
-            </div>
 
             <p translate="main.question">
                 If you have any question on JHipster:
@@ -34,8 +108,9 @@
             </ul>
 
             <p>
-             <span translate="main.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!
+                <span translate="main.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!
             </p>
         </div>
     </div>
+
 </div>

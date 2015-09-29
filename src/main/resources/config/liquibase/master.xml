@@ -11,5 +11,11 @@
     <include file="classpath:config/liquibase/changelog/20150907231647_added_entity_Address.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150907232924_added_entity_Customer.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20150907234034_added_entity_SocialOrder.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150917195618_modifed_entity_User.xml" relativeToChangelogFile="false"/>
+
+    <include file="classpath:config/liquibase/changelog/20150923123448_added_entity_LegalInfo.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150923124638_added_entity_Notification.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150924082811_added_entity_DeliveryOption.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20150924114221_added_entity_TutorialStep.xml" relativeToChangelogFile="false"/>
     <!-- JHipster will add liquibase changelogs here -->
 </databaseChangeLog>

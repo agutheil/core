@@ -166,3 +166,19 @@ ul#strengthBar {
     background-color: #eee;
     opacity: 1;
 }
+
+.tutorial-panel {
+    text-align: center;
+}
+
+.tutorial-step-panel {
+    text-align: left;
+}
+
+.tutorial-step-panel-heading {
+    background-color: #cccccc !important;
+}
+
+.tutorial-panel-btn {
+    width: 250px;
+}

@@ -1,0 +1,38 @@
+<div>
+
+    <jh-alert></jh-alert>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 translate="coreApp.legalInfo.home.title">Required Legal Information</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th translate="coreApp.legalInfo.title">Title</th>
+                            <th translate="coreApp.legalInfo.purpose">Purpose</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="legalInfo in legalInfos">
+                            <td>{{legalInfo.title}}</td>
+                            <td>{{legalInfo.purpose}}</td>
+                            <td>
+                                <button type="submit"
+                                        ui-sref="legalInfo.edit({id:legalInfo.id})"
+                                        class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

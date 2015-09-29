@@ -1,4 +1,4 @@
-{
+ {
     "coreApp": {
         "DeliveryStatus" : {
             "SELECT": "{VALUE, select, sent{sent} delivered{delivered} other{}}",

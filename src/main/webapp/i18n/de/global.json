@@ -12,6 +12,13 @@
                 "address": "Address",
                 "customer": "Customer",
                 "socialOrder": "SocialOrder",
+                "country": "Country",
+                "currency": "Currency",
+                "taxRow": "TaxRow",
+                "deliveryOption": "DeliveryOption",
+                "legalInfo": "LegalInfo",
+                "notification": "Notification",
+                "tutorialStep": "TutorialStep",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

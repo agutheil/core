@@ -1,0 +1,38 @@
+<div>
+
+    <jh-alert></jh-alert>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 translate="coreApp.notification.home.title">Notifications</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th translate="coreApp.notification.title">Title</th>
+                        <th translate="coreApp.notification.purpose">Purpose</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="notification in notifications">
+                            <td>{{notification.title}}</td>
+                            <td>{{notification.purpose}}</td>
+                            <td>
+                                <button type="submit"
+                                        ui-sref="notification.edit({id:notification.id})"
+                                        class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,121 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myDeliveryOptionLabel" translate="coreApp.deliveryOption.home.editLabel">Edit Delivery Option</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label translate="coreApp.deliveryOption.title" for="field_title">Title*</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                   ng-model="deliveryOption.title"
+                   required ng-maxlength="100">
+
+            <div ng-show="editForm.title.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.title.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.title.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.deliveryOption.within" for="field_within">Delivered Within*</label>
+            <input type="text" class="form-control" name="within" id="field_within"
+                   ng-model="deliveryOption.within"
+                   required ng-maxlength="100">
+
+            <div ng-show="editForm.within.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.within.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.within.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.deliveryOption.country" for="field_country">Delivery Country*</label>
+            <input type="text" class="form-control" name="country" id="field_country"
+                   ng-model="deliveryOption.country"
+                   required ng-maxlength="100" readonly="true">
+
+            <div ng-show="editForm.country.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.country.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.country.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.deliveryOption.taxrow" for="field_taxrow">Applicable Tax Row*</label>
+            <input type="text" class="form-control" name="taxrow" id="field_taxrow"
+                   ng-model="deliveryOption.taxrow"
+                   required ng-maxlength="150" readonly="true">
+
+            <div ng-show="editForm.taxrow.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.taxrow.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.taxrow.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="150">
+                    This field cannot be longer than 150 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.deliveryOption.cost" for="field_cost">Delivery Costs (incl. VAT)*</label>
+            <input type="number" class="form-control" name="cost" id="field_cost"
+                   ng-model="deliveryOption.cost"
+                   required>
+
+            <div ng-show="editForm.cost.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.cost.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.cost.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.deliveryOption.currency" for="field_currency">Currency*</label>
+            <input type="text" class="form-control" name="currency" id="field_currency"
+                   ng-model="deliveryOption.currency"
+                   required ng-maxlength="20" readonly="true">
+
+            <div ng-show="editForm.currency.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.currency.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.currency.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="20">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

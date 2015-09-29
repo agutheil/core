@@ -1,0 +1,23 @@
+{
+    "coreApp": {
+        "tutorialStep" : {
+            "home": {
+                "title": "TutorialSteps",
+                "createLabel": "Create a new TutorialStep",
+                "createOrEditLabel": "Create or edit a TutorialStep"
+            },
+            "created": "A new TutorialStep is created with identifier {{ param }}",
+            "updated": "A TutorialStep is updated with identifier {{ param }}",
+            "deleted": "A TutorialStep is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete TutorialStep {{ id }}?"
+            },
+            "detail": {
+                "title": "TutorialStep"
+            },
+            "step": "Step",
+            "completed": "Completed",
+            "user": "User"
+        }
+    }
+}

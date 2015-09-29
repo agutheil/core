@@ -1,0 +1,23 @@
+{
+    "coreApp": {
+        "notification" : {
+            "home": {
+                "title": "Notifications",
+                "createLabel": "Créer un nouveau Notification",
+                "createOrEditLabel": "Créer ou éditer un Notification"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Notification {{ id }} ?"
+            },
+            "detail": {
+                "title": "Notification"
+            },
+            "title": "Title",
+            "purpose": "Purpose",
+            "emailSubject": "EmailSubject",
+            "emailBody": "EmailBody",
+            "user": "User"
+        }
+    }
+}
+

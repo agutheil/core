@@ -1,12 +1,18 @@
 {
     "coreApp": {
-        "Country" : {
-            "SELECT": "{VALUE, select, de{de} us{us} fr{fr} en{en} ch{ch} other{}}",
-            "de": "de",
-            "us": "us",
-            "fr": "fr",
-            "en": "en",
-            "ch": "ch"
+        "country" : {
+            "home": {
+                "title": "Countrys",
+                "createLabel": "Create a new Country",
+                "createOrEditLabel": "Create or edit a Country"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Country {{ id }}?"
+            },
+            "detail": {
+                "title": "Country"
+            },
+            "title": "Title"
         }
     }
 }

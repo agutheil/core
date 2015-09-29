@@ -21,11 +21,29 @@ public class UserDTO {
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
+    @NotNull
+    @Size(max = 200)
+    private String companyName;
+
+    @NotNull
     @Size(max = 50)
     private String firstName;
 
+    @NotNull
     @Size(max = 50)
     private String lastName;
+
+    @NotNull
+    @Size(max = 500)
+    private String streetAddress;
+
+    @NotNull
+    @Size(max = 20)
+    private String zipCode;
+
+    @NotNull
+    @Size(max = 200)
+    private String city;
 
     @Email
     @Size(min = 5, max = 100)
@@ -48,6 +66,22 @@ public class UserDTO {
         this.email = email;
         this.langKey = langKey;
         this.roles = roles;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public String getPassword() {
@@ -83,8 +117,12 @@ public class UserDTO {
         return "UserDTO{" +
         "login='" + login + '\'' +
         ", password='" + password + '\'' +
+        ", companyName='" + companyName + '\'' +
         ", firstName='" + firstName + '\'' +
         ", lastName='" + lastName + '\'' +
+        ", streetAddress='" + streetAddress + '\'' +
+        ", zipCode='" + zipCode + '\'' +
+        ", city='" + city + '\'' +
         ", email='" + email + '\'' +
         ", langKey='" + langKey + '\'' +
         ", roles=" + roles +

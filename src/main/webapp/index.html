@@ -23,10 +23,10 @@
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
-            <div class="well" ui-view="content" xfbml-parse></div>
+            <div ui-view="content" xfbml-parse></div><!-- class="well"-->
 
             <div class="footer">
-                <p translate="footer">This is your footer</p>
+                <!--<p translate="footer">This is your footer</p>-->
             </div>
         </div>
         <div id="fb-root"></div>
@@ -171,6 +171,26 @@
     <script src="scripts/app/entities/socialOrder/socialOrder-detail.controller.js"></script>
     <script src="scripts/components/entities/socialOrder/socialOrder.service.js"></script>
     <script src="scripts/components/util/facebook.service.js"></script>
+    <script src="scripts/app/entities/deliveryOption/deliveryOption.js"></script>
+    <script src="scripts/app/entities/deliveryOption/deliveryOption.controller.js"></script>
+    <script src="scripts/app/entities/deliveryOption/deliveryOption-dialog.controller.js"></script>
+    <script src="scripts/app/entities/deliveryOption/deliveryOption-detail.controller.js"></script>
+    <script src="scripts/components/entities/deliveryOption/deliveryOption.service.js"></script>
+    <script src="scripts/app/entities/legalInfo/legalInfo.js"></script>
+    <script src="scripts/app/entities/legalInfo/legalInfo.controller.js"></script>
+    <script src="scripts/app/entities/legalInfo/legalInfo-dialog.controller.js"></script>
+    <script src="scripts/app/entities/legalInfo/legalInfo-detail.controller.js"></script>
+    <script src="scripts/components/entities/legalInfo/legalInfo.service.js"></script>
+    <script src="scripts/app/entities/notification/notification.js"></script>
+    <script src="scripts/app/entities/notification/notification.controller.js"></script>
+    <script src="scripts/app/entities/notification/notification-dialog.controller.js"></script>
+    <script src="scripts/app/entities/notification/notification-detail.controller.js"></script>
+    <script src="scripts/components/entities/notification/notification.service.js"></script>
+    <script src="scripts/app/entities/tutorialStep/tutorialStep.js"></script>
+    <script src="scripts/app/entities/tutorialStep/tutorialStep.controller.js"></script>
+    <script src="scripts/app/entities/tutorialStep/tutorialStep-dialog.controller.js"></script>
+    <script src="scripts/app/entities/tutorialStep/tutorialStep-detail.controller.js"></script>
+    <script src="scripts/components/entities/tutorialStep/tutorialStep.service.js"></script>
     <!-- endbuild -->
 </body>
 </html>
