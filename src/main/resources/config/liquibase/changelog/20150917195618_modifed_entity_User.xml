@@ -3,39 +3,30 @@
     <changeSet author="smhumayun (generated)" id="1442501804010-1">
         <addColumn tableName="JHI_USER">
             <column name="city" type="varchar(200)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </addColumn>
     </changeSet>
     <changeSet author="smhumayun (generated)" id="1442501804010-2">
         <addColumn tableName="JHI_USER">
             <column name="company_name" type="varchar(200)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </addColumn>
     </changeSet>
     <changeSet author="smhumayun (generated)" id="1442501804010-3">
         <addColumn tableName="JHI_USER">
             <column name="street_address" type="longtext">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </addColumn>
     </changeSet>
     <changeSet author="smhumayun (generated)" id="1442501804010-4">
         <addColumn tableName="JHI_USER">
             <column name="zip_code" type="varchar(20)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </addColumn>
-    </changeSet>
-    <changeSet author="smhumayun (generated)" id="1442501804010-5">
-        <dropForeignKeyConstraint baseTableName="merchant" constraintName="fk_merchant_user_id"/>
-    </changeSet>
-    <changeSet author="smhumayun (generated)" id="1442501804010-6">
-        <dropUniqueConstraint constraintName="user_id" tableName="merchant"/>
-    </changeSet>
-    <changeSet author="smhumayun (generated)" id="1442501804010-7">
-        <dropTable tableName="merchant"/>
     </changeSet>
     <changeSet author="smhumayun (generated)" id="1442501804010-8">
         <addNotNullConstraint columnDataType="varchar(50)" columnName="first_name" tableName="JHI_USER"/>
