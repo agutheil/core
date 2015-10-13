@@ -55,7 +55,7 @@ public class ChannelPostResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<ChannelPost> create(@RequestBody ChannelPost channelPost) throws URISyntaxException {
+    public ResponseEntity create(@RequestBody ChannelPost channelPost) throws URISyntaxException {
         log.debug("REST request to save ChannelPost : {}", channelPost);
         if (channelPost.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new channelPost cannot already have an ID").body(null);
@@ -79,7 +79,7 @@ public class ChannelPostResource {
         channelPost = channelPostRepository.save(channelPost);
         log.debug("5 => " + channelPost);
         if (merchantChannelError != null) {
-            return ResponseEntity.badRequest().header("Failure", merchantChannelError).body(null);
+            return ResponseEntity.badRequest().header("Failure", merchantChannelError).body("Error while posting to Facebook. Please try again after some time and if problem persist, contact administrator.");
         }
         return ResponseEntity.created(new URI("/api/channelPosts/" + channelPost.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("channelPost", channelPost.getId().toString()))

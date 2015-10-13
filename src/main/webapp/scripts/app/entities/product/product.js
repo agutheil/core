@@ -99,23 +99,20 @@ angular.module('coreApp')
                 data: {
                     roles: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                onEnter: ['$stateParams', '$state', '$modal', '$window', function($stateParams, $state, $modal, $window) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/product/product-postfb.html',
                         controller: 'ProductPostfbController',
                         size: 'md',
                         resolve: {
                             entity: ['Product', function(Product) {
-                                console.log("stateParams.id => " + $stateParams.id);
                                 return Product.get({id : $stateParams.id});
                             }]
                         }
                     }).result.then(function(result) {
-                            console.log("result ===> " + JSON.stringify(result));
                             $state.go('product', null, { reload: true });
                         }, function() {
-                            console.log(" > go < ");
-                            $state.go('^', {}, { reload: true });
+                            $state.go('^', {});
                         })
                 }]
             })

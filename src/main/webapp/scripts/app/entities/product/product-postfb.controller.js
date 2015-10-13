@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('coreApp').controller('ProductPostfbController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Product', 'ChannelPost', 'ChannelPostsByProductIds', 'MerchantChannelByChannel',
-        function($scope, $stateParams, $modalInstance, entity, Product, ChannelPost, ChannelPostsByProductIds, MerchantChannelByChannel) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Product', 'ChannelPost', 'ChannelPostsByProductIds', 'MerchantChannelByChannel', '$rootScope',
+        function($scope, $stateParams, $modalInstance, entity, Product, ChannelPost, ChannelPostsByProductIds, MerchantChannelByChannel, $rootScope) {
 
             $scope.product = entity;
+            $scope.disableReSubmit = false;
 
             $scope.load = function(id) {
                 Product.get({id : id}, function(result) {
@@ -18,7 +19,6 @@ angular.module('coreApp').controller('ProductPostfbController',
                 if($scope.product) {
                     $scope.productIds = $scope.product.id;
                 }
-                console.log("postfb productIds = " + $scope.productIds);
                 ChannelPostsByProductIds.get({productIds: $scope.productIds}, function(result) {
                     $scope.channelPost = result[$scope.product.id];
                 });
@@ -27,7 +27,6 @@ angular.module('coreApp').controller('ProductPostfbController',
             $scope.loadMerchantChannelId = function() {
                 MerchantChannelByChannel.get({channel:'facebook'}, function(result) {
                     $scope.merchantChannelId = result.id;
-                    console.log("merchant channel id = " + $scope.merchantChannelId);
                 });
             };
 
@@ -44,18 +43,21 @@ angular.module('coreApp').controller('ProductPostfbController',
                 return "none";
             };
 
-            var onSaveFinished = function (result) {
-                console.log("onSaveFinished 1 => " + result);
+            var onSaveSuccess = function (result) {
                 $scope.$emit('coreApp:channelPostUpdate', result);
-                console.log("onSaveFinished 1 => " + result);
+                $scope.$emit('coreApp:productUpdate', result);
                 $modalInstance.close(result);
             };
 
+            var onSaveError = function (result) {
+                $scope.disableReSubmit = false;
+                $scope.load($stateParams.id);
+            };
+
             $scope.save = function () {
-                $scope.channelPost = {product:{id:$scope.product.id}, merchantChannel:{id:$scope.merchantChannelId}}
-                console.log("save channel post => " + JSON.stringify($scope.channelPost));
-                ChannelPost.save($scope.channelPost, onSaveFinished);
-                $modalInstance.dismiss('cancel');
+                $scope.disableReSubmit = true;
+                var channelPost = {product:{id:$scope.product.id}, merchantChannel:{id:$scope.merchantChannelId}}
+                ChannelPost.save(channelPost, $scope.channelPost && $scope.channelPost.id ? $scope.clear : onSaveSuccess, onSaveError);
             };
 
             $scope.clear = function() {

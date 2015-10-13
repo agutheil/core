@@ -18,9 +18,9 @@
                         <table style="width:100%; background-color:white;">
                             <tr>
                                 <td>
-                                    Status: <span translate="coreApp.product.post.status-{{getStatus(product.id).toLowerCase()}}">{{getStatus(product.id).toLowerCase()}}</span>
+                                    Status: <span ng-class="{'text-warning': (getStatus(product.id).toLowerCase() == 'pending'), 'text-success': (getStatus(product.id).toLowerCase() == 'published'), 'text-danger': (getStatus(product.id).toLowerCase() == 'error')}" translate="coreApp.product.post.status-{{getStatus(product.id).toLowerCase()}}">{{getStatus(product.id).toLowerCase()}}</span>
                                     <br/>
-                                    <span translate="coreApp.product.post.posted-on">Posted on</span> {{channelPost.publicationDate}}
+                                    <span translate="coreApp.product.post.posted-on">Posted on</span> <span ng-bind="channelPost.publicationDate | date:'EEEE dd/MM/yyyy HH:mm:ss'"></span>
                                 </td>
                             </tr>
                         </table>
@@ -60,6 +60,9 @@
         <div ng-switch-when="false">
             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
                 <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="coreApp.product.post.close-btn">Close</span>
+            </button>
+            <button ng-if="(getStatus(product.id).toLowerCase() == 'error')" type="submit" ng-disabled="editForm.$invalid || disableReSubmit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="coreApp.product.post.post-product-again-btn">Try Post Again</span>
             </button>
         </div>
     </div>

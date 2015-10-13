@@ -253,18 +253,18 @@ ul#strengthBar {
 .tooltip > .tooltip-arrow { border-bottom-color:#efefef; margin-top: 10px; }
 
 .table-border-pending {
-    border-width:4px;
-    border-color: orange !important;
+    border-width:3px;
+    border-color: #f0ad4e !important;
 }
 
 .table-border-published {
-    border-width:4px;
-    border-color: green !important;
+    border-width:3px;
+    border-color: #449d44 !important;
 }
 
 .table-border-error {
-    border-width:4px;
-    border-color: red !important;
+    border-width:3px;
+    border-color: #d84d4c !important;
 }
 
 .table-border-none {

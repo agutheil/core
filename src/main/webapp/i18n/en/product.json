@@ -12,6 +12,7 @@
                     , "post-title-default": "Your post to Facebook"
                 }
                 , "post-product-btn": "Post Product"
+                , "post-product-again-btn": "Try Post Again"
                 , "close-btn": "Close"
                 , "status-pending": "Post send - waiting for submit"
                 , "status-published": "Post successful"
