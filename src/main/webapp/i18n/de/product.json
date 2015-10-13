@@ -1,0 +1,27 @@
+{
+    "coreApp": {
+        "product" : {
+            "home": {
+                "title": "Products",
+                "createLabel": "Create a new Product",
+                "createOrEditLabel": "Create or edit a Product"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Product {{ id }}?"
+            },
+            "detail": {
+                "title": "Product"
+            },
+            "productId": "ProductId",
+            "title": "Title",
+            "description": "Description",
+            "price": "Price",
+            "tax": "Tax",
+            "currency": "Currency",
+            "mainImage": "MainImage",
+            "mainImageAlt": "MainImageAlt",
+            "user": "User",
+            "deliveryOption": "DeliveryOption"
+        }
+    }
+}

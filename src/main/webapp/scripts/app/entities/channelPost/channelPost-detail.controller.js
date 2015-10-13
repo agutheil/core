@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coreApp')
-    .controller('ChannelPostDetailController', function ($scope, $rootScope, $stateParams, entity, ChannelPost, Article, MerchantChannel, User) {
+    .controller('ChannelPostDetailController', function ($scope, $rootScope, $stateParams, entity, ChannelPost, User, MerchantChannel, Product) {
         $scope.channelPost = entity;
         $scope.load = function (id) {
             ChannelPost.get({id: id}, function(result) {

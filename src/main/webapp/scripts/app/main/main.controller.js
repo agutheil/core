@@ -6,10 +6,12 @@ angular.module('coreApp')
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
+/*
             if(Principal.isAuthenticated) {
                 TutorialStep.get({user: $scope.account.id}, function(result) {
                     $scope.tutorialSteps = result;
                 });
             }
+*/
         });
     });

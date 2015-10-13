@@ -17,7 +17,7 @@
     <!--
         Added the entity ChannelPost.
     -->
-    <changeSet id="20150907223048" author="jhipster">
+    <changeSet id="20151010133350" author="jhipster">
         <createTable tableName="CHANNELPOST">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
@@ -25,18 +25,18 @@
             <column name="status" type="varchar(255)"/>
             <column name="publication_date" type="timestamp"/>
             <column name="external_post_key" type="varchar(255)"/>
-            <column name="article_id" type="bigint"/>
-            <column name="merchantchannel_id" type="bigint"/>
             <column name="user_id" type="bigint"/>
+            <column name="merchantchannel_id" type="bigint"/>
+            <column name="product_id" type="bigint"/>
         </createTable>
         <dropDefaultValue tableName="CHANNELPOST" columnName="publication_date" columnDataType="datetime"/>
 
         
-        <addForeignKeyConstraint baseColumnNames="article_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="CHANNELPOST"
-                                 constraintName="fk_channelpost_article_id"
+                                 constraintName="fk_channelpost_user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="ARTICLE"/>
+                                 referencedTableName="JHI_USER"/>
 
         <addForeignKeyConstraint baseColumnNames="merchantchannel_id"
                                  baseTableName="CHANNELPOST"
@@ -44,11 +44,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="MERCHANTCHANNEL"/>
 
-        <addForeignKeyConstraint baseColumnNames="user_id"
+        <addForeignKeyConstraint baseColumnNames="product_id"
                                  baseTableName="CHANNELPOST"
-                                 constraintName="fk_channelpost_user_id"
+                                 constraintName="fk_channelpost_product_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="JHI_USER"/>
+                                 referencedTableName="PRODUCT"/>
 
     </changeSet>
 </databaseChangeLog>

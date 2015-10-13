@@ -1,0 +1,66 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation class="form-horizontal">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <ng-switch on="(getStatus(product.id).toLowerCase() == 'none')">
+            <h2 class="modal-title" ng-switch-when="true" translate="coreApp.product.post.facebook.post-title-none">Post your product to Facebook</h2>
+            <h2 class="modal-title" ng-switch-when="false" translate="coreApp.product.post.facebook.post-title-default">Your post to Facebook</h2>
+        </ng-switch>
+    </div>
+    <div class="modal-body" ng-switch="(getStatus(product.id).toLowerCase() == 'none')">
+        <jh-alert-error></jh-alert-error>
+
+        <div class="table-responsive">
+            <table ng-switch-when="false" class="table table-bordered table-border-{{getStatus(product.id).toLowerCase()}}">
+                <tr>
+                    <td style="padding:20px 20px 20px 20px; background-color:white;">
+                        <table style="width:100%; background-color:white;">
+                            <tr>
+                                <td>
+                                    Status: <span translate="coreApp.product.post.status-{{getStatus(product.id).toLowerCase()}}">{{getStatus(product.id).toLowerCase()}}</span>
+                                    <br/>
+                                    <span translate="coreApp.product.post.posted-on">Posted on</span> {{channelPost.publicationDate}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-bordered">
+                <tr>
+                    <td style="padding:20px 20px 20px 20px; background-color:white;">
+                        <table style="width:100%; background-color:white;">
+                            <tr>
+                                <td align="left"><img data-ng-src="{{'data:image/*;base64,' + product.mainImage}}" style="max-height: 40px; max-width: 120px;" ng-if="product.mainImage"/></td>
+                                <td align="right"><span class="social-facebook-none img-responsive"></span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    {{product.productId}}
+                                    <br/>
+                                    Product Title: {{product.title}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer" ng-switch="(getStatus(product.id).toLowerCase() == 'none')">
+        <div ng-switch-when="true">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="coreApp.product.post.post-product-btn">Post Product</span>
+            </button>
+        </div>
+        <div ng-switch-when="false">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="coreApp.product.post.close-btn">Close</span>
+            </button>
+        </div>
+    </div>
+</form>

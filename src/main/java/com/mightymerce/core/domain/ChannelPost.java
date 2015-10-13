@@ -29,30 +29,30 @@ public class ChannelPost implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
+
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private PublicationStatus status;
-    
+
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @JsonSerialize(using = CustomDateTimeSerializer.class)
     @JsonDeserialize(using = CustomDateTimeDeserializer.class)
     @Column(name = "publication_date")
     private DateTime publicationDate;
-    
+
     @Column(name = "external_post_key")
     private String externalPostKey;
-
-    @ManyToOne
-    private Article article;
-
-    @ManyToOne
-    private MerchantChannel merchantChannel;
 
     @JsonIgnore
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    private MerchantChannel merchantChannel;
+
+    @ManyToOne
+    private Product product;
 
     public Long getId() {
         return id;
@@ -86,12 +86,12 @@ public class ChannelPost implements Serializable {
         this.externalPostKey = externalPostKey;
     }
 
-    public Article getArticle() {
-        return article;
+    public User getUser() {
+        return user;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public MerchantChannel getMerchantChannel() {
@@ -102,12 +102,12 @@ public class ChannelPost implements Serializable {
         this.merchantChannel = merchantChannel;
     }
 
-    public User getUser() {
-        return user;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
@@ -138,6 +138,9 @@ public class ChannelPost implements Serializable {
                 ", status='" + status + "'" +
                 ", publicationDate='" + publicationDate + "'" +
                 ", externalPostKey='" + externalPostKey + "'" +
+                ", user.id='" + (user == null ? "null" : user.getId()) + "'" +
+                ", merchantChannel.id='" + (merchantChannel == null ? "null" : merchantChannel.getId()) + "'" +
+                ", product.id='" + (product == null ? "null" : product.getId()) + "'" +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.mightymerce.core.integration.facebook;
 
-import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.integration.SocialPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +27,8 @@ public class StatusUpdateFacebookPost implements SocialPost {
     }
 
     @Override
-    public String post(Article article, String accessToken) {
-        String statusMessage = article.toString();
+    public String post(Product product, String accessToken) {
+        String statusMessage = product.toString();
         log.info(statusMessage);
         Facebook facebook = new FacebookTemplate(accessToken, applicationNamespace);
         return facebook.feedOperations().updateStatus(statusMessage);

@@ -1,6 +1,6 @@
 package com.mightymerce.core.integration.impl;
 
-import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.domain.enumeration.Channel;
 import com.mightymerce.core.integration.SocialPoster;
 import com.mightymerce.core.integration.SocialPost;
@@ -23,17 +23,17 @@ public class DefaultSocialPoster implements SocialPoster{
     }
 
     @Override
-    public String post(Article article, String accessToken, Channel channel) {
+    public String post(Product product, String accessToken, Channel channel) {
         String result;
         switch (channel) {
             case facebook:
-                result = facebookPost.post(article, accessToken);
+                result = facebookPost.post(product, accessToken);
                 break;
             case twitter:
-                result = twitterPost.post(article, accessToken);
+                result = twitterPost.post(product, accessToken);
                 break;
             case pinterest:
-                result = pinterestPost.post(article, accessToken);
+                result = pinterestPost.post(product, accessToken);
                 break;
             default:
                 result = "channel not found";

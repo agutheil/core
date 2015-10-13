@@ -48,8 +48,8 @@ public class ChannelPostResourceTest {
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 
-    private static final PublicationStatus DEFAULT_STATUS = PublicationStatus.pending;
-    private static final PublicationStatus UPDATED_STATUS = PublicationStatus.published;
+    private static final PublicationStatus DEFAULT_STATUS = PublicationStatus.Pending;
+    private static final PublicationStatus UPDATED_STATUS = PublicationStatus.Published;
 
     private static final DateTime DEFAULT_PUBLICATION_DATE = new DateTime(0L, DateTimeZone.UTC);
     private static final DateTime UPDATED_PUBLICATION_DATE = new DateTime(DateTimeZone.UTC).withMillisOfSecond(0);

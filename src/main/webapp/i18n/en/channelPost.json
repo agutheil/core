@@ -18,9 +18,9 @@
             "status": "Status",
             "publicationDate": "PublicationDate",
             "externalPostKey": "ExternalPostKey",
-            "article": "Article",
+            "user": "User",
             "merchantChannel": "MerchantChannel",
-            "user": "User"
+            "product": "Product"
         }
     }
 }

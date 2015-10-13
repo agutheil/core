@@ -1,0 +1,84 @@
+<div>
+
+    <jh-alert></jh-alert>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary pull-right" ui-sref="product.new">
+                <span class="glyphicon glyphicon-flash"></span> <span translate="coreApp.product.home.createLabel">Add Product</span>
+            </button>
+        </div>
+    </div>
+    <br/>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 translate="coreApp.product.home.title">Products</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th translate="coreApp.product.list.productId">ID</th>
+                        <th translate="coreApp.product.list.title">Title</th>
+                        <th></th>
+                        <th translate="coreApp.product.list.posts" style="text-align: center !important;">Posts</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="product in products">
+                        <td style="vertical-align: middle !important;">
+                            <img data-ng-src="{{'data:image/*;base64,' + product.mainImage}}" style="max-height: 40px; max-width: 120px;" ng-if="product.mainImage"/>
+                        </td>
+                        <td style="vertical-align: middle !important;">{{product.productId}}</td>
+                        <td style="vertical-align: middle !important;">{{product.title}}</td>
+                        <td style="vertical-align: middle !important;">
+                            <button type="submit"
+                                    ui-sref="product.edit({id:product.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                            </button>
+                        </td>
+                        <td style="vertical-align: middle !important; text-align: center !important;">
+                            <table>
+                                <tr>
+                                    <td style="vertical-align: top !important; text-align: center !important;">
+                                        <a ui-sref="product.postfb({id:product.id})" onClick="this.blur();">
+                                            <span class="social-facebook-{{getStatus(product.id).toLowerCase()}} img-responsive"/>
+                                            <br/>
+                                            {{getStatus(product.id).toLowerCase() === "none" ? "Create Post" : "Details"}}
+                                        </a>
+                                    </td>
+                                    <td style="vertical-align: top !important; text-align: center !important;">
+                                        <a href="#"><span class="social-twitter-none img-responsive grayscale"></span></a>
+                                    </td>
+                                    <td style="vertical-align: top !important; text-align: center !important;">
+                                        <a href="#"><span class="social-pinterest-none img-responsive grayscale"></span></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pagination">
+                        <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                        <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>&lt;</a></li>
+                        <li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page - 2}}</a></li>
+                        <li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page - 1}}</a></li>
+                        <li class="active"><a>{{page}}</a></li>
+                        <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 1}}</a></li>
+                        <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 2}}</a></li>
+                        <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                        <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</div>

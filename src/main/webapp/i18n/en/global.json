@@ -19,6 +19,7 @@
                 "legalInfo": "LegalInfo",
                 "notification": "Notification",
                 "tutorialStep": "TutorialStep",
+                "product": "Product",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

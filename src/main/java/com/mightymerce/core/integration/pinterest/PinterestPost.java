@@ -1,6 +1,6 @@
 package com.mightymerce.core.integration.pinterest;
 
-import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.integration.SocialPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +15,8 @@ public class PinterestPost implements SocialPost
 {
     private final Logger log = LoggerFactory.getLogger(PinterestPost.class);
     @Override
-    public String post(Article article, String accessToken) {
-        log.info(article.toString());
+    public String post(Product product, String accessToken) {
+        log.info(product.toString());
         return "pinterest dummy";
     }
 }

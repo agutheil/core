@@ -15,3 +15,10 @@ angular.module('coreApp')
             'update': { method:'PUT' }
         });
     });
+
+angular.module('coreApp')
+    .factory('ChannelPostsByProductIds', function ($resource) {
+        return $resource('api/channelPostsByProductIds', {}, {
+            'get': { method:'GET', isArray:false}
+        });
+    });

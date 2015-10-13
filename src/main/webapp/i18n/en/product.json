@@ -1,0 +1,66 @@
+{
+    "coreApp": {
+        "product" : {
+            "home": {
+                "title": "Products",
+                "createLabel": "Add Product",
+                "createOrEditLabel": "Product"
+            },
+            "post": {
+                "facebook": {
+                    "post-title-none": "Post your product to Facebook"
+                    , "post-title-default": "Your post to Facebook"
+                }
+                , "post-product-btn": "Post Product"
+                , "close-btn": "Close"
+                , "status-pending": "Post send - waiting for submit"
+                , "status-published": "Post successful"
+                , "status-error": "Error - unable to post product"
+                , "posted-on": "Posted on "
+            },
+            "created": "A new Product is created with identifier {{ param }}",
+            "updated": "A Product is updated with identifier {{ param }}",
+            "deleted": "A Product is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Product {{ id }}?"
+            },
+            "detail": {
+                "title": "Product"
+            },
+            "list": {
+                "productId": "ID",
+                "title": "Title",
+                "posts": "Posts"
+            },
+            "placeholder": {
+                "title": "e.g. product name, brand, colour, size"
+            },
+            "tooltip": {
+                "title": "Any information about brand, colour, or size of the product should be added to the title separated by comma.",
+                "image": "Images must be smaller 1MB. Please make sure that you own the right to use the selected images.",
+                "alt-text": "Give a brief description of the image. This is important as the text (1) displayed if the image is not loaded, (2) is relevant to partially sighted visitors to get an idea of what is displayed, (3) will be considered by search engines"
+            },
+            "help": {
+                "title": "(max 70 characters)",
+                "description": "(max 200 characters)"
+            },
+            "firstpanel": "Describe your Product",
+            "secondpanel": "Set the price of your Product",
+            "thirdpanel": "Select applicable shipping option for your Product",
+            "fourthpanel": "Upload image of your Product",
+            "productId": "ID*",
+            "title": "Title*",
+            "description": "Description*",
+            "price": "Price*",
+            "tax": "Tax*",
+            "currency": "Currency*",
+            "mainImage": "Main Image*",
+            "mainImageAlt": "Main Image Alt Text*",
+            "salePrice": "Sale Price",
+            "salePriceStartDate": "Sale Price Validity",
+            "salePriceEndDate": "SalePriceEndDate",
+            "deliveryOption": "Shipping Option*",
+            "user": "User"
+        }
+    }
+}

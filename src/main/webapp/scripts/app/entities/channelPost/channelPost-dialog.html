@@ -17,9 +17,9 @@
         <div class="form-group">
             <label translate="coreApp.channelPost.status" for="field_status">Status</label>
             <select class="form-control" name="status" ng-model="channelPost.status" id="field_status">
-                <option value="pending" translate="coreApp.PublicationStatus.pending">pending</option>
-                <option value="published" translate="coreApp.PublicationStatus.published">published</option>
-                <option value="error" translate="coreApp.PublicationStatus.error">error</option>
+                <option value="Pending" translate="coreApp.PublicationStatus.Pending">Pending</option>
+                <option value="Published" translate="coreApp.PublicationStatus.Published">Published</option>
+                <option value="Error" translate="coreApp.PublicationStatus.Error">Error</option>
             </select>
 
         </div>
@@ -38,9 +38,9 @@
 
         </div>
         <div class="form-group">
-            <label translate="coreApp.channelPost.article" for="field_article">article</label>
+            <label translate="coreApp.channelPost.user" for="field_user">user</label>
             
-            <select class="form-control" id="field_article" name="article" ng-model="channelPost.article" ng-options="article as article.code for article in articles track by article.id">
+            <select class="form-control" id="field_user" name="user" ng-model="channelPost.user" ng-options="user as user.login for user in users track by user.id">
                 <option value=""></option>
             </select>
             
@@ -49,6 +49,14 @@
             <label translate="coreApp.channelPost.merchantChannel" for="field_merchantChannel">merchantChannel</label>
             
             <select class="form-control" id="field_merchantChannel" name="merchantChannel" ng-model="channelPost.merchantChannel" ng-options="merchantChannel as merchantChannel.channel for merchantChannel in merchantchannels track by merchantChannel.id">
+                <option value=""></option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.channelPost.product" for="field_product">product</label>
+            
+            <select class="form-control" id="field_product" name="product" ng-model="channelPost.product" ng-options="product as product.id for product in products track by product.id">
                 <option value=""></option>
             </select>
             

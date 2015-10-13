@@ -3,6 +3,8 @@ package com.mightymerce.core.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Article;
 import com.mightymerce.core.domain.ChannelPost;
+import com.mightymerce.core.domain.User;
+import com.mightymerce.core.domain.enumeration.Channel;
 import com.mightymerce.core.domain.enumeration.PublicationStatus;
 import com.mightymerce.core.repository.ChannelPostRepository;
 import com.mightymerce.core.repository.UserRepository;
@@ -26,8 +28,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing ChannelPost.
@@ -43,7 +44,7 @@ public class ChannelPostResource {
 
     @Inject
     private ChannelPostService channelPostService;
-    
+
     @Inject
     private UserRepository userRepository;
 
@@ -51,24 +52,38 @@ public class ChannelPostResource {
      * POST  /channelPosts -> Create a new channelPost.
      */
     @RequestMapping(value = "/channelPosts",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<ChannelPost> create(@RequestBody ChannelPost channelPost) throws URISyntaxException {
         log.debug("REST request to save ChannelPost : {}", channelPost);
         if (channelPost.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new channelPost cannot already have an ID").body(null);
         }
+        log.debug("1 => " + channelPost);
         channelPost.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
-        ChannelPost result = channelPostRepository.save(channelPost);
-        String externalPostKey = channelPostService.updateStatus(result); 
-        channelPost.setExternalPostKey(externalPostKey);
-        channelPost.setStatus(PublicationStatus.published);
+        log.debug("2 => " + channelPost);
+        channelPost = channelPostRepository.save(channelPost);
+        log.debug("3 => " + channelPost);
+        String merchantChannelError = null;
+        try {
+            channelPost.setExternalPostKey(channelPostService.updateStatus(channelPost));
+            channelPost.setStatus(PublicationStatus.Published);
+        } catch(Exception e) {
+            merchantChannelError = "Error while posting to facebook : " + e.toString();
+            log.error(merchantChannelError);
+            channelPost.setStatus(PublicationStatus.Error);
+        }
         channelPost.setPublicationDate(DateTime.now(DateTimeZone.UTC));
-        result = channelPostRepository.save(result);
-        return ResponseEntity.created(new URI("/api/channelPosts/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert("channelPost", result.getId().toString()))
-                .body(result);
+        log.debug("4 => " + channelPost);
+        channelPost = channelPostRepository.save(channelPost);
+        log.debug("5 => " + channelPost);
+        if (merchantChannelError != null) {
+            return ResponseEntity.badRequest().header("Failure", merchantChannelError).body(null);
+        }
+        return ResponseEntity.created(new URI("/api/channelPosts/" + channelPost.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("channelPost", channelPost.getId().toString()))
+            .body(channelPost);
     }
 
     /**
@@ -86,31 +101,98 @@ public class ChannelPostResource {
         channelPost.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get());
         ChannelPost result = channelPostRepository.save(channelPost);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert("channelPost", channelPost.getId().toString()))
-                .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("channelPost", channelPost.getId().toString()))
+            .body(result);
     }
 
     /**
      * GET  /channelPosts -> get all the channelPosts.
      */
     @RequestMapping(value = "/channelPosts",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<ChannelPost>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
-                                  @RequestParam(value = "per_page", required = false) Integer limit)
+                                                    @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
+        log.debug("REST request by '{}' to getAll ChannelPost with page {} and per_page {}", SecurityUtils.getCurrentLogin(), offset, limit);
         Page<ChannelPost> page = channelPostRepository.findByUserIsCurrentUser(PaginationUtil.generatePageRequest(offset, limit));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/channelPosts", offset, limit);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
+     * GET  /channelPosts?productId={productId} -> get the channelPost against the "productId".
+     */
+/*
+    @RequestMapping(value = "/channelPosts?productId={productId}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<ChannelPost> getByProductId(@RequestParam(value = "productId" , required = true) Long productId) {
+        log.debug("REST request by '{}' to get ChannelPost by Product Id {}", SecurityUtils.getCurrentLogin(), productId);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        List<ChannelPost> channelPosts = channelPostRepository.findByUserIdAndProductId(currentUser.get().getId(), productId);
+        if(channelPosts == null || channelPosts.size() <= 0) {
+            return ResponseEntity.badRequest().header("Failure", "Resource not found").body(null);
+        }
+        if(currentUser.get() == null || channelPosts.get(0) == null || channelPosts.get(0).getUser() == null
+            || channelPosts.get(0).getUser().getId() == null || !currentUser.get().getId().equals(channelPosts.get(0).getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
+        return Optional.ofNullable(channelPosts.get(0))
+            .map(channelPost -> new ResponseEntity<>(
+                channelPost,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+*/
+
+    /**
+     * GET  /channelPostsByProductIds -> get the channelPosts against the "productIds".
+     */
+    @RequestMapping(value = "/channelPostsByProductIds",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Map<Long, ChannelPost>> getByProductIds(@RequestParam(value = "productIds" , required = true) String productIds) {
+        log.debug("REST request by '{}' to get ChannelPosts by Product Ids {}", SecurityUtils.getCurrentLogin(), productIds);
+        String[] productIdsStrArr = productIds.split(",");
+        Map<Long, ChannelPost> channelPostMap = new HashMap<>();
+        List<Long> productIdList = new ArrayList<>(productIdsStrArr.length);
+        for(String productIdStr : productIdsStrArr) {
+            try {
+                productIdList.add(Long.parseLong(productIdStr));
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().header("Failure", "Invalid productIds").body(null);
+            }
+        }
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        List<ChannelPost> channelPosts = channelPostRepository.findByUserIdAndProductIdIn(currentUser.get().getId(), productIdList);
+        if(channelPosts != null && channelPosts.size() > 0 && currentUser.get() != null) {
+            for(ChannelPost channelPost : channelPosts) {
+                if(channelPost != null) {
+                    if(channelPost.getUser() == null || channelPost.getUser().getId() == null
+                        || !currentUser.get().getId().equals(channelPost.getUser().getId())) {
+                        return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+                    }
+                    channelPostMap.put(channelPost.getProduct().getId(), channelPost);
+                }
+            }
+        }
+        return Optional.ofNullable(channelPostMap)
+            .map(channelPost -> new ResponseEntity<>(
+                channelPost,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
      * GET  /channelPosts/:id -> get the "id" channelPost.
      */
     @RequestMapping(value = "/channelPosts/{id}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<ChannelPost> get(@PathVariable Long id) {
         log.debug("REST request to get ChannelPost : {}", id);
@@ -125,8 +207,8 @@ public class ChannelPostResource {
      * DELETE  /channelPosts/:id -> delete the "id" channelPost.
      */
     @RequestMapping(value = "/channelPosts/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+        method = RequestMethod.DELETE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.debug("REST request to delete ChannelPost : {}", id);

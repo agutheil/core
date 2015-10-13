@@ -1,0 +1,261 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation class="form-horizontal">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h2 class="modal-title" id="myProductLabel" translate="coreApp.product.home.createOrEditLabel">Product</h2>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.product.firstpanel">Describe your Product</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.productId" for="field_productId">ID*</label>
+                    <label class="col-sm-3 control-label" ng-show="product.userId != null">M{{("0000000000000000000" + product.userId).slice(-19)}}-</label>
+                    <div ng-class="{true: 'col-sm-6', false : 'col-sm-9'}[product.userId != null]">
+                        <input type="text" class="form-control" name="productId" id="field_productId"
+                               ng-model="product.productId"
+                               required ng-maxlength="43">
+                    </div>
+                    <div class="col-sm-12" ng-show="editForm.productId.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.productId.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.productId.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="43">
+                            This field cannot be longer than 43 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.title" for="field_title">Title*</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="title" id="field_title" style="display:inline;"
+                               ng-model="product.title"
+                               required ng-maxlength="70" placeholder="{{'coreApp.product.placeholder.title' | translate}}">
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="glyphicon glyphicon-info-sign tooltip-icon" tooltip="{{'coreApp.product.tooltip.title' | translate}}" tooltip-placement="left"></span>
+                    </div>
+                    <div class="help-label pull-right">{{'coreApp.product.help.title' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div class="col-sm-12" ng-show="editForm.title.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.title.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.title.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="70">
+                            This field cannot be longer than 70 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.description" for="field_description">Description*</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control span9" name="description" id="field_description" ng-model="product.description" required rows="3" ng-maxlength="200"/>
+                    </div>
+                    <div class="help-label pull-right">{{'coreApp.product.help.description' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div class="col-sm-12" ng-show="editForm.description.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.description.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.description.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="200">
+                            This field cannot be longer than 200 characters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.product.secondpanel">Set the price of your Product</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.price" for="field_price">Price*</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="price" id="field_price"
+                               ng-model="product.price"
+                               required>
+                    </div>
+                    <div class="col-sm-12" ng-show="editForm.price.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.price.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.price.$error.number" translate="entity.validation.number">
+                            This field should be a number.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.tax" for="field_tax">Tax*</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" required id="field_tax" name="tax" ng-model="product.tax" ng-options="tax.key as tax.value for tax in taxes">
+                        </select>
+                    </div>
+                    <div class="col-sm-12" ng-show="editForm.tax.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.tax.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.tax.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="120">
+                            This field cannot be longer than 120 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.currency" for="field_currency">Currency*</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" required id="field_currency" name="currency" ng-model="product.currency" ng-options="currency.key as currency.value for currency in currencies">
+                        </select>
+                    </div>
+                    <div class="col-sm-12" ng-show="editForm.currency.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.currency.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.currency.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="20">
+                            This field cannot be longer than 20 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.salePrice" for="field_salePrice">Sale Price</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="salePrice" id="field_salePrice"
+                               ng-model="product.salePrice"
+                            >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.salePriceStartDate" for="field_salePriceStartDate">Sale Price Validity</label>
+                    <div class="col-sm-4">
+                        <input type="datetime-local" class="form-control" name="salePriceStartDate" id="field_salePriceStartDate"
+                               ng-model="product.salePriceStartDate" ng-model-options="{timezone: 'UTC'}"
+                            >
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <input type="datetime-local" class="form-control" name="salePriceEndDate" id="field_salePriceEndDate"
+                               ng-model="product.salePriceEndDate" ng-model-options="{timezone: 'UTC'}"
+                            >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.product.thirdpanel">Select applicable shipping option for your Product</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.deliveryOption" for="field_deliveryOption">Shipping Option*</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" required id="field_deliveryOption" name="deliveryOption" ng-model="product.deliveryOptionId" ng-options="deliveryOption.id as deliveryOption.title for deliveryOption in deliveryoptions">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12" ng-show="editForm.deliveryOption.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.deliveryOption.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.deliveryOption.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                            This field cannot be longer than 50 characters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.product.fourthpanel">Upload image of your Product</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group" ngf-drop ngf-change="setMainImage($files, product)" ngf-accept="'image/*'">
+                    <label class="col-sm-12 control-label" translate="coreApp.product.mainImage" for="field_mainImage">Main Image*</label>
+                    <div class="col-sm-11">
+                        <img data-ng-src="{{'data:image/*;base64,' + product.mainImage}}" style="max-height: 100px;" ng-if="product.mainImage"/>
+                        <div class="help-block clearfix">
+                            <span class="pull-left">{{byteSize(product.mainImage)}}</span>
+                            <button ng-click="product.mainImage=null"
+                                    ng-if="product.mainImage"
+                                    class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <button type="file" ngf-select class="btn btn-default btn-block"
+                                ngf-change="setMainImage($files, product)" accept="image/*" translate="entity.action.addimage">
+                            Add image
+                        </button>
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="glyphicon glyphicon-info-sign tooltip-icon" tooltip="{{'coreApp.product.tooltip.image' | translate}}" tooltip-placement="left"></span>
+                    </div>
+                    <input type="hidden" class="form-control" name="mainImage" id="field_mainImage"
+                           ng-model="product.mainImage"
+                           required minbytes="10" maxbytes="10485760">
+
+                    <div class="col-sm-12" ng-show="editForm.mainImage.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.mainImage.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.mainImage.$error.minbytes" translate="entity.validation.minbytes" translate-value-min="10">
+                            This field should be more than 10.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.mainImage.$error.maxbytes" translate="entity.validation.maxbytes" translate-value-max="10485760">
+                            This field cannot be more than 10485760.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="coreApp.product.mainImageAlt" for="field_mainImageAlt">Main Image Alt Text*</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="mainImageAlt" id="field_mainImageAlt"
+                               ng-model="product.mainImageAlt"
+                               required ng-maxlength="200">
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="glyphicon glyphicon-info-sign tooltip-icon" tooltip="{{'coreApp.product.tooltip.alt-text' | translate}}" tooltip-placement="left"></span>
+                    </div>
+                    <div class="col-sm-12" ng-show="editForm.mainImageAlt.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.mainImageAlt.$error.required" translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="editForm.mainImageAlt.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="200">
+                            This field cannot be longer than 200 characters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

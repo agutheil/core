@@ -6032,6 +6032,9 @@ button.close {
   .modal-lg {
     width: 900px;
   }
+    .modal-md {
+        width: 600px;
+    }
 }
 .tooltip {
   position: absolute;

@@ -1,11 +1,11 @@
 package com.mightymerce.core.service.impl;
 
-import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.domain.ChannelPost;
 import com.mightymerce.core.domain.MerchantChannel;
 import com.mightymerce.core.domain.enumeration.Channel;
 import com.mightymerce.core.integration.SocialPoster;
-import com.mightymerce.core.repository.ArticleRepository;
+import com.mightymerce.core.repository.ProductRepository;
 import com.mightymerce.core.repository.MerchantChannelRepository;
 import com.mightymerce.core.service.ChannelPostService;
 
@@ -22,26 +22,26 @@ public class ChannelPostServiceImpl implements ChannelPostService {
 
     private final Logger log = LoggerFactory.getLogger(ChannelPostServiceImpl.class);
 
-    private final ArticleRepository articleRepository;
+    private final ProductRepository productRepository;
 
     private final MerchantChannelRepository merchantChannelRepository;
 
     private final SocialPoster socialPoster;
 
     @Inject
-    public ChannelPostServiceImpl(ArticleRepository articleRepository, MerchantChannelRepository merchantChannelRepository, SocialPoster socialPoster) {
-        this.articleRepository = articleRepository;
+    public ChannelPostServiceImpl(ProductRepository productRepository, MerchantChannelRepository merchantChannelRepository, SocialPoster socialPoster) {
+        this.productRepository = productRepository;
         this.merchantChannelRepository = merchantChannelRepository;
         this.socialPoster = socialPoster;
     }
 
     @Override
     public String updateStatus(ChannelPost channelPost) {
-        Article article = articleRepository.getOne(channelPost.getArticle().getId());
+        Product product = productRepository.getOne(channelPost.getProduct().getId());
         MerchantChannel merchantChannel = merchantChannelRepository.getOne(channelPost.getMerchantChannel().getId());
         String accessToken = merchantChannel.getAccessToken();
         Channel channel = merchantChannel.getChannel();
-        String result = socialPoster.post(article, accessToken, channel);
+        String result = socialPoster.post(product, accessToken, channel);
         return result;
     }
 }

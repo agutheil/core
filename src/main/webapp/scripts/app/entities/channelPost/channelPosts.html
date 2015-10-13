@@ -45,8 +45,9 @@
                     <th translate="coreApp.channelPost.status">Status</th>
                     <th translate="coreApp.channelPost.publicationDate">PublicationDate</th>
                     <th translate="coreApp.channelPost.externalPostKey">ExternalPostKey</th>
-                    <th translate="coreApp.channelPost.article">article</th>
+                    <th translate="coreApp.channelPost.user">user</th>
                     <th translate="coreApp.channelPost.merchantChannel">merchantChannel</th>
+                    <th translate="coreApp.channelPost.product">product</th>
                     <th></th>
                 </tr>
             </thead>
@@ -57,10 +58,13 @@
                     <td>{{channelPost.publicationDate}}</td>
                     <td>{{channelPost.externalPostKey}}</td>
                     <td>
-                        <a ui-sref="article.detail({id:channelPost.article.id})">{{channelPost.article.code}}</a>
+                        {{channelPost.user.login}}
                     </td>
                     <td>
                         <a ui-sref="merchantChannel.detail({id:channelPost.merchantChannel.id})">{{channelPost.merchantChannel.channel}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="product.detail({id:channelPost.product.id})">{{channelPost.product.id}}</a>
                     </td>
                     <td>
                         <button type="submit"

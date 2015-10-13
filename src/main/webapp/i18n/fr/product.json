@@ -1,0 +1,28 @@
+{
+    "coreApp": {
+        "product" : {
+            "home": {
+                "title": "Products",
+                "createLabel": "Créer un nouveau Product",
+                "createOrEditLabel": "Créer ou éditer un Product"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Product {{ id }} ?"
+            },
+            "detail": {
+                "title": "Product"
+            },
+            "productId": "ProductId",
+            "title": "Title",
+            "description": "Description",
+            "price": "Price",
+            "tax": "Tax",
+            "currency": "Currency",
+            "mainImage": "MainImage",
+            "mainImageAlt": "MainImageAlt",
+            "user": "User",
+            "deliveryOption": "DeliveryOption"
+        }
+    }
+}
+

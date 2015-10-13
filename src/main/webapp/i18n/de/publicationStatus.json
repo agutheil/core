@@ -1,10 +1,10 @@
 {
     "coreApp": {
         "PublicationStatus" : {
-            "SELECT": "{VALUE, select, pending{pending} published{published} error{error} other{}}",
-            "pending": "pending",
-            "published": "published",
-            "error": "error"
+            "SELECT": "{VALUE, select, Pending{Pending} Published{Published} Error{Error} other{}}",
+            "Pending": "Pending",
+            "Published": "Published",
+            "Error": "Error"
         }
     }
 }

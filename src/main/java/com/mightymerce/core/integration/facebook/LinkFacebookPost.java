@@ -1,6 +1,6 @@
 package com.mightymerce.core.integration.facebook;
 
-import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.integration.SocialPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,15 +33,15 @@ public class LinkFacebookPost implements SocialPost {
     }
 
     @Override
-    public String post(Article article, String accessToken) {
+    public String post(Product product, String accessToken) {
         log.info("CheckoutLink: "+checkoutLink);
-        String statusMessage = article.toString();
+        String statusMessage = product.toString();
         log.debug(statusMessage);
         Facebook facebook = new FacebookTemplate(accessToken, applicationNamespace);
-        String link = checkoutLink+article.getId();
-        String name  = article.getName();
-        String caption = article.getDescription();
-        String description = article.getPrice() + " " + article.getCurrency();
+        String link = checkoutLink+product.getId();
+        String name  = product.getTitle();
+        String caption = product.getDescription();
+        String description = product.getPrice() + " " + product.getCurrency();
         FacebookLink facebookLink = new FacebookLink(link,name,caption,description);
         return facebook.feedOperations().postLink("", facebookLink);
     }

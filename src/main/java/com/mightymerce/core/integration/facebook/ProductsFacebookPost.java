@@ -1,6 +1,6 @@
 package com.mightymerce.core.integration.facebook;
 
-import com.mightymerce.core.domain.Article;
+import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.integration.SocialPost;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ public class ProductsFacebookPost implements SocialPost {
     }
 
     @Override
-    public String post(Article article, String accessToken) {
+    public String post(Product product, String accessToken) {
         LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
         log.info("---- Map created-----> ");
         map.set("fb:app_id", "404823203038294"); // The offer's ID.

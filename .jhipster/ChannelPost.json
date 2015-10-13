@@ -2,10 +2,10 @@
     "relationships": [
         {
             "relationshipId": 1,
-            "relationshipName": "article",
-            "otherEntityName": "article",
+            "relationshipName": "user",
+            "otherEntityName": "user",
             "relationshipType": "many-to-one",
-            "otherEntityField": "code"
+            "otherEntityField": "login"
         },
         {
             "relationshipId": 2,
@@ -16,10 +16,10 @@
         },
         {
             "relationshipId": 3,
-            "relationshipName": "user",
-            "otherEntityName": "user",
+            "relationshipName": "product",
+            "otherEntityName": "product",
             "relationshipType": "many-to-one",
-            "otherEntityField": "login"
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -27,7 +27,7 @@
             "fieldId": 1,
             "fieldName": "status",
             "fieldType": "PublicationStatus",
-            "fieldValues": "pending,published,error"
+            "fieldValues": "Pending,Published,Error"
         },
         {
             "fieldId": 2,
@@ -40,7 +40,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20150907223048",
+    "changelogDate": "20151010133350",
     "dto": "no",
     "pagination": "pagination"
 }

@@ -1,0 +1,102 @@
+
+<div>
+    <h2><span translate="coreApp.product.detail.title">Product</span> {{product.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.productId">ProductId</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.productId}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.title">Title</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.title}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.price">Price</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.price}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.tax">Tax</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.tax}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.currency">Currency</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.currency}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.mainImage">MainImage</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:image/*;base64,' + product.mainImage}}" style="max-width: 100%;" ng-if="product.mainImage"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.mainImageAlt">MainImageAlt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{product.mainImageAlt}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.user">user</span>
+                </td>
+                <td>
+                    {{product.userId}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.product.deliveryOption">deliveryOption</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="deliveryOption.detail({id:product.deliveryOptionId})">{{product.deliveryOptionId}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

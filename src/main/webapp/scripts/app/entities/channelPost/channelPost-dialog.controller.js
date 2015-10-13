@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('coreApp').controller('ChannelPostDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'ChannelPost', 'Article', 'MerchantChannel', 'User',
-        function($scope, $stateParams, $modalInstance, entity, ChannelPost, Article, MerchantChannel, User) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'ChannelPost', 'User', 'MerchantChannel', 'Product',
+        function($scope, $stateParams, $modalInstance, entity, ChannelPost, User, MerchantChannel, Product) {
 
         $scope.channelPost = entity;
-        $scope.articles = Article.query();
-        $scope.merchantchannels = MerchantChannel.query();
         $scope.users = User.query();
+        $scope.merchantchannels = MerchantChannel.query();
+        $scope.products = Product.query();
         $scope.load = function(id) {
             ChannelPost.get({id : id}, function(result) {
                 $scope.channelPost = result;

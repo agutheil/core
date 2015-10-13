@@ -14,3 +14,10 @@ angular.module('coreApp')
             'update': { method:'PUT' }
         });
     });
+
+angular.module('coreApp')
+    .factory('MerchantChannelByChannel', function ($resource) {
+        return $resource('api/merchantChannelByChannel/:channel', {}, {
+            'get': { method:'GET', isArray:false}
+        });
+    });

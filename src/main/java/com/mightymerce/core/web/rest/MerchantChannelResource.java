@@ -2,6 +2,8 @@ package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.MerchantChannel;
+import com.mightymerce.core.domain.User;
+import com.mightymerce.core.domain.enumeration.Channel;
 import com.mightymerce.core.repository.MerchantChannelRepository;
 import com.mightymerce.core.repository.UserRepository;
 import com.mightymerce.core.security.SecurityUtils;
@@ -34,7 +36,7 @@ public class MerchantChannelResource {
 
     @Inject
     private MerchantChannelRepository merchantChannelRepository;
-    
+
     @Inject
     private UserRepository userRepository;
 
@@ -101,6 +103,30 @@ public class MerchantChannelResource {
     public ResponseEntity<MerchantChannel> get(@PathVariable Long id) {
         log.debug("REST request to get MerchantChannel : {}", id);
         return Optional.ofNullable(merchantChannelRepository.findOne(id))
+            .map(merchantChannel -> new ResponseEntity<>(
+                merchantChannel,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    /**
+     * GET  /merchantChannelByChannel/:channel -> get the merchantChannel against "channel"
+     */
+    @RequestMapping(value = "/merchantChannelByChannel/{channel}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<MerchantChannel> getByChannel(@PathVariable String channel) {
+        log.debug("REST request by '{}' to get MerchantChannel against channel {}", SecurityUtils.getCurrentLogin(), channel);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(currentUser == null || currentUser.get() == null || currentUser.get().getId() == null || channel == null || Channel.valueOf(channel) == null) {
+            return ResponseEntity.badRequest().header("Failure", "Invalid call").body(null);
+        }
+        List<MerchantChannel> merchantChannels = merchantChannelRepository.findByUserIdAndChannel(currentUser.get().getId(), Channel.valueOf(channel));
+        if(merchantChannels == null || merchantChannels.size() <= 0) {
+            return ResponseEntity.badRequest().header("Failure", "Merchant Channel not found").body(null);
+        }
+        return Optional.ofNullable(merchantChannels.get(0))
             .map(merchantChannel -> new ResponseEntity<>(
                 merchantChannel,
                 HttpStatus.OK))
