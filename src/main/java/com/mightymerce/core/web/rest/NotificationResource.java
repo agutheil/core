@@ -2,7 +2,10 @@ package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Notification;
+import com.mightymerce.core.domain.User;
 import com.mightymerce.core.repository.NotificationRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.dto.NotificationDTO;
 import com.mightymerce.core.web.rest.mapper.NotificationMapper;
@@ -39,6 +42,9 @@ public class NotificationResource {
     @Inject
     private NotificationMapper notificationMapper;
 
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /notifications -> Create a new notification.
      */
@@ -52,6 +58,8 @@ public class NotificationResource {
             return ResponseEntity.badRequest().header("Failure", "A new notification cannot already have an ID").body(null);
         }
         Notification notification = notificationMapper.notificationDTOToNotification(notificationDTO);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        notification.setUser(currentUser.get());
         Notification result = notificationRepository.save(notification);
         return ResponseEntity.created(new URI("/api/notifications/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("notification", result.getId().toString()))
@@ -70,6 +78,10 @@ public class NotificationResource {
         if (notificationDTO.getId() == null) {
             return create(notificationDTO);
         }
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(!currentUser.get().getId().equals(notificationDTO.getUserId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         Notification notification = notificationMapper.notificationDTOToNotification(notificationDTO);
         Notification result = notificationRepository.save(notification);
         return ResponseEntity.ok()
@@ -87,7 +99,8 @@ public class NotificationResource {
     @Transactional(readOnly = true)
     public List<NotificationDTO> getAll() {
         log.debug("REST request to get all Notifications");
-        return notificationRepository.findAll().stream()
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        return notificationRepository.findByUserId(currentUser.get().getId()).stream()
             .map(notification -> notificationMapper.notificationToNotificationDTO(notification))
             .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -101,7 +114,12 @@ public class NotificationResource {
     @Timed
     public ResponseEntity<NotificationDTO> get(@PathVariable Long id) {
         log.debug("REST request to get Notification : {}", id);
-        return Optional.ofNullable(notificationRepository.findOne(id))
+        Notification notification = notificationRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(notification.getUser() == null || !currentUser.get().getId().equals(notification.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
+        return Optional.ofNullable(notification)
             .map(notificationMapper::notificationToNotificationDTO)
             .map(notificationDTO -> new ResponseEntity<>(
                 notificationDTO,
@@ -118,6 +136,11 @@ public class NotificationResource {
     @Timed
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.debug("REST request to delete Notification : {}", id);
+        Notification notification = notificationRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(notification.getUser() == null || !currentUser.get().getId().equals(notification.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         notificationRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("notification", id.toString())).build();
     }

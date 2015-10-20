@@ -5,7 +5,7 @@ package com.mightymerce.core.domain.enumeration;
  */
 public enum Tax {
 
-    GE_19PC_VAT ("Germany, 19 % VAT")
+    GE_VAT_19PC ("Germany, 19 % VAT")
     ;
 
     private String key;

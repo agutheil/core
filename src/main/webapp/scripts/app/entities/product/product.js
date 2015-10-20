@@ -99,7 +99,7 @@ angular.module('coreApp')
                 data: {
                     roles: ['ROLE_USER'],
                 },
-                onEnter: ['$stateParams', '$state', '$modal', '$window', function($stateParams, $state, $modal, $window) {
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/product/product-postfb.html',
                         controller: 'ProductPostfbController',

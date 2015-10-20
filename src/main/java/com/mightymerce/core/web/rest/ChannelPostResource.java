@@ -65,25 +65,57 @@ public class ChannelPostResource {
         log.debug("2 => " + channelPost);
         channelPost = channelPostRepository.save(channelPost);
         log.debug("3 => " + channelPost);
-        String merchantChannelError = null;
-        try {
-            channelPost.setExternalPostKey(channelPostService.updateStatus(channelPost));
-            channelPost.setStatus(PublicationStatus.Published);
-        } catch(Exception e) {
-            merchantChannelError = "Error while posting to facebook : " + e.toString();
-            log.error(merchantChannelError);
-            channelPost.setStatus(PublicationStatus.Error);
+        String merchantChannelError = "Error while processing  request";
+
+        /**
+         * TESTING CODE - STARTS HERE
+         * Only for testing - should not go in to production
+         */
+        if(channelPost.getStatus() == null ||
+            (!channelPost.getStatus().equals(PublicationStatus.Published)
+                && !channelPost.getStatus().equals(PublicationStatus.Pending)
+                && !channelPost.getStatus().equals(PublicationStatus.Error))) {
+            log.debug("     #####     TRYING TO POST TO FACEBOOK     ######     ");
+            /**
+             * TESTING CODE - ENDS HERE
+             */
+            try {
+                channelPost.setExternalPostKey(channelPostService.updateStatus(channelPost));
+                channelPost.setStatus(PublicationStatus.Published);
+            } catch (Exception e) {
+                merchantChannelError = "Error while posting to facebook : " + e.toString();
+                log.error(merchantChannelError);
+                channelPost.setStatus(PublicationStatus.Error);
+            }
+            /**
+             * TESTING CODE - STARTS HERE
+             * Only for testing - should not go in to production
+             */
+        } else {
+            log.debug("     #####     SKIPPING POST TO FACEBOOK     ######     ");
         }
+        /**
+         * TESTING CODE - ENDS HERE
+         */
         channelPost.setPublicationDate(DateTime.now(DateTimeZone.UTC));
         log.debug("4 => " + channelPost);
         channelPost = channelPostRepository.save(channelPost);
         log.debug("5 => " + channelPost);
+/*
         if (merchantChannelError != null) {
             return ResponseEntity.badRequest().header("Failure", merchantChannelError).body("Error while posting to Facebook. Please try again after some time and if problem persist, contact administrator.");
         }
+*/
+        HttpHeaders httpHeaders = null;
+        if(channelPost.getStatus().equals(PublicationStatus.Published)) {
+            httpHeaders = HeaderUtil.createEntityCreationAlert("channelPost", channelPost.getId().toString());
+        } else if(channelPost.getStatus().equals(PublicationStatus.Pending)) {
+            httpHeaders = HeaderUtil.createWarningAlert("Your post request has been sent. Waiting for confirmation by Facebook within the next 10 minutes.");
+        } else if(channelPost.getStatus().equals(PublicationStatus.Error)) {
+            httpHeaders = HeaderUtil.createErrorAlert(merchantChannelError);
+        }
         return ResponseEntity.created(new URI("/api/channelPosts/" + channelPost.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("channelPost", channelPost.getId().toString()))
-            .body(channelPost);
+            .headers(httpHeaders).body(channelPost);
     }
 
     /**

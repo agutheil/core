@@ -2,7 +2,10 @@ package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.LegalInfo;
+import com.mightymerce.core.domain.User;
 import com.mightymerce.core.repository.LegalInfoRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.dto.LegalInfoDTO;
 import com.mightymerce.core.web.rest.mapper.LegalInfoMapper;
@@ -39,6 +42,9 @@ public class LegalInfoResource {
     @Inject
     private LegalInfoMapper legalInfoMapper;
 
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /legalInfos -> Create a new legalInfo.
      */
@@ -52,6 +58,8 @@ public class LegalInfoResource {
             return ResponseEntity.badRequest().header("Failure", "A new legalInfo cannot already have an ID").body(null);
         }
         LegalInfo legalInfo = legalInfoMapper.legalInfoDTOToLegalInfo(legalInfoDTO);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        legalInfo.setUser(currentUser.get());
         LegalInfo result = legalInfoRepository.save(legalInfo);
         return ResponseEntity.created(new URI("/api/legalInfos/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("legalInfo", result.getId().toString()))
@@ -70,6 +78,10 @@ public class LegalInfoResource {
         if (legalInfoDTO.getId() == null) {
             return create(legalInfoDTO);
         }
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(!currentUser.get().getId().equals(legalInfoDTO.getUserId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         LegalInfo legalInfo = legalInfoMapper.legalInfoDTOToLegalInfo(legalInfoDTO);
         LegalInfo result = legalInfoRepository.save(legalInfo);
         return ResponseEntity.ok()
@@ -87,7 +99,8 @@ public class LegalInfoResource {
     @Transactional(readOnly = true)
     public List<LegalInfoDTO> getAll() {
         log.debug("REST request to get all LegalInfos");
-        return legalInfoRepository.findAll().stream()
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        return legalInfoRepository.findByUserId(currentUser.get().getId()).stream()
             .map(legalInfo -> legalInfoMapper.legalInfoToLegalInfoDTO(legalInfo))
             .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -101,7 +114,12 @@ public class LegalInfoResource {
     @Timed
     public ResponseEntity<LegalInfoDTO> get(@PathVariable Long id) {
         log.debug("REST request to get LegalInfo : {}", id);
-        return Optional.ofNullable(legalInfoRepository.findOne(id))
+        LegalInfo legalInfo = legalInfoRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(legalInfo.getUser() == null || !currentUser.get().getId().equals(legalInfo.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
+        return Optional.ofNullable(legalInfo)
             .map(legalInfoMapper::legalInfoToLegalInfoDTO)
             .map(legalInfoDTO -> new ResponseEntity<>(
                 legalInfoDTO,
@@ -118,6 +136,11 @@ public class LegalInfoResource {
     @Timed
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.debug("REST request to delete LegalInfo : {}", id);
+        LegalInfo legalInfo = legalInfoRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(legalInfo.getUser() == null || !currentUser.get().getId().equals(legalInfo.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         legalInfoRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("legalInfo", id.toString())).build();
     }

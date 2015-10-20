@@ -1,0 +1,61 @@
+{
+    "coreApp": {
+        "customerOrder" : {
+            "firstPanel": "Order Details",
+            "secondPanel": "Product Details",
+            "thirdPanel": "Customer Details",
+            "fourthPanel": "Payment Details",
+            "home": {
+                "title": "Orders",
+                "createLabel": "Place New Order",
+                "createOrEditLabel": "Create or edit a CustomerOrder"
+            },
+            "list": {
+                "placedOn": "Date",
+                "customer": "Customer",
+                "orderStatus": "Order Status",
+                "btnFulfilled": "Set order fulfilled",
+                "btnReturned": "Set order returned"
+            },
+            "fulfill": {
+                "title": "Set order fulfilled",
+                "btnYes": "Yes, set order fulfilled",
+                "btnNo": "No, close window"
+            },
+            "return": {
+                "title": "Set order returned",
+                "btnYes": "Yes, set order returned",
+                "btnNo": "No, close window"
+            },
+            "cancel": {
+                "title": "Do you really want to cancel the order?",
+                "btnYes": "Yes, cancel order",
+                "btnNo": "No, close window"
+            },
+            "created": "A new CustomerOrder is created with identifier {{ param }}",
+            "updated": "A CustomerOrder is updated with identifier {{ param }}",
+            "deleted": "A CustomerOrder is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete CustomerOrder {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer Order",
+                "btnSendEmailToCustomer": "Send email to customer",
+                "paypalTooltip": "TO verify payment open your PayPal account and enter PayPal Account ID and/or Transaction ID",
+                "btnCancel": "Cancel Order"
+            },
+            "placedOn": "Placed On",
+            "orderStatus": "Order Status",
+            "paymentStatus": "Payment Status",
+            "totalAmount": "Order Total",
+            "tax": "VAT",
+            "paypalAccountId": "Paypal Account ID",
+            "paypalTransactionId": "Paypal Transaction ID",
+            "currency": "Currency",
+            "taxCurrency": "TaxCurrency",
+            "product": "Product",
+            "customer": "Customer",
+            "user": "User"
+        }
+    }
+}

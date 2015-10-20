@@ -1,9 +1,26 @@
 'use strict';
 
 angular.module('coreApp')
-    .controller('ProductController', function ($scope, Product, ParseLinks, ChannelPostsByProductIds) {
+    .controller('ProductController', function ($scope, Product, ParseLinks, ChannelPostsByProductIds, $rootScope) {
         $scope.products = [];
         $scope.page = 1;
+
+        /**
+         * TEST ONLY CODE - STARTS HERE
+         * Following is test only code - should not go into production
+         */
+        $rootScope.testingChannelPostStatuses = ['Published', 'Pending', 'Error'];
+        $scope.getTestingChannelPostStatus = function () {
+            return $rootScope.testingChannelPostStatus;
+        };
+        $scope.saveTestingChannelPostStatus = function () {
+            console.log("$scope.testingChannelPostStatus = " + $scope.testingChannelPostStatus);
+            $rootScope.testingChannelPostStatus = $scope.testingChannelPostStatus;
+        };
+        /**
+         * TEST ONLY CODE - ENDS HERE
+         */
+
         $scope.loadAll = function() {
             Product.query({page: $scope.page, per_page: 20}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
@@ -15,10 +32,12 @@ angular.module('coreApp')
                     }
                 }
                 console.log("productIds = " + $scope.productIds);
-                ChannelPostsByProductIds.get({productIds: $scope.productIds}, function(result) {
-                    console.log("result = " + result);
-                    $scope.channelPosts = result;
-                });
+                if($scope.productIds) {
+                    ChannelPostsByProductIds.get({productIds: $scope.productIds}, function(result) {
+                        console.log("result = " + result);
+                        $scope.channelPosts = result;
+                    });
+                }
             });
         };
 

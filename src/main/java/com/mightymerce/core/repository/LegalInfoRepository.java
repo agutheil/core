@@ -13,4 +13,5 @@ public interface LegalInfoRepository extends JpaRepository<LegalInfo,Long> {
     @Query("select legalInfo from LegalInfo legalInfo where legalInfo.user.login = ?#{principal.username}")
     List<LegalInfo> findByUserIsCurrentUser();
 
+    List<LegalInfo> findByUserId(Long id);
 }

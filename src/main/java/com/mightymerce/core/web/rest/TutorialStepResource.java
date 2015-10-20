@@ -2,7 +2,10 @@ package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.TutorialStep;
+import com.mightymerce.core.domain.User;
 import com.mightymerce.core.repository.TutorialStepRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.dto.TutorialStepDTO;
 import com.mightymerce.core.web.rest.mapper.TutorialStepMapper;
@@ -39,6 +42,9 @@ public class TutorialStepResource {
     @Inject
     private TutorialStepMapper tutorialStepMapper;
 
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /tutorialSteps -> Create a new tutorialStep.
      */
@@ -52,6 +58,8 @@ public class TutorialStepResource {
             return ResponseEntity.badRequest().header("Failure", "A new tutorialStep cannot already have an ID").body(null);
         }
         TutorialStep tutorialStep = tutorialStepMapper.tutorialStepDTOToTutorialStep(tutorialStepDTO);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        tutorialStep.setUser(currentUser.get());
         TutorialStep result = tutorialStepRepository.save(tutorialStep);
         return ResponseEntity.created(new URI("/api/tutorialSteps/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("tutorialStep", result.getId().toString()))
@@ -70,6 +78,10 @@ public class TutorialStepResource {
         if (tutorialStepDTO.getId() == null) {
             return create(tutorialStepDTO);
         }
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(!currentUser.get().getId().equals(tutorialStepDTO.getUserId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         TutorialStep tutorialStep = tutorialStepMapper.tutorialStepDTOToTutorialStep(tutorialStepDTO);
         TutorialStep result = tutorialStepRepository.save(tutorialStep);
         return ResponseEntity.ok()
@@ -87,7 +99,8 @@ public class TutorialStepResource {
     @Transactional(readOnly = true)
     public List<TutorialStepDTO> getAll() {
         log.debug("REST request to get all TutorialSteps");
-        return tutorialStepRepository.findAll().stream()
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        return tutorialStepRepository.findByUserId(currentUser.get().getId()).stream()
             .map(tutorialStep -> tutorialStepMapper.tutorialStepToTutorialStepDTO(tutorialStep))
             .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -101,7 +114,12 @@ public class TutorialStepResource {
     @Timed
     public ResponseEntity<TutorialStepDTO> get(@PathVariable Long id) {
         log.debug("REST request to get TutorialStep : {}", id);
-        return Optional.ofNullable(tutorialStepRepository.findOne(id))
+        TutorialStep tutorialStep = tutorialStepRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(tutorialStep.getUser() == null || !currentUser.get().getId().equals(tutorialStep.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
+        return Optional.ofNullable(tutorialStep)
             .map(tutorialStepMapper::tutorialStepToTutorialStepDTO)
             .map(tutorialStepDTO -> new ResponseEntity<>(
                 tutorialStepDTO,
@@ -118,6 +136,11 @@ public class TutorialStepResource {
     @Timed
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.debug("REST request to delete TutorialStep : {}", id);
+        TutorialStep tutorialStep = tutorialStepRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(tutorialStep.getUser() == null || !currentUser.get().getId().equals(tutorialStep.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         tutorialStepRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("tutorialStep", id.toString())).build();
     }

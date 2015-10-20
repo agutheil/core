@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('coreApp').controller('CustomerDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Customer', 'User',
-        function($scope, $stateParams, $modalInstance, entity, Customer, User) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Customer', 'CustomerAddress', 'User',
+        function($scope, $stateParams, $modalInstance, entity, Customer, CustomerAddress, User) {
 
         $scope.customer = entity;
+        $scope.customeraddresss = CustomerAddress.query();
         $scope.users = User.query();
         $scope.load = function(id) {
             Customer.get({id : id}, function(result) {

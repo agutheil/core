@@ -1,0 +1,29 @@
+{
+    "coreApp": {
+        "customerOrder" : {
+            "home": {
+                "title": "CustomerOrders",
+                "createLabel": "Create a new CustomerOrder",
+                "createOrEditLabel": "Create or edit a CustomerOrder"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete CustomerOrder {{ id }}?"
+            },
+            "detail": {
+                "title": "CustomerOrder"
+            },
+            "placedOn": "PlacedOn",
+            "orderStatus": "OrderStatus",
+            "paymentStatus": "PaymentStatus",
+            "totalAmount": "TotalAmount",
+            "tax": "Tax",
+            "paypalAccountId": "PaypalAccountId",
+            "paypalTransactionId": "PaypalTransactionId",
+            "currency": "Currency",
+            "taxCurrency": "TaxCurrency",
+            "product": "Product",
+            "customer": "Customer",
+            "user": "User"
+        }
+    }
+}

@@ -3,6 +3,8 @@ package com.mightymerce.core.web.rest;
 import com.mightymerce.core.Application;
 import com.mightymerce.core.domain.Customer;
 import com.mightymerce.core.repository.CustomerRepository;
+import com.mightymerce.core.web.rest.dto.CustomerDTO;
+import com.mightymerce.core.web.rest.mapper.CustomerMapper;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +30,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.mightymerce.core.domain.enumeration.Salutation;
 
 /**
  * Test class for the CustomerResource REST controller.
@@ -41,20 +42,20 @@ import com.mightymerce.core.domain.enumeration.Salutation;
 @IntegrationTest
 public class CustomerResourceTest {
 
-
-    private static final Salutation DEFAULT_SALUTATION = Salutation.mr;
-    private static final Salutation UPDATED_SALUTATION = Salutation.ms;
-    private static final String DEFAULT_NAME = "SAMPLE_TEXT";
-    private static final String UPDATED_NAME = "UPDATED_TEXT";
-    private static final String DEFAULT_MIDDLE_NAME = "SAMPLE_TEXT";
-    private static final String UPDATED_MIDDLE_NAME = "UPDATED_TEXT";
+    private static final String DEFAULT_FIRST_NAME = "SAMPLE_TEXT";
+    private static final String UPDATED_FIRST_NAME = "UPDATED_TEXT";
     private static final String DEFAULT_LAST_NAME = "SAMPLE_TEXT";
     private static final String UPDATED_LAST_NAME = "UPDATED_TEXT";
-    private static final String DEFAULT_PAYER_ID = "SAMPLE_TEXT";
-    private static final String UPDATED_PAYER_ID = "UPDATED_TEXT";
+    private static final String DEFAULT_EMAIL = "SAMPLE_TEXT";
+    private static final String UPDATED_EMAIL = "UPDATED_TEXT";
+    private static final String DEFAULT_STATUS = "SAMPLE_TEXT";
+    private static final String UPDATED_STATUS = "UPDATED_TEXT";
 
     @Inject
     private CustomerRepository customerRepository;
+
+    @Inject
+    private CustomerMapper customerMapper;
 
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -68,17 +69,17 @@ public class CustomerResourceTest {
         MockitoAnnotations.initMocks(this);
         CustomerResource customerResource = new CustomerResource();
         ReflectionTestUtils.setField(customerResource, "customerRepository", customerRepository);
+        ReflectionTestUtils.setField(customerResource, "customerMapper", customerMapper);
         this.restCustomerMockMvc = MockMvcBuilders.standaloneSetup(customerResource).setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before
     public void initTest() {
         customer = new Customer();
-        customer.setSalutation(DEFAULT_SALUTATION);
-        customer.setName(DEFAULT_NAME);
-        customer.setMiddleName(DEFAULT_MIDDLE_NAME);
+        customer.setFirstName(DEFAULT_FIRST_NAME);
         customer.setLastName(DEFAULT_LAST_NAME);
-        customer.setPayerId(DEFAULT_PAYER_ID);
+        customer.setEmail(DEFAULT_EMAIL);
+        customer.setStatus(DEFAULT_STATUS);
     }
 
     @Test
@@ -87,35 +88,36 @@ public class CustomerResourceTest {
         int databaseSizeBeforeCreate = customerRepository.findAll().size();
 
         // Create the Customer
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         restCustomerMockMvc.perform(post("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(customer)))
+                .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
                 .andExpect(status().isCreated());
 
         // Validate the Customer in the database
         List<Customer> customers = customerRepository.findAll();
         assertThat(customers).hasSize(databaseSizeBeforeCreate + 1);
         Customer testCustomer = customers.get(customers.size() - 1);
-        assertThat(testCustomer.getSalutation()).isEqualTo(DEFAULT_SALUTATION);
-        assertThat(testCustomer.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testCustomer.getMiddleName()).isEqualTo(DEFAULT_MIDDLE_NAME);
+        assertThat(testCustomer.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testCustomer.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
-        assertThat(testCustomer.getPayerId()).isEqualTo(DEFAULT_PAYER_ID);
+        assertThat(testCustomer.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testCustomer.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
     @Transactional
-    public void checkNameIsRequired() throws Exception {
+    public void checkFirstNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = customerRepository.findAll().size();
         // set the field null
-        customer.setName(null);
+        customer.setFirstName(null);
 
         // Create the Customer, which fails.
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         restCustomerMockMvc.perform(post("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(customer)))
+                .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
                 .andExpect(status().isBadRequest());
 
         List<Customer> customers = customerRepository.findAll();
@@ -130,10 +132,11 @@ public class CustomerResourceTest {
         customer.setLastName(null);
 
         // Create the Customer, which fails.
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         restCustomerMockMvc.perform(post("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(customer)))
+                .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
                 .andExpect(status().isBadRequest());
 
         List<Customer> customers = customerRepository.findAll();
@@ -142,16 +145,17 @@ public class CustomerResourceTest {
 
     @Test
     @Transactional
-    public void checkPayerIdIsRequired() throws Exception {
+    public void checkEmailIsRequired() throws Exception {
         int databaseSizeBeforeTest = customerRepository.findAll().size();
         // set the field null
-        customer.setPayerId(null);
+        customer.setEmail(null);
 
         // Create the Customer, which fails.
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         restCustomerMockMvc.perform(post("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(customer)))
+                .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
                 .andExpect(status().isBadRequest());
 
         List<Customer> customers = customerRepository.findAll();
@@ -169,11 +173,10 @@ public class CustomerResourceTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
-                .andExpect(jsonPath("$.[*].salutation").value(hasItem(DEFAULT_SALUTATION.toString())))
-                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-                .andExpect(jsonPath("$.[*].middleName").value(hasItem(DEFAULT_MIDDLE_NAME.toString())))
+                .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
                 .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
-                .andExpect(jsonPath("$.[*].payerId").value(hasItem(DEFAULT_PAYER_ID.toString())));
+                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+                .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test
@@ -187,11 +190,10 @@ public class CustomerResourceTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()))
-            .andExpect(jsonPath("$.salutation").value(DEFAULT_SALUTATION.toString()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.middleName").value(DEFAULT_MIDDLE_NAME.toString()))
+            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
-            .andExpect(jsonPath("$.payerId").value(DEFAULT_PAYER_ID.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -211,27 +213,26 @@ public class CustomerResourceTest {
 		int databaseSizeBeforeUpdate = customerRepository.findAll().size();
 
         // Update the customer
-        customer.setSalutation(UPDATED_SALUTATION);
-        customer.setName(UPDATED_NAME);
-        customer.setMiddleName(UPDATED_MIDDLE_NAME);
+        customer.setFirstName(UPDATED_FIRST_NAME);
         customer.setLastName(UPDATED_LAST_NAME);
-        customer.setPayerId(UPDATED_PAYER_ID);
+        customer.setEmail(UPDATED_EMAIL);
+        customer.setStatus(UPDATED_STATUS);
         
+        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         restCustomerMockMvc.perform(put("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(customer)))
+                .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
                 .andExpect(status().isOk());
 
         // Validate the Customer in the database
         List<Customer> customers = customerRepository.findAll();
         assertThat(customers).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customers.get(customers.size() - 1);
-        assertThat(testCustomer.getSalutation()).isEqualTo(UPDATED_SALUTATION);
-        assertThat(testCustomer.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testCustomer.getMiddleName()).isEqualTo(UPDATED_MIDDLE_NAME);
+        assertThat(testCustomer.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testCustomer.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testCustomer.getPayerId()).isEqualTo(UPDATED_PAYER_ID);
+        assertThat(testCustomer.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testCustomer.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

@@ -1,0 +1,28 @@
+{
+    "coreApp": {
+        "customerAddress" : {
+            "home": {
+                "title": "CustomerAddresss",
+                "createLabel": "Create a new CustomerAddress",
+                "createOrEditLabel": "Create or edit a CustomerAddress"
+            },
+            "created": "A new CustomerAddress is created with identifier {{ param }}",
+            "updated": "A CustomerAddress is updated with identifier {{ param }}",
+            "deleted": "A CustomerAddress is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete CustomerAddress {{ id }}?"
+            },
+            "detail": {
+                "title": "CustomerAddress"
+            },
+            "addressTo": "AddressTo",
+            "streetAddress": "StreetAddress",
+            "zip": "Zip",
+            "city": "City",
+            "state": "State",
+            "country": "Country",
+            "status": "Status",
+            "user": "User"
+        }
+    }
+}

@@ -14,3 +14,10 @@ angular.module('coreApp')
             'update': { method:'PUT' }
         });
     });
+
+angular.module('coreApp')
+    .factory('CustomerMapByCustomerIds', function ($resource) {
+        return $resource('api/customerMapByCustomerIds', {}, {
+            'get': { method:'GET', isArray:false }
+        });
+    });

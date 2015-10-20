@@ -13,4 +13,6 @@ public interface DeliveryOptionRepository extends JpaRepository<DeliveryOption,L
     @Query("select deliveryOption from DeliveryOption deliveryOption where deliveryOption.user.login = ?#{principal.username}")
     List<DeliveryOption> findByUserIsCurrentUser();
 
+    List<DeliveryOption> findByUserId(Long id);
+
 }

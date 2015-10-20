@@ -56,8 +56,17 @@ angular.module('coreApp').controller('ProductPostfbController',
 
             $scope.save = function () {
                 $scope.disableReSubmit = true;
-                var channelPost = {product:{id:$scope.product.id}, merchantChannel:{id:$scope.merchantChannelId}}
-                ChannelPost.save(channelPost, $scope.channelPost && $scope.channelPost.id ? $scope.clear : onSaveSuccess, onSaveError);
+                var channelPost = {product:{id:$scope.product.id}, merchantChannel:{id:$scope.merchantChannelId}
+                    /**
+                     * TEST ONLY CODE - STARTS HERE
+                     * Following is test only code - should not go into production
+                     */
+                    , status:$rootScope.testingChannelPostStatus
+                    /**
+                     * TEST ONLY CODE - ENDS HERE
+                     */
+                };
+                ChannelPost.save(channelPost, onSaveSuccess, onSaveError);
             };
 
             $scope.clear = function() {

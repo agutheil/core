@@ -1,0 +1,111 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "placedOn",
+            "fieldType": "DateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "orderStatus",
+            "fieldType": "OrderStatus",
+            "fieldValues": "Created,Canceled,Fulfilled,Returned",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "paymentStatus",
+            "fieldType": "PaymentStatus",
+            "fieldValues": "Paid,Pending,Error",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "totalAmount",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "tax",
+            "fieldType": "Tax",
+            "fieldValues": "GE_VAT_19PC",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "paypalAccountId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "paypalTransactionId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "currency",
+            "fieldType": "Currency",
+            "fieldValues": "EUR",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "taxCurrency",
+            "fieldType": "Currency",
+            "fieldValues": "",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20151015091349",
+    "dto": "mapstruct",
+    "pagination": "pagination"
+}

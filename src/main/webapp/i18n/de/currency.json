@@ -1,19 +1,8 @@
 {
     "coreApp": {
-        "currency" : {
-            "home": {
-                "title": "Currencys",
-                "createLabel": "Create a new Currency",
-                "createOrEditLabel": "Create or edit a Currency"
-            },
-            "delete": {
-                "question": "Are you sure you want to delete Currency {{ id }}?"
-            },
-            "detail": {
-                "title": "Currency"
-            },
-            "title": "Title",
-            "description": "Description"
+        "Currency" : {
+            "SELECT": "{VALUE, select, {} other{}}",
+            "": ""
         }
     }
 }

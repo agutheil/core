@@ -12,27 +12,10 @@
             <tbody>
             <tr>
                 <td>
-                    <span translate="coreApp.customer.salutation">Salutation</span>
+                    <span translate="coreApp.customer.firstName">FirstName</span>
                 </td>
                 <td>
-                    <span class="input-sm form-control readonly" translate="coreApp.Salutation.SELECT"
-                          translate-interpolation="messageformat" translate-values="{ VALUE: customer.salutation }"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="coreApp.customer.name">Name</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{customer.name}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span translate="coreApp.customer.middleName">MiddleName</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{customer.middleName}}</span>
+                    <span class="form-control-static">{{customer.firstName}}</span>
                 </td>
             </tr>
             <tr>
@@ -45,10 +28,42 @@
             </tr>
             <tr>
                 <td>
-                    <span translate="coreApp.customer.payerId">PayerId</span>
+                    <span translate="coreApp.customer.email">Email</span>
                 </td>
                 <td>
-                    <span class="form-control-static">{{customer.payerId}}</span>
+                    <span class="form-control-static">{{customer.email}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.status">Status</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{customer.status}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.billingAddress">billingAddress</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="customerAddress.detail({id:customer.billingAddressId})">{{customer.billingAddressId}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.shippingAddress">shippingAddress</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="customerAddress.detail({id:customer.shippingAddressId})">{{customer.shippingAddressId}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="coreApp.customer.user">user</span>
+                </td>
+                <td>
+                    {{customer.userId}}
                 </td>
             </tr>
             </tbody>

@@ -10,8 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mightymerce.core.domain.enumeration.Salutation;
 
 /**
  * A Customer.
@@ -25,27 +23,31 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    
-    @Enumerated(EnumType.STRING)
-    @Column(name = "salutation")
-    private Salutation salutation;
 
-    @NotNull        
-    @Column(name = "name", nullable = false)
-    private String name;
-    
-    @Column(name = "middle_name")
-    private String middleName;
+    @NotNull
+    @Size(max = 50)        
+    @Column(name = "first_name", length = 50, nullable = false)
+    private String firstName;
 
-    @NotNull        
-    @Column(name = "last_name", nullable = false)
+    @NotNull
+    @Size(max = 50)        
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
-    @NotNull        
-    @Column(name = "payer_id", nullable = false)
-    private String payerId;
+    @NotNull
+    @Size(max = 100)        
+    @Column(name = "email", length = 100, nullable = false)
+    private String email;
+    
+    @Column(name = "status")
+    private String status;
 
-    @JsonIgnore
+    @ManyToOne
+    private CustomerAddress billingAddress;
+
+    @ManyToOne
+    private CustomerAddress shippingAddress;
+
     @ManyToOne
     private User user;
 
@@ -57,28 +59,12 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Salutation getSalutation() {
-        return salutation;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSalutation(Salutation salutation) {
-        this.salutation = salutation;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -89,12 +75,36 @@ public class Customer implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getPayerId() {
-        return payerId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPayerId(String payerId) {
-        this.payerId = payerId;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public CustomerAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(CustomerAddress customerAddress) {
+        this.billingAddress = customerAddress;
+    }
+
+    public CustomerAddress getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(CustomerAddress customerAddress) {
+        this.shippingAddress = customerAddress;
     }
 
     public User getUser() {
@@ -130,11 +140,10 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", salutation='" + salutation + "'" +
-                ", name='" + name + "'" +
-                ", middleName='" + middleName + "'" +
+                ", firstName='" + firstName + "'" +
                 ", lastName='" + lastName + "'" +
-                ", payerId='" + payerId + "'" +
+                ", email='" + email + "'" +
+                ", status='" + status + "'" +
                 '}';
     }
 }

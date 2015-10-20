@@ -2,7 +2,10 @@ package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.DeliveryOption;
+import com.mightymerce.core.domain.User;
 import com.mightymerce.core.repository.DeliveryOptionRepository;
+import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.dto.DeliveryOptionDTO;
 import com.mightymerce.core.web.rest.mapper.DeliveryOptionMapper;
@@ -39,6 +42,9 @@ public class DeliveryOptionResource {
     @Inject
     private DeliveryOptionMapper deliveryOptionMapper;
 
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /deliveryOptions -> Create a new deliveryOption.
      */
@@ -52,6 +58,8 @@ public class DeliveryOptionResource {
             return ResponseEntity.badRequest().header("Failure", "A new deliveryOption cannot already have an ID").body(null);
         }
         DeliveryOption deliveryOption = deliveryOptionMapper.deliveryOptionDTOToDeliveryOption(deliveryOptionDTO);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        deliveryOption.setUser(currentUser.get());
         DeliveryOption result = deliveryOptionRepository.save(deliveryOption);
         return ResponseEntity.created(new URI("/api/deliveryOptions/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("deliveryOption", result.getId().toString()))
@@ -70,6 +78,10 @@ public class DeliveryOptionResource {
         if (deliveryOptionDTO.getId() == null) {
             return create(deliveryOptionDTO);
         }
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(!currentUser.get().getId().equals(deliveryOptionDTO.getUserId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         DeliveryOption deliveryOption = deliveryOptionMapper.deliveryOptionDTOToDeliveryOption(deliveryOptionDTO);
         DeliveryOption result = deliveryOptionRepository.save(deliveryOption);
         return ResponseEntity.ok()
@@ -87,7 +99,8 @@ public class DeliveryOptionResource {
     @Transactional(readOnly = true)
     public List<DeliveryOptionDTO> getAll() {
         log.debug("REST request to get all DeliveryOptions");
-        return deliveryOptionRepository.findAll().stream()
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        return deliveryOptionRepository.findByUserId(currentUser.get().getId()).stream()
             .map(deliveryOption -> deliveryOptionMapper.deliveryOptionToDeliveryOptionDTO(deliveryOption))
             .collect(Collectors.toCollection(LinkedList::new));
     }
@@ -101,7 +114,12 @@ public class DeliveryOptionResource {
     @Timed
     public ResponseEntity<DeliveryOptionDTO> get(@PathVariable Long id) {
         log.debug("REST request to get DeliveryOption : {}", id);
-        return Optional.ofNullable(deliveryOptionRepository.findOne(id))
+        DeliveryOption deliveryOption = deliveryOptionRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(deliveryOption.getUser() == null || !currentUser.get().getId().equals(deliveryOption.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
+        return Optional.ofNullable(deliveryOption)
             .map(deliveryOptionMapper::deliveryOptionToDeliveryOptionDTO)
             .map(deliveryOptionDTO -> new ResponseEntity<>(
                 deliveryOptionDTO,
@@ -118,6 +136,11 @@ public class DeliveryOptionResource {
     @Timed
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.debug("REST request to delete DeliveryOption : {}", id);
+        DeliveryOption deliveryOption = deliveryOptionRepository.findOne(id);
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        if(deliveryOption.getUser() == null || !currentUser.get().getId().equals(deliveryOption.getUser().getId())) {
+            return ResponseEntity.badRequest().header("Failure", "Permission Denied").body(null);
+        }
         deliveryOptionRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("deliveryOption", id.toString())).build();
     }

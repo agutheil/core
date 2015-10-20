@@ -15,11 +15,12 @@
             "detail": {
                 "title": "Customer"
             },
-            "salutation": "Salutation",
-            "name": "Name",
-            "middleName": "MiddleName",
+            "firstName": "FirstName",
             "lastName": "LastName",
-            "payerId": "PayerId",
+            "email": "Email",
+            "status": "Status",
+            "billingAddress": "BillingAddress",
+            "shippingAddress": "ShippingAddress",
             "user": "User"
         }
     }

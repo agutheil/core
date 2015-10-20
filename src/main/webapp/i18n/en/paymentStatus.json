@@ -1,10 +1,10 @@
 {
     "coreApp": {
         "PaymentStatus" : {
-            "SELECT": "{VALUE, select, pending{pending} paid{paid} error{error} other{}}",
-            "pending": "pending",
-            "paid": "paid",
-            "error": "error"
+            "SELECT": "{VALUE, select, Paid{Paid} Pending{Pending} Error{Error} other{}}",
+            "Paid": "Paid",
+            "Pending": "Pending",
+            "Error": "Error"
         }
     }
 }

@@ -1,0 +1,135 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myCustomerAddressLabel" translate="coreApp.customerAddress.home.createOrEditLabel">Create or edit a CustomerAddress</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="customerAddress.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.addressTo" for="field_addressTo">AddressTo</label>
+            <input type="text" class="form-control" name="addressTo" id="field_addressTo"
+                    ng-model="customerAddress.addressTo"
+                    required ng-maxlength="100">
+
+            <div ng-show="editForm.addressTo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.addressTo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.addressTo.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.streetAddress" for="field_streetAddress">StreetAddress</label>
+            <input type="text" class="form-control" name="streetAddress" id="field_streetAddress"
+                    ng-model="customerAddress.streetAddress"
+                    required ng-maxlength="200">
+
+            <div ng-show="editForm.streetAddress.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.streetAddress.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.streetAddress.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="200">
+                    This field cannot be longer than 200 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.zip" for="field_zip">Zip</label>
+            <input type="text" class="form-control" name="zip" id="field_zip"
+                    ng-model="customerAddress.zip"
+                    required ng-maxlength="20">
+
+            <div ng-show="editForm.zip.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.zip.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.zip.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="20">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.city" for="field_city">City</label>
+            <input type="text" class="form-control" name="city" id="field_city"
+                    ng-model="customerAddress.city"
+                    required ng-maxlength="100">
+
+            <div ng-show="editForm.city.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.city.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.city.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.state" for="field_state">State</label>
+            <input type="text" class="form-control" name="state" id="field_state"
+                    ng-model="customerAddress.state"
+                    required ng-maxlength="100">
+
+            <div ng-show="editForm.state.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.state.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.state.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.country" for="field_country">Country</label>
+            <input type="text" class="form-control" name="country" id="field_country"
+                    ng-model="customerAddress.country"
+                    required ng-maxlength="100">
+
+            <div ng-show="editForm.country.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.country.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.country.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerAddress.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="customerAddress.status"
+                    >
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

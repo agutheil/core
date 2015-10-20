@@ -1,0 +1,8 @@
+{
+    "coreApp": {
+        "Tax" : {
+            "SELECT": "{VALUE, select, GE_VAT_19PC{GE_VAT_19PC} other{}}",
+            "GE_VAT_19PC": "GE_VAT_19PC"
+        }
+    }
+}

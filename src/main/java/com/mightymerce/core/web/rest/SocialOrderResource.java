@@ -1,20 +1,8 @@
 package com.mightymerce.core.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.mightymerce.core.domain.Address;
-import com.mightymerce.core.domain.Article;
-import com.mightymerce.core.domain.Customer;
 import com.mightymerce.core.domain.SocialOrder;
-import com.mightymerce.core.domain.User;
-import com.mightymerce.core.domain.enumeration.Country;
-import com.mightymerce.core.domain.enumeration.OrderStatus;
-import com.mightymerce.core.domain.enumeration.PaymentStatus;
-import com.mightymerce.core.integration.checkout.CheckoutOrder;
-import com.mightymerce.core.repository.AddressRepository;
-import com.mightymerce.core.repository.ArticleRepository;
-import com.mightymerce.core.repository.CustomerRepository;
-import com.mightymerce.core.repository.SocialOrderRepository;
-import com.mightymerce.core.repository.UserRepository;
+import com.mightymerce.core.repository.*;
 import com.mightymerce.core.security.SecurityUtils;
 import com.mightymerce.core.web.rest.util.HeaderUtil;
 import com.mightymerce.core.web.rest.util.PaginationUtil;
@@ -46,16 +34,16 @@ public class SocialOrderResource {
 
     @Inject
     private SocialOrderRepository socialOrderRepository;
-    
+
     @Inject
     private CustomerRepository customerRepository;
-    
+
     @Inject
     private ArticleRepository articleRepository;
-    
+
     @Inject
     private AddressRepository addressRepository;
-    
+
     @Inject
     private UserRepository userRepository;
 

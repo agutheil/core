@@ -77,6 +77,18 @@
                         <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
                     </ul>
                 </nav>
+
+                <!-- #### TESTING CODE - STARTS HERE-->
+                <!-- This is testing code only - should not be part of production build -->
+                <br/><br/>
+                Testing Product Channel Post Status :
+                Current Value = {{getTestingChannelPostStatus()}} | Set
+                <select id="testingChannelPostStatus" name="testingChannelPostStatus"
+                        ng-change="saveTestingChannelPostStatus()"
+                        ng-model="testingChannelPostStatus" ng-options="tcps as tcps for tcps in testingChannelPostStatuses">
+                </select>
+                <!-- #### TESTING CODE - ENDS HERE-->
+
             </div>
         </div>
     </div>

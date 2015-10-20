@@ -20,6 +20,8 @@
                 "notification": "Notification",
                 "tutorialStep": "TutorialStep",
                 "product": "Product",
+                "customerAddress": "CustomerAddress",
+                "customerOrder": "CustomerOrder",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

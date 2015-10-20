@@ -15,58 +15,80 @@
         </div>
 
         <div class="form-group">
-            <label translate="coreApp.customer.salutation" for="field_salutation">Salutation</label>
-            <select class="form-control" name="salutation" ng-model="customer.salutation" id="field_salutation">
-                <option value="mr" translate="coreApp.Salutation.mr">mr</option>
-                <option value="ms" translate="coreApp.Salutation.ms">ms</option>
-            </select>
+            <label translate="coreApp.customer.firstName" for="field_firstName">FirstName</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                    ng-model="customer.firstName"
+                    required ng-maxlength="50">
 
-        </div>
-        <div class="form-group">
-            <label translate="coreApp.customer.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="customer.name"
-                    required>
-
-            <div ng-show="editForm.name.$invalid">
+            <div ng-show="editForm.firstName.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.name.$error.required" translate="entity.validation.required">
+                    ng-show="editForm.firstName.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
+                <p class="help-block"
+                    ng-show="editForm.firstName.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
             </div>
-        </div>
-        <div class="form-group">
-            <label translate="coreApp.customer.middleName" for="field_middleName">MiddleName</label>
-            <input type="text" class="form-control" name="middleName" id="field_middleName"
-                    ng-model="customer.middleName"
-                    >
-
         </div>
         <div class="form-group">
             <label translate="coreApp.customer.lastName" for="field_lastName">LastName</label>
             <input type="text" class="form-control" name="lastName" id="field_lastName"
                     ng-model="customer.lastName"
-                    required>
+                    required ng-maxlength="50">
 
             <div ng-show="editForm.lastName.$invalid">
                 <p class="help-block"
                     ng-show="editForm.lastName.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
+                <p class="help-block"
+                    ng-show="editForm.lastName.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
             </div>
         </div>
         <div class="form-group">
-            <label translate="coreApp.customer.payerId" for="field_payerId">PayerId</label>
-            <input type="text" class="form-control" name="payerId" id="field_payerId"
-                    ng-model="customer.payerId"
-                    required>
+            <label translate="coreApp.customer.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="customer.email"
+                    required ng-maxlength="100">
 
-            <div ng-show="editForm.payerId.$invalid">
+            <div ng-show="editForm.email.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.payerId.$error.required" translate="entity.validation.required">
+                    ng-show="editForm.email.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
+                <p class="help-block"
+                    ng-show="editForm.email.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
             </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customer.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="customer.status"
+                    >
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customer.billingAddress" for="field_billingAddress">billingAddress</label>
+
+            <select class="form-control" id="field_billingAddress" name="billingAddress" ng-model="customer.billingAddressId"
+                    ng-options="customerAddress.id as customerAddress.addressTo for customerAddress in customeraddresss">
+                <option value=""></option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customer.shippingAddress" for="field_shippingAddress">shippingAddress</label>
+
+            <select class="form-control" id="field_shippingAddress" name="shippingAddress"
+                    ng-model="customer.shippingAddressId" ng-options="customerAddress.id as customerAddress.addressTo for customerAddress in customeraddresss">
+                <option value=""></option>
+            </select>
+
         </div>
     </div>
     <div class="modal-footer">

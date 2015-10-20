@@ -19,7 +19,6 @@ angular.module('coreApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('customer');
-                        $translatePartialLoader.addPart('salutation');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]
@@ -41,7 +40,6 @@ angular.module('coreApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('customer');
-                        $translatePartialLoader.addPart('salutation');
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'Customer', function($stateParams, Customer) {
@@ -62,7 +60,7 @@ angular.module('coreApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {salutation: null, name: null, middleName: null, lastName: null, payerId: null, id: null};
+                                return {firstName: null, lastName: null, email: null, status: null, id: null};
                             }
                         }
                     }).result.then(function(result) {

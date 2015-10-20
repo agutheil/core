@@ -8,52 +8,6 @@
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
-<!--
-        <div class="form-group">
-            <label for="id" translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="notification.id" readonly>
-        </div>
--->
-
-<!--
-        <div class="form-group">
-            <label translate="coreApp.notification.title" for="field_title">Title</label>
-            <input type="text" class="form-control" name="title" id="field_title"
-                    ng-model="notification.title"
-                    required ng-maxlength="50">
-
-            <div ng-show="editForm.title.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.title.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.title.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
-                    This field cannot be longer than 50 characters.
-                </p>
-            </div>
-        </div>
--->
-<!--
-        <div class="form-group">
-            <label translate="coreApp.notification.purpose" for="field_purpose">Purpose</label>
-            <input type="text" class="form-control" name="purpose" id="field_purpose"
-                    ng-model="notification.purpose"
-                    required ng-maxlength="200">
-
-            <div ng-show="editForm.purpose.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.purpose.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.purpose.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="200">
-                    This field cannot be longer than 200 characters.
-                </p>
-            </div>
-        </div>
--->
         <div class="form-group">
             <label translate="coreApp.notification.emailSubject" for="field_emailSubject">E-Mail Subject*</label>
             <input type="text" class="form-control" name="emailSubject" id="field_emailSubject"
@@ -74,11 +28,6 @@
         <div class="form-group">
             <label translate="coreApp.notification.emailBody" for="field_emailBody">E-Mail Body*</label>
             <textarea class="form-control span12" name="emailBody" id="field_emailBody" ng-model="notification.emailBody" required rows="8"/>
-<!--
-            <input type="text" class="form-control" name="emailBody" id="field_emailBody"
-                    ng-model="notification.emailBody"
-                    required>
--->
 
             <div ng-show="editForm.emailBody.$invalid">
                 <p class="help-block"
@@ -87,16 +36,7 @@
                 </p>
             </div>
         </div>
-<!--
-        <div class="form-group">
-            <label translate="coreApp.notification.user" for="field_user">user</label>
 
-            <select class="form-control" id="field_user" name="user" ng-model="notification.userId" ng-options="user.id as user.id for user in users">
-                <option value=""></option>
-            </select>
-
-        </div>
--->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

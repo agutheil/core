@@ -1,0 +1,156 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation class="form-horizontal">
+
+    <div>
+        <h2><span translate="coreApp.customerOrder.detail.title">Customer Order</span></h2>
+
+        <jh-alert-error></jh-alert-error>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.customerOrder.firstPanel">Order Details</h4>
+            </div>
+            <div class="panel-body">
+                <table style="width: 100%;">
+                    <tr>
+                        <td class="col-sm-3 form-control-static" translate="global.field.id">ID</td>
+                        <td class="col-sm-9 form-control-static">{{customerOrder.id}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3 form-control-static" translate="coreApp.customerOrder.placedOn">Placed On</td>
+                        <td class="col-sm-9 form-control-static" ng-bind="customerOrder.placedOn | date:'EEEE dd/MM/yyyy HH:mm:ss'"/>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.customerOrder.secondPanel">Product Details</h4>
+            </div>
+            <div class="panel-body">
+                <table style="width:100%;">
+                    <tbody>
+                    <tr>
+                        <td style="width:15%; vertical-align: middle !important;">
+                            <img data-ng-src="{{'data:image/*;base64,' + product.mainImage}}" style="max-height: 40px; max-width: 120px;" ng-if="product.mainImage"/>
+                        </td>
+                        <td style="width:25%; vertical-align: middle !important;">{{product.productId}}</td>
+                        <td style="vertical-align: middle !important;">{{product.title}}</td>
+                        <td style="width:25%; vertical-align: middle !important;">{{product.price | number:2}} {{product.currency}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.customerOrder.thirdPanel">Customer Details</h4>
+            </div>
+            <div class="panel-body">
+                <table style="width:100%;">
+                    <tbody>
+                    <tr ng-show="billingAddress">
+                        <td style="width:25%; vertical-align: top !important;">Billing Address</td>
+                        <td style="vertical-align: top !important;">
+                            {{billingAddress.addressTo}}<br/>
+                            {{billingAddress.streetAddress}}<br/>
+                            {{billingAddress.zip}} {{billingAddress.city}}<br/>
+                            {{billingAddress.state}} {{billingAddress.country}}<br/>
+                        </td>
+                    </tr>
+                    <tr ng-show="shippingAddress">
+                        <td style="width:25%; vertical-align: top !important;">Shipping Address</td>
+                        <td style="vertical-align: top !important;">
+                            {{shippingAddress.addressTo}}<br/>
+                            {{shippingAddress.streetAddress}}<br/>
+                            {{shippingAddress.zip}} {{shippingAddress.city}}<br/>
+                            {{shippingAddress.state}} {{shippingAddress.country}}<br/>
+                            <button type="submit"
+                                    class="btn btn-primary pull-right">
+                                <span translate="coreApp.customerOrder.detail.btnSendEmailToCustomer">Send email to customer</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 translate="coreApp.customerOrder.fourthPanel">Payment Details</h4>
+            </div>
+            <div class="panel-body">
+                <table style="width: 100%;">
+                    <tr>
+                        <td class="col-sm-3 form-control-static" translate="coreApp.customerOrder.paymentStatus">Payment Status</td>
+                        <td class="col-sm-9 form-control-static">{{customerOrder.paymentStatus}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3 form-control-static" translate="coreApp.customerOrder.totalAmount">Order Total</td>
+                        <td class="col-sm-9 form-control-static">{{customerOrder.totalAmount | number:2}} {{customerOrder.currency}}</td>
+                    </tr>
+                    <tr ng-switch="customerOrder.tax">
+                        <td class="col-sm-3 form-control-static" translate="coreApp.customerOrder.tax">VAT</td>
+                        <td class="col-sm-9 form-control-static" ng-switch-when="Germany, 19 % VAT">
+                            {{(customerOrder.totalAmount * 19/100) | number:2}} {{customerOrder.currency}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3 form-control-static" translate="coreApp.customerOrder.paypalAccountId">PayPal Account ID</td>
+                        <td class="col-sm-9 form-control-static">{{customerOrder.paypalAccountId}} <span
+                            class="glyphicon glyphicon-info-sign tooltip-icon" tooltip="{{'coreApp.customerOrder.detail.paypalTooltip' | translate}}"
+                            tooltip-placement="right"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-3 form-control-static" translate="coreApp.customerOrder.paypalTransactionId">PayPal Transaction ID</td>
+                        <td class="col-sm-9 form-control-static">{{customerOrder.paypalTransactionId}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="form-group">
+            <span class="col-sm-4">
+                <button type="submit"
+                        onclick="window.history.back()"
+                        class="btn btn-primary pull-left">
+                    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+                </button>
+            </span>
+            <span class="col-sm-5 form-control-static pull-right" ng-switch="customerOrder.orderStatus">
+                <table class="pull-right">
+                    <tr>
+                        <td ng-show="(customerOrder.orderStatus !== 'Canceled')">
+                            <button type="submit"
+                                    ui-sref="customerOrder.cancel({id:customerOrder.id})"
+                                    class="btn btn-primary">
+                                <span translate="coreApp.customerOrder.detail.btnCancel">Cancel Order</span>
+                            </button>
+                        </td>
+                        <td ng-switch-when="Created">
+                            <button type="submit"
+                                    ui-sref="customerOrder.fulfill({id:customerOrder.id})"
+                                    class="btn btn-primary">
+                                <span translate="coreApp.customerOrder.list.btnFulfilled">Set order fulfilled</span>
+                            </button>
+                        </td>
+                        <td ng-switch-when="Fulfilled">
+                            <button type="submit"
+                                    ui-sref="customerOrder.return({id:customerOrder.id})"
+                                    class="btn btn-primary">
+                                <span translate="coreApp.customerOrder.list.btnReturned">Set order returned</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </span>
+        </div>
+    </div>
+
+</form>

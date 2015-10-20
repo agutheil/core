@@ -1,6 +1,5 @@
 <div>
 
-    <h2 translate="coreApp.customer.home.title">Customers</h2>
     <jh-alert></jh-alert>
     <div class="container">
         <div class="row">
@@ -42,22 +41,32 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
-                    <th translate="coreApp.customer.salutation">Salutation</th>
-                    <th translate="coreApp.customer.name">Name</th>
-                    <th translate="coreApp.customer.middleName">MiddleName</th>
+                    <th translate="coreApp.customer.firstName">FirstName</th>
                     <th translate="coreApp.customer.lastName">LastName</th>
-                    <th translate="coreApp.customer.payerId">PayerId</th>
+                    <th translate="coreApp.customer.email">Email</th>
+                    <th translate="coreApp.customer.status">Status</th>
+                    <th translate="coreApp.customer.billingAddress">billingAddress</th>
+                    <th translate="coreApp.customer.shippingAddress">shippingAddress</th>
+                    <th translate="coreApp.customer.user">user</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="customer in customers">
                     <td><a ui-sref="customer.detail({id:customer.id})">{{customer.id}}</a></td>
-                    <td>{{customer.salutation}}</td>
-                    <td>{{customer.name}}</td>
-                    <td>{{customer.middleName}}</td>
+                    <td>{{customer.firstName}}</td>
                     <td>{{customer.lastName}}</td>
-                    <td>{{customer.payerId}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.status}}</td>
+                    <td>
+                        <a ui-sref="customerAddress.detail({id:customer.billingAddressId})">{{customer.billingAddressId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="customerAddress.detail({id:customer.shippingAddressId})">{{customer.shippingAddressId}}</a>
+                    </td>
+                    <td>
+                        {{customer.userId}}
+                    </td>
                     <td>
                         <button type="submit"
                                 ui-sref="customer.detail({id:customer.id})"

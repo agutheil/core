@@ -1,0 +1,25 @@
+{
+    "coreApp": {
+        "customerAddress" : {
+            "home": {
+                "title": "CustomerAddresss",
+                "createLabel": "Create a new CustomerAddress",
+                "createOrEditLabel": "Create or edit a CustomerAddress"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete CustomerAddress {{ id }}?"
+            },
+            "detail": {
+                "title": "CustomerAddress"
+            },
+            "addressTo": "AddressTo",
+            "streetAddress": "StreetAddress",
+            "zip": "Zip",
+            "city": "City",
+            "state": "State",
+            "country": "Country",
+            "status": "Status",
+            "user": "User"
+        }
+    }
+}

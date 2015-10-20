@@ -1,0 +1,175 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myCustomerOrderLabel" translate="coreApp.customerOrder.home.createOrEditLabel">Create or edit a CustomerOrder</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="customerOrder.id" readonly>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.orderStatus" for="field_orderStatus">Order Status</label>
+            <select class="form-control" name="orderStatus" ng-model="customerOrder.orderStatus" id="field_orderStatus" required>
+                <option value="Created" translate="coreApp.OrderStatus.Created">Created</option>
+                <option value="Canceled" translate="coreApp.OrderStatus.Canceled">Canceled</option>
+                <option value="Fulfilled" translate="coreApp.OrderStatus.Fulfilled">Fulfilled</option>
+                <option value="Returned" translate="coreApp.OrderStatus.Returned">Returned</option>
+            </select>
+            <div ng-show="editForm.orderStatus.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.orderStatus.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.placedOn" for="field_placedOn">Placed On</label>
+            <input type="datetime-local" class="form-control" name="placedOn" id="field_placedOn"
+                    ng-model="customerOrder.placedOn" ng-model-options="{timezone: 'UTC'}"
+                    required>
+
+            <div ng-show="editForm.placedOn.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.placedOn.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.placedOn.$error.datetimelocal" translate="entity.validation.datetimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.product" for="field_product">Product</label>
+
+            <select class="form-control" id="field_product" name="product" ng-model="customerOrder.productId"
+                    ng-options="product.id as product.title for product in products">
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.customer" for="field_customer">Customer</label>
+
+            <select class="form-control" id="field_customer" name="customer"
+                    ng-model="customerOrder.customerId" ng-options="customer.id as (customer.firstName + ' ' + customer.lastName) for customer in customers">
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.paymentStatus" for="field_paymentStatus">Payment Status</label>
+            <select class="form-control" name="paymentStatus" ng-model="customerOrder.paymentStatus" id="field_paymentStatus" required>
+                <option value="Paid" translate="coreApp.PaymentStatus.Paid">Paid</option>
+                <option value="Pending" translate="coreApp.PaymentStatus.Pending">Pending</option>
+                <option value="Error" translate="coreApp.PaymentStatus.Error">Error</option>
+            </select>
+
+            <div ng-show="editForm.paymentStatus.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.paymentStatus.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.totalAmount" for="field_totalAmount">Order Total</label>
+            <input type="number" class="form-control" name="totalAmount" id="field_totalAmount"
+                    ng-model="customerOrder.totalAmount"
+                    required>
+            <select class="form-control" required id="field_currency" name="currency"
+                    ng-model="customerOrder.currency" ng-options="currency.key as currency.value for currency in currencies">
+            </select>
+
+            <div ng-show="editForm.totalAmount.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.totalAmount.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.totalAmount.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+            <div ng-show="editForm.currency.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.currency.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.tax" for="field_tax">VAT</label>
+            <select class="form-control" required id="field_tax" name="tax"
+                    ng-model="customerOrder.tax" ng-options="tax.key as tax.value for tax in taxes">
+            </select>
+            <select class="form-control" required id="field_taxCurrency" name="taxCurrency"
+                    ng-model="customerOrder.taxCurrency" ng-options="currency.key as currency.value for currency in currencies">
+            </select>
+
+            <div ng-show="editForm.tax.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tax.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+            <div ng-show="editForm.taxCurrency.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.taxCurrency.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.paypalAccountId" for="field_paypalAccountId">Paypal Account ID</label>
+            <input type="text" class="form-control" name="paypalAccountId" id="field_paypalAccountId"
+                    ng-model="customerOrder.paypalAccountId"
+                    required ng-maxlength="100">
+
+            <div ng-show="editForm.paypalAccountId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.paypalAccountId.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.paypalAccountId.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="coreApp.customerOrder.paypalTransactionId" for="field_paypalTransactionId">Paypal Transaction ID</label>
+            <input type="text" class="form-control" name="paypalTransactionId" id="field_paypalTransactionId"
+                    ng-model="customerOrder.paypalTransactionId"
+                    required ng-maxlength="100">
+
+            <div ng-show="editForm.paypalTransactionId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.paypalTransactionId.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.paypalTransactionId.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
+                    This field cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

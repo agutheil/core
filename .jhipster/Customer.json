@@ -2,50 +2,64 @@
     "relationships": [
         {
             "relationshipId": 1,
+            "relationshipName": "billingAddress",
+            "otherEntityName": "customerAddress",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "shippingAddress",
+            "otherEntityName": "customerAddress",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
             "relationshipName": "user",
             "otherEntityName": "user",
             "relationshipType": "many-to-one",
-            "otherEntityField": "login"
+            "otherEntityField": "id"
         }
     ],
     "fields": [
         {
             "fieldId": 1,
-            "fieldName": "salutation",
-            "fieldType": "Salutation",
-            "fieldValues": "mr,ms"
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "50"
         },
         {
             "fieldId": 2,
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldId": 3,
-            "fieldName": "middleName",
-            "fieldType": "String"
-        },
-        {
-            "fieldId": 4,
             "fieldName": "lastName",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "50"
         },
         {
-            "fieldId": 5,
-            "fieldName": "payerId",
+            "fieldId": 3,
+            "fieldName": "email",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "status",
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20150907232924",
-    "dto": "no",
+    "changelogDate": "20151015094541",
+    "dto": "mapstruct",
     "pagination": "pagination"
 }

@@ -38,6 +38,6 @@ angular.module('coreApp')
         };
 
         $scope.clear = function () {
-            $scope.customer = {salutation: null, name: null, middleName: null, lastName: null, payerId: null, id: null};
+            $scope.customer = {firstName: null, lastName: null, email: null, status: null, id: null};
         };
     });

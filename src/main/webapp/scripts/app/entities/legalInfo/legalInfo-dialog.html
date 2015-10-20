@@ -8,52 +8,6 @@
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
-<!--
-        <div class="form-group">
-            <label for="id" translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="legalInfo.id" readonly>
-        </div>
--->
-
-<!--
-        <div class="form-group">
-            <label translate="coreApp.legalInfo.title" for="field_title">Title</label>
-            <input type="text" class="form-control" name="title" id="field_title"
-                    ng-model="legalInfo.title"
-                    required ng-maxlength="50">
-
-            <div ng-show="editForm.title.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.title.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.title.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="50">
-                    This field cannot be longer than 50 characters.
-                </p>
-            </div>
-        </div>
--->
-<!--
-        <div class="form-group">
-            <label translate="coreApp.legalInfo.purpose" for="field_purpose">Purpose</label>
-            <input type="text" class="form-control" name="purpose" id="field_purpose"
-                    ng-model="legalInfo.purpose"
-                    required ng-maxlength="100">
-
-            <div ng-show="editForm.purpose.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.purpose.$error.required" translate="entity.validation.required">
-                    This field is required.
-                </p>
-                <p class="help-block"
-                    ng-show="editForm.purpose.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="100">
-                    This field cannot be longer than 100 characters.
-                </p>
-            </div>
-        </div>
--->
         <div class="form-group">
             <label translate="coreApp.legalInfo.pageTitle" for="field_pageTitle">Page Title*</label>
             <input type="text" class="form-control" name="pageTitle" id="field_pageTitle"
@@ -74,11 +28,6 @@
         <div class="form-group">
             <label translate="coreApp.legalInfo.pageText" for="field_pageText">Copy*</label>
             <textarea class="form-control span12" name="pageText" id="field_pageText" ng-model="legalInfo.pageText" required rows="8"/>
-<!--
-            <input type="text" class="form-control" name="pageText" id="field_pageText"
-                    ng-model="legalInfo.pageText"
-                    required>
--->
 
             <div ng-show="editForm.pageText.$invalid">
                 <p class="help-block"
@@ -87,16 +36,6 @@
                 </p>
             </div>
         </div>
-<!--
-        <div class="form-group">
-            <label translate="coreApp.legalInfo.user" for="field_user">user</label>
-
-            <select class="form-control" id="field_user" name="user" ng-model="legalInfo.userId" ng-options="user.id as user.id for user in users">
-                <option value=""></option>
-            </select>
-
-        </div>
--->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coreApp')
-    .controller('CustomerDetailController', function ($scope, $rootScope, $stateParams, entity, Customer, User) {
+    .controller('CustomerDetailController', function ($scope, $rootScope, $stateParams, entity, Customer, CustomerAddress, User) {
         $scope.customer = entity;
         $scope.load = function (id) {
             Customer.get({id: id}, function(result) {
