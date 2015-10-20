@@ -135,14 +135,14 @@
                         </td>
                         <td ng-switch-when="Created">
                             <button type="submit"
-                                    ui-sref="customerOrder.fulfill({id:customerOrder.id})"
+                                    ui-sref="customerOrder.fulfillDetail({id:customerOrder.id})"
                                     class="btn btn-primary">
                                 <span translate="coreApp.customerOrder.list.btnFulfilled">Set order fulfilled</span>
                             </button>
                         </td>
                         <td ng-switch-when="Fulfilled">
                             <button type="submit"
-                                    ui-sref="customerOrder.return({id:customerOrder.id})"
+                                    ui-sref="customerOrder.returnDetail({id:customerOrder.id})"
                                     class="btn btn-primary">
                                 <span translate="coreApp.customerOrder.list.btnReturned">Set order returned</span>
                             </button>

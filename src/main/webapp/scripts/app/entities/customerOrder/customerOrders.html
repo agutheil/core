@@ -38,18 +38,24 @@
                         <td>{{getCustomerName(customerOrder.customerId)}}</td>
                         <td>{{customerOrder.orderStatus}}</td>
                         <td ng-switch="customerOrder.orderStatus">
-                            <button type="submit"
-                                    ng-switch-when="Created"
-                                    ui-sref="customerOrder.fulfill({id:customerOrder.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span translate="coreApp.customerOrder.list.btnFulfilled">Set order fulfilled</span>
-                            </button>
-                            <button type="submit"
-                                    ng-switch-when="Fulfilled"
-                                    ui-sref="customerOrder.return({id:customerOrder.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span translate="coreApp.customerOrder.list.btnReturned">Set order returned</span>
-                            </button>
+                            <table class="pull-right">
+                                <tr>
+                                    <td ng-switch-when="Created">
+                                        <button type="submit"
+                                                ui-sref="customerOrder.fulfill({id:customerOrder.id})"
+                                                class="btn btn-primary btn-sm">
+                                            <span translate="coreApp.customerOrder.list.btnFulfilled">Set order fulfilled</span>
+                                        </button>
+                                    </td>
+                                    <td ng-switch-when="Fulfilled">
+                                        <button type="submit"
+                                                ui-sref="customerOrder.return({id:customerOrder.id})"
+                                                class="btn btn-primary btn-sm">
+                                            <span translate="coreApp.customerOrder.list.btnReturned">Set order returned</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                     </tbody>

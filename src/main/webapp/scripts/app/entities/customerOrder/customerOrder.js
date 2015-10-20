@@ -126,6 +126,29 @@ angular.module('coreApp')
                         })
                 }]
             })
+            .state('customerOrder.fulfillDetail', {
+                parent: 'customerOrder.detail',
+                url: '/{id}/fulfill',
+                data: {
+                    roles: ['ROLE_USER'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/customerOrder/customerOrder-fulfill.html',
+                        controller: 'CustomerOrderFulfillController',
+                        size: 'md',
+                        resolve: {
+                            entity: ['CustomerOrder', function(CustomerOrder) {
+                                return CustomerOrder.get({id : $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function(result) {
+                            $state.go('customerOrder', null, { reload: true });
+                        }, function() {
+                            $state.go('^', {});
+                        })
+                }]
+            })
             .state('customerOrder.return', {
                 parent: 'customerOrder',
                 url: '/{id}/return',
@@ -149,20 +172,35 @@ angular.module('coreApp')
                         })
                 }]
             })
+            .state('customerOrder.returnDetail', {
+                parent: 'customerOrder.detail',
+                url: '/{id}/return',
+                data: {
+                    roles: ['ROLE_USER'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/customerOrder/customerOrder-return.html',
+                        controller: 'CustomerOrderReturnController',
+                        size: 'md',
+                        resolve: {
+                            entity: ['CustomerOrder', function(CustomerOrder) {
+                                return CustomerOrder.get({id : $stateParams.id});
+                            }]
+                        }
+                    }).result.then(function(result) {
+                            $state.go('customerOrder', null, { reload: true });
+                        }, function() {
+                            $state.go('^', {});
+                        })
+                }]
+            })
             .state('customerOrder.cancel', {
-                parent: 'customerOrder',
+                parent: 'customerOrder.detail',
                 url: '/{id}/cancel',
                 data: {
                     roles: ['ROLE_USER'],
                 },
-/*
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/entities/customerOrder/customerOrder-detail.html'/!*,
-                        controller: 'CustomerOrderDetailController'*!/
-                    }
-                },
-*/
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: 'scripts/app/entities/customerOrder/customerOrder-cancel.html',

@@ -33,15 +33,15 @@ angular.module('coreApp')
         $scope.load = function (id) {
             CustomerOrder.get({id: id}, function(result) {
                 $scope.customerOrder = result;
+                $scope.loadData();
             });
         };
 
+        $scope.load($stateParams.id);
+
         $rootScope.$on('coreApp:customerOrderUpdate', function(event, result) {
             $scope.customerOrder = result;
-        });
-
-        (function() {  // init
             $scope.loadData();
-        })();
+        });
 
     });
