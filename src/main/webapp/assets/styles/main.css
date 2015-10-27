@@ -275,3 +275,41 @@ ul#strengthBar {
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
+
+.tabDefault {
+    padding:20px;
+    background-color: #f6f6f6;
+    cursor: pointer;
+    font-weight: normal;
+    color: black;
+    border: 2px solid white;
+}
+
+.tabOver {
+    padding:20px;
+    background-color: #eaeaea;
+    cursor: pointer;
+    font-weight: normal;
+    color: black;
+    border: 2px solid white;
+}
+
+.tabSelected {
+    padding:20px;
+    background-color: #eaeaea;
+    cursor: pointer;
+    font-weight: bold;
+    color: #0088bb;
+    border: 2px solid white;
+}
+
+.statBox {
+    padding:20px;
+    border: 2px solid #eaeaea;
+    text-align: center;
+    width:16%;
+}
+
+.statBoxSep {
+    width:1%;
+}

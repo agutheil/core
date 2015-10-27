@@ -3,14 +3,13 @@ package com.mightymerce.core.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mightymerce.core.domain.Product;
 import com.mightymerce.core.domain.User;
-import com.mightymerce.core.repository.ChannelPostRepository;
 import com.mightymerce.core.repository.ProductRepository;
 import com.mightymerce.core.repository.UserRepository;
 import com.mightymerce.core.security.SecurityUtils;
-import com.mightymerce.core.web.rest.util.HeaderUtil;
-import com.mightymerce.core.web.rest.util.PaginationUtil;
 import com.mightymerce.core.web.rest.dto.ProductDTO;
 import com.mightymerce.core.web.rest.mapper.ProductMapper;
+import com.mightymerce.core.web.rest.util.HeaderUtil;
+import com.mightymerce.core.web.rest.util.PaginationUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,10 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -46,9 +48,6 @@ public class ProductResource {
 
     @Inject
     private UserRepository userRepository;
-
-    @Inject
-    private ChannelPostRepository channelPostRepository;
 
     /**
      * POST  /products -> Create a new product.
@@ -129,47 +128,6 @@ public class ProductResource {
     }
 
     /**
-     * GET  /productsWithChannelPosts -> get all the products.
-     */
-/*
-    @RequestMapping(value = "/productsWithChannelPosts",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    @Transactional(readOnly = true)
-    public ResponseEntity<List<ProductChannelPostDTO>> getAllWithChannelPost(@RequestParam(value = "page" , required = false) Integer offset,
-                                                   @RequestParam(value = "per_page", required = false) Integer limit)
-        throws URISyntaxException {
-        log.debug("REST request by '{}' to getAll Products with ChannelPost with page = {} and per_page = {}", SecurityUtils.getCurrentLogin(), offset, limit);
-        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
-        Page<Product> page = productRepository.findByUserId(currentUser.get().getId(), PaginationUtil.generatePageRequest(offset, limit));
-        Iterator<Product> productIterator = page.iterator();
-        Map<Long, ProductChannelPostDTO> productChannelPostDTOMap = new HashMap<>();
-        Product product;
-        List<Long> productIdList = new ArrayList<>();
-        while(productIterator.hasNext()) {
-            product = productIterator.next();
-            productIdList.add(product.getId());
-            productChannelPostDTOMap.put(product.getId(), new ProductChannelPostDTO(productMapper.productToProductDTO(product)));
-        }
-
-        List<ChannelPost> channelPosts = channelPostRepository.findByUserIdAndProductIdIn(currentUser.get().getId(), productIdList);
-        if(channelPosts != null && channelPosts.size() > 0 && currentUser.get() != null) {
-            for(ChannelPost channelPost : channelPosts) {
-                if(channelPost != null && channelPost.getProduct() != null && channelPost.getProduct().getId() != null
-                    && productChannelPostDTOMap.containsKey(channelPost.getProduct().getId())) {
-                    productChannelPostDTOMap.get(channelPost.getProduct().getId()).setChannelPost(channelPost);
-                }
-            }
-        }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/products", offset, limit);
-        return new ResponseEntity<>(page.getContent().stream()
-            .map(productMapper::productToProductDTO)
-            .collect(Collectors.toCollection(LinkedList::new)), headers, HttpStatus.OK);
-    }
-*/
-
-    /**
      * GET  /products/:id -> get the "id" product.
      */
     @RequestMapping(value = "/products/{id}",
@@ -207,5 +165,22 @@ public class ProductResource {
         }
         productRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("product", id.toString())).build();
+    }
+
+    /**
+     * GET  /productSold -> get products sold.
+     */
+    @RequestMapping(value = "/productSold",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> getProductSold()
+        throws URISyntaxException {
+        log.debug("REST request by '{}' to get ProductSold", SecurityUtils.getCurrentLogin());
+        Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin());
+        List<Map<String, Object>> productSoldList = productRepository.getProductsSold(currentUser.get().getId());
+        log.debug("product sold size = " + productSoldList.size());
+        return productSoldList;
     }
 }

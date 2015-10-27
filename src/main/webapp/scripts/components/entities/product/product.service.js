@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('coreApp')
-    .factory('Product', function ($resource, DateUtils) {
+    .factory('Product', function ($resource) {
         return $resource('api/products/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
@@ -12,5 +12,15 @@ angular.module('coreApp')
                 }
             },
             'update': { method:'PUT' }
+        });
+    });
+
+angular.module('coreApp')
+    .factory('ProductSold', function ($resource) {
+        return $resource('api/productSold', {}, {
+            'get': {
+                method: 'GET',
+                isArray: true
+            }
         });
     });

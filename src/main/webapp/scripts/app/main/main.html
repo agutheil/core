@@ -1,6 +1,6 @@
-<div ng-cloak ng-switch="isAuthenticated()" xmlns="http://www.w3.org/1999/html">
+<div ng-cloak xmlns="http://www.w3.org/1999/html">
 
-    <div class="well tutorial-panel" ng-switch-when="true">
+    <div class="well tutorial-panel" ng-show="isAuthenticated() && !showDashboard()">
 
         <h1><strong>Welcome {{account.firstName}} {{account.lastName}}!</strong></h1>
 
@@ -16,11 +16,11 @@
                     <div class="panel-body" ng-switch-when="false">
                         Maintain title, description and pricing of your final product. Add an image of your product that is appealing to your customer.
                         <br/><br/>
-                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Add Product</button>
+                        <button ng-click="go('products/new')" class="btn btn-primary btn pull-right tutorial-panel-btn">Add Product</button>
                     </div>
                     <div class="panel-body" ng-switch-when="true">
                         <span class="glyphicon glyphicon-check"/> Completed
-                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Products</button>
+                        <button ng-click="go('products')" class="btn btn-success btn pull-right tutorial-panel-btn">View Products</button>
                     </div>
                 </div>
             </div>
@@ -35,11 +35,11 @@
                     <div class="panel-body" ng-switch-when="false">
                         Connect the social media channels on which you would like your customers to buy your products.
                         <br/><br/>
-                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Connect to Social Channels</button>
+                        <button ng-click="go('merchantChannels')" class="btn btn-primary btn pull-right tutorial-panel-btn">Connect to Social Channels</button>
                     </div>
                     <div class="panel-body" ng-switch-when="true">
                         <span class="glyphicon glyphicon-check"/> Completed
-                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Social Channels</button>
+                        <button ng-click="go('merchantChannels')" class="btn btn-success btn pull-right tutorial-panel-btn">View Social Channels</button>
                     </div>
                 </div>
             </div>
@@ -74,11 +74,11 @@
                         Finally post your products to one or more activated social channels. With the post of your first product you will
                         find a Dashboard on your Home screen that allows you to track your posts and orders.
                         <br/><br/>
-                        <button class="btn btn-primary btn pull-right tutorial-panel-btn">Post Product</button>
+                        <button ng-click="go('channelPosts/new')" class="btn btn-primary btn pull-right tutorial-panel-btn">Post Product</button>
                     </div>
                     <div class="panel-body" ng-switch-when="true">
                         <span class="glyphicon glyphicon-check"/> Completed
-                        <button class="btn btn-success btn pull-right tutorial-panel-btn">View Posts</button>
+                        <button ng-click="go('channelPosts')" class="btn btn-success btn pull-right tutorial-panel-btn">View Posts</button>
                     </div>
                 </div>
             </div>
@@ -86,8 +86,174 @@
 
     </div>
 
+    <div class="well tutorial-panel" ng-show="isAuthenticated() && showDashboard()">
 
-    <div class="row" ng-switch-when="false">
+        <div class="panel panel-default" ng-show="customerOrdersToDisplay">
+            <div class="panel-heading" style="text-align: left !important;">
+                <h3>
+                    {{customerOrdersToBeFulfilledLimited.length + customerOrdersToBeFulfilledRemaining.length}} orders to be fulfilled
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center !important;" translate="global.field.id">ID</th>
+                            <th style="text-align: center !important;" translate="coreApp.customerOrder.list.customer">Customer</th>
+                            <th style="text-align: center !important;" translate="coreApp.customerOrder.list.placedOn">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="customerOrder in customerOrdersToDisplay">
+                            <td><a ui-sref="customerOrder.detail({id:customerOrder.id})">{{customerOrder.id}}</a></td>
+                            <td>{{getCustomerName(customerOrder.customerId)}}</td>
+                            <td><span ng-bind="customerOrder.placedOn | date:'EEEE dd/MM/yyyy HH:mm:ss'"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: left !important;">
+                                <a ng-click="toggleShowAll()" ng-show="customerOrdersToBeFulfilledRemaining.length > 0">
+                                    <span ng-show="displayShowAll()">Show All <span class="glyphicon glyphicon-chevron-down"/></span>
+                                    <span ng-show="displayShowLess()">Show Less <span class="glyphicon glyphicon-chevron-up"/></span>
+                                </a>
+                            </td>
+                            <td style="text-align: right !important;">
+                                <button type="submit"
+                                        ng-click="go('customerOrders')"
+                                        class="btn btn-primary pull-right">
+                                    <span>View Orders</span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: left !important;">
+                <h3>Performance Overview</h3>
+            </div>
+
+            <script language="javascript">
+                function tabOver (tab) {
+                    tab.className = 'tabOver';
+                }
+                function tabOut (tab, clsName) {
+                    tab.className = clsName;
+                }
+            </script>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td ng-class="loadPerformanceOption == 1 ? 'tabSelected' : 'tabDefault'" ng-click="loadPerformanceStats(1)">Past Day</td>
+                            <td ng-class="loadPerformanceOption == 2 ? 'tabSelected' : 'tabDefault'" ng-click="loadPerformanceStats(2)">Past 7 Days</td>
+                            <td ng-class="loadPerformanceOption == 3 ? 'tabSelected' : 'tabDefault'" ng-click="loadPerformanceStats(3)">Current Month</td>
+                            <td ng-class="loadPerformanceOption == 4 ? 'tabSelected' : 'tabDefault'" ng-click="loadPerformanceStats(4)">
+                                Custom
+                                &nbsp;&nbsp;
+                                <input style="width:125px;" type="datetime-local" ng-model="statStartDate" ng-model-options="{timezone: 'UTC'}" ng-change="loadPerformanceStats(4)">
+                                &nbsp;&nbsp;
+                                <input style="width:125px;" type="datetime-local" ng-model="statEndDate" ng-model-options="{timezone: 'UTC'}" ng-change="loadPerformanceStats(4)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style=" padding:10px;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td class="statBox">
+                                            {{statCustomers}}
+                                            <br/><br/>
+                                            <small>Customers</small>
+                                        </td>
+                                        <td class="statBoxSep"></td>
+                                        <td class="statBox">
+                                            {{statOrders}}
+                                            <br/><br/>
+                                            <small>Orders</small>
+                                        </td>
+                                        <td class="statBoxSep"></td>
+                                        <td class="statBox">
+                                            {{statAverageCart | number:2}} &pound;
+                                            <br/><br/>
+                                            <small>Average Cart</small>
+                                        </td>
+                                        <td class="statBoxSep"></td>
+                                        <td class="statBox">
+                                            {{statRevenue | number:2}} &pound;
+                                            <br/><br/>
+                                            <small>Revenue</small>
+                                        </td>
+                                        <td class="statBoxSep"></td>
+                                        <td class="statBox">
+                                            {{statSalesVolume | number:2}} &pound;
+                                            <br/><br/>
+                                            <small>Sales Volume</small>
+                                        </td>
+                                        <td class="statBoxSep"></td>
+                                        <td class="statBox">
+                                            {{statReturnVolume | number:2}} &pound;
+                                            <br/><br/>
+                                            <small>Return Volume</small>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default" ng-show="productsSoldToDisplay">
+            <div class="panel-heading" style="text-align: left !important;">
+                <h3>Most sold products</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width:1%;">&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th style="width:15%;text-align: center !important;" >Sum</th>
+                            <th style="width:15%;text-align: center !important;"><span class="social-facebook-none img-responsive"/></th>
+                            <th style="width:15%;text-align: center !important;"><span class="social-twitter-none img-responsive"/></th>
+                            <th style="width:15%; text-align: center !important;"><span class="social-pinterest-none img-responsive"/></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="productSold in productsSoldToDisplay">
+                            <td><img data-ng-src="{{'data:image/*;base64,' + getImage(productSold)}}" style="max-height: 40px; max-width: 120px;" ng-if="hasImage(productSold)"/></td>
+                            <td>{{getTitle(productSold)}}</td>
+                            <td>{{getTotalSale(productSold)}}</td>
+                            <td>{{getTotalSale(productSold)}}</td>
+                            <td> - </td>
+                            <td> - </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left !important;">
+                                <a ng-click="toggleShowAllProductsSold()" ng-show="productsSoldRemaining.length > 0">
+                                    <span ng-show="displayShowAllProductsSold()">Show All <span class="glyphicon glyphicon-chevron-down"/></span>
+                                    <span ng-show="displayShowLessProductsSold()">Show Less <span class="glyphicon glyphicon-chevron-up"/></span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row" ng-show="!isAuthenticated()">
         <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
         </div>

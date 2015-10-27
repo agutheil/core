@@ -18,6 +18,7 @@ angular.module('coreApp')
                 resolve: {
                     mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                         $translatePartialLoader.addPart('main');
+                        $translatePartialLoader.addPart('customerOrder');
                         return $translate.refresh();
                     }]
                 }
